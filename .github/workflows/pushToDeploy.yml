@@ -22,7 +22,7 @@ jobs:
       - name: Checkout 🛎
         uses: actions/checkout@v3
 
-      - name: Test
+      - name: Deploy
         shell: bash
         run: |
           git config user.name "${{ secrets.DEPLOY_NAME }}"
