@@ -1,0 +1,33 @@
+name: Push to Preview
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - develop
+  pull_request:
+    branches:
+      - develop
+
+jobs:
+  ci:
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os: [ ubuntu-latest ]
+        node: [ 18 ]
+
+    steps:
+      - name: Checkout 🛎
+        uses: actions/checkout@v3
+
+      - name: Deploy
+        shell: bash
+        run: |
+          git config user.name "${{ secrets.DEPLOY_NAME }}"
+          git config user.email "${{ secrets.DEPLOY_EMAIL }}"
+          git remote rename origin old-origin
+          git remote add origin https://oauth2:${{ secrets.DEPLOY_PUSH_TOKEN }}@${{ secrets.DEPLOY_PUSH_DEST }}.git
+          git fetch --unshallow old-origin
+          git push -u origin develop
