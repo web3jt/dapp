@@ -1,8 +1,8 @@
 
-- [x] [Next.js 13](https://nextjs.org/docs)
 - [x] [TypeScript](https://www.typescriptlang.org)
-- [x] [TailwindCSS](https://tailwindcss.com)
-- [x] [TailwindUI](https://tailwindui.com)
+- [x] [Next.js 13](https://nextjs.org/docs)
+- [x] [TailwindCSS](https://tailwindcss.com) and
+      [TailwindUI](https://tailwindui.com)
 - [ ] [next-themes](https://github.com/pacocoursey/next-themes)
 - [ ] [Rainbowkit](https://www.rainbowkit.com),
       [wagmi](https://wagmi.sh) and
