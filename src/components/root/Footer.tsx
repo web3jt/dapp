@@ -103,7 +103,7 @@ export default function Footer() {
         <div className="xl:grid xl:grid-cols-3 xl:gap-8">
           <div className="space-y-8">
             <HomeIcon
-              className="h-7 fill-indigo-500"
+              className="h-7 fill-indigo-500 hover:fill-indigo-400"
             // alt="Company name"
             // src={imageLogo}
             />

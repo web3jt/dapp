@@ -1,13 +1,13 @@
 'use client';
 
+import clsx from 'clsx';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Fragment, useEffect, useState } from 'react';
 import { usePathname, useSearchParams } from 'next/navigation';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline';
-import { PlusIcon, HomeIcon, TicketIcon } from '@heroicons/react/20/solid';
-import clsx from 'clsx';
+import { PlusIcon, HomeIcon, TicketIcon, FingerPrintIcon } from '@heroicons/react/20/solid';
 
 import {
   useConnectModal,
@@ -120,18 +120,18 @@ export default function Nav() {
                     )}
                   </Disclosure.Button>
                 </div>
-                <div className="flex flex-shrink-0 items-center">
+                <Link href="/" className="flex flex-shrink-0 items-center">
                   <HomeIcon
-                    className="block h-8 w-auto lg:hidden fill-indigo-500"
+                    className="block h-8 w-auto lg:hidden fill-indigo-500 hover:fill-indigo-400"
                   // alt="Your Company"
                   // src={imageLogo}
                   />
                   <HomeIcon
-                    className="hidden h-8 w-auto lg:block fill-indigo-500"
+                    className="hidden h-8 w-auto lg:block fill-indigo-500 hover:fill-indigo-400"
                   // alt="Your Company"
                   // src={imageLogo}
                   />
-                </div>
+                </Link>
                 <div className="hidden md:ml-6 md:flex md:items-center md:space-x-4">
                   {navigation.map((item) => (
                     <Link
@@ -166,10 +166,10 @@ export default function Nav() {
                         <Menu.Button className="flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                           <span className="sr-only">Open user menu</span>
 
-                          <Image
+                          <FingerPrintIcon
                             className="h-8 w-8 rounded-full"
-                            src={user.image}
-                            alt=""
+                          // src={user.image}
+                          // alt=""
                           />
                         </Menu.Button>
                       </div>
@@ -262,17 +262,17 @@ export default function Nav() {
               <div className="border-t border-gray-700 pb-3 pt-4">
                 <div className="flex items-center px-5 sm:px-6">
                   <div className="flex-shrink-0">
-                    <Image
+                    <FingerPrintIcon
                       className="h-10 w-10 rounded-full"
-                      src={user.image}
-                      alt=""
+                    // src={user.image}
+                    // alt=""
                     />
                   </div>
                   <div className="ml-3">
                     <div className="text-base font-medium text-white">
                       {web3Name}
                     </div>
-                    <div className="text-sm font-medium text-gray-400">
+                    <div className="text-sm font-mono text-gray-400">
                       {web3AddressMask}
                     </div>
                   </div>
