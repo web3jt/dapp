@@ -7,7 +7,7 @@ import { Fragment, useEffect, useState } from 'react';
 import { usePathname, useSearchParams } from 'next/navigation';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline';
-import { PlusIcon, HomeIcon, TicketIcon, FingerPrintIcon } from '@heroicons/react/20/solid';
+import { PhotoIcon, TicketIcon, FingerPrintIcon } from '@heroicons/react/20/solid';
 
 import {
   useConnectModal,
@@ -121,12 +121,12 @@ export default function Nav() {
                   </Disclosure.Button>
                 </div>
                 <Link href="/" className="flex flex-shrink-0 items-center">
-                  <HomeIcon
+                  <PhotoIcon
                     className="block h-8 w-auto lg:hidden fill-indigo-500 hover:fill-indigo-400"
                   // alt="Your Company"
                   // src={imageLogo}
                   />
-                  <HomeIcon
+                  <PhotoIcon
                     className="hidden h-8 w-auto lg:block fill-indigo-500 hover:fill-indigo-400"
                   // alt="Your Company"
                   // src={imageLogo}
