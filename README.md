@@ -7,10 +7,13 @@
   - [x] Installation
   - [ ] UI Adaptation
 - [ ] [Rainbowkit](https://www.rainbowkit.com),
-      [wagmi](https://wagmi.sh) and
+      [wagmi](https://wagmi.sh/core/) and
       [ethers.js v5](https://docs.ethers.org/v5)
   - [x] Installation
   - [x] Initialization
   - [ ] Custom Button
+  - [x] Nav Connect
+  - [x] Nav Address
+  - [x] Nav ENS Name
+  - [ ] Nav Avatar
 - [ ] [usehooks-ts](https://usehooks-ts.com)
-

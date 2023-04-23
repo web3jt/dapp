@@ -9,13 +9,13 @@ export function Providers({
   children: React.ReactNode
 }) {
   return (
-    <Web3Providers>
-      <ThemeProvider
-        attribute="class"
-        defaultTheme="dark"
-      >
+    <ThemeProvider
+      attribute="class"
+      defaultTheme="dark"
+    >
+      <Web3Providers>
         {children}
-      </ThemeProvider>
-    </Web3Providers>
+      </Web3Providers>
+    </ThemeProvider>
   )
 }

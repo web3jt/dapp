@@ -1,7 +1,6 @@
 'use client';
 
 import { useAccount } from "wagmi";
-import { ConnectButton } from '@rainbow-me/rainbowkit';
 
 export default function XXX() {
   const { address, isConnecting, isDisconnected } = useAccount();
@@ -20,8 +19,6 @@ export default function XXX() {
         <div>
           isDisconnected: {isDisconnected ? 'true' : 'false'}
         </div>
-
-        <ConnectButton />
       </div>
     </div>
   )
