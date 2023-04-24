@@ -9,7 +9,7 @@ import { XMarkIcon } from '@heroicons/react/20/solid';
 
 
 
-export default async function Tip() {
+export default function Tip() {
   // const [unread, updateUnread] = useLocalStorage('tipA202304231', true);
   const [unread, updateUnread] = useImmer<boolean>(true);
 
