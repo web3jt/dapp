@@ -11,7 +11,7 @@
       [ethers.js v5](https://docs.ethers.org/v5)
   - [x] Installation
   - [x] Initialization
-  - [ ] Custom Button
+  - [ ] Custom Connect Wallet Button
   - [x] Nav Connect
   - [x] Nav Address
   - [x] Nav ENS Name

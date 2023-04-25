@@ -2,6 +2,7 @@
 
 import { ThemeProvider } from 'next-themes';
 import { Web3Providers } from '@/providers/web3';
+import { StateProvider } from '@/providers/state';
 
 export function Providers({
   children
@@ -14,7 +15,9 @@ export function Providers({
       defaultTheme="dark"
     >
       <Web3Providers>
-        {children}
+        <StateProvider>
+          {children}
+        </StateProvider>
       </Web3Providers>
     </ThemeProvider>
   )
