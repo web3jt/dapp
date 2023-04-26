@@ -715,10 +715,10 @@
     tiny-glob "^0.2.9"
     tslib "^2.4.0"
 
-"@rainbow-me/rainbowkit@^0.12.9":
-  version "0.12.9"
-  resolved "https://registry.yarnpkg.com/@rainbow-me/rainbowkit/-/rainbowkit-0.12.9.tgz#137c1fda3d674cc9aaa35942db77aa084c6b2044"
-  integrity sha512-8qm3zNtOUAyxRPm7HsxIQf9NzqHoOJyUtceoHQn0JEU98aYdyVgxMm1lx7cjAvzNwz/kfxEIYm5d5W3c3Hfebw==
+"@rainbow-me/rainbowkit@^0.12.10":
+  version "0.12.10"
+  resolved "https://registry.yarnpkg.com/@rainbow-me/rainbowkit/-/rainbowkit-0.12.10.tgz#3ba2e0942bbab044de1170ef815d05c297c6e3b0"
+  integrity sha512-L01az/fdmB5XVg8Wn9LNBgPKqrhC6GI9H04gqoHmYxQ8wqdehzlFuuVE+Z5KkNolKhrMrpXRLoqzBJPxdXncHw==
   dependencies:
     "@vanilla-extract/css" "1.9.1"
     "@vanilla-extract/dynamic" "2.0.2"
