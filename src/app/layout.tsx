@@ -1,8 +1,9 @@
 import { Providers } from './providers';
-import Tip from '@/components/root/Tip';
+import Tip from '@/components/tips/Sample';
 import Nav from '@/components/root/Nav';
 import Footer from '@/components/root/Footer';
-import '@/app/styles/globals.css';
+import '@/styles/globals.css';
+
 
 export const metadata = {
   title: 'Create Next App',
