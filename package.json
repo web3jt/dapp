@@ -19,9 +19,8 @@
     "eslint-config-next": "13.3.1",
     "ethers": "^5",
     "immer": "^10.0.1",
-    "mobx": "^6.9.0",
-    "mobx-react": "^7.6.0",
-    "mobx-react-lite": "^3.4.3",
+    "jotai": "^2.0.4",
+    "jotai-immer": "^0.2.0",
     "next": "13.3.1",
     "next-themes": "^0.2.1",
     "postcss": "8.4.23",
@@ -32,8 +31,7 @@
     "typescript": "5.0.4",
     "use-immer": "^0.9.0",
     "usehooks-ts": "^2.9.1",
-    "wagmi": "^0.12.12",
-    "zustand": "^4.3.7"
+    "wagmi": "^0.12.12"
   },
   "devDependencies": {
     "@types/node": "^18.16.0",
