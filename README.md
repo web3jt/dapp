@@ -11,9 +11,12 @@
       [ethers.js v5](https://docs.ethers.org/v5)
   - [x] Installation
   - [x] Initialization
-  - [ ] Custom Connect Wallet Button
+  - [x] Custom Connect Wallet Button
   - [x] Nav Connect
   - [x] Nav Address
   - [x] Nav ENS Name
   - [ ] Nav Avatar
+- [x] [jotai](https://jotai.org/)
+  - [x] store: web3
+  - [x] StateProvider
 - [ ] [usehooks-ts](https://usehooks-ts.com)
