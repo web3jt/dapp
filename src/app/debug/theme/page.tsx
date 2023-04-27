@@ -1,6 +1,6 @@
 import ThemeChanger from '@/components/debug/ThemeChanger';
 
-export default function XXX() {
+export default function Page() {
     return (
         <>
             <ThemeChanger />

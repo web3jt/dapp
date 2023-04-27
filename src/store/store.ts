@@ -46,7 +46,17 @@ export const atomWeb3Name = atom((get) => {
 
 const unsubBlockNumber = store.sub(atomWeb3BlockNumber, () => {
   const blockNumber = store.get(atomWeb3BlockNumber);
-  console.log(`blockNumber: ${blockNumber}`);
+  console.log(`new block number: ${blockNumber}`);
+})
+
+const unsubAddress = store.sub(atomWeb3Address, () => {
+  const address = store.get(atomWeb3Address);
+  console.log(`new address: ${address}`);
+})
+
+const unsubEnsName = store.sub(atomWeb3EnsName, () => {
+  const ensName = store.get(atomWeb3EnsName);
+  console.log(`new ensName: ${ensName}`);
 })
 
 export default store;

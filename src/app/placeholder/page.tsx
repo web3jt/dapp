@@ -1,6 +1,6 @@
 import Placeholder from '@/components/Placeholder';
 
-export default function XXX() {
+export default function Page() {
   return (
     <>
       <Placeholder />

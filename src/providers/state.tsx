@@ -30,10 +30,8 @@ export function StateProvider({
   const [, setConnected] = useAtom(atomWeb3Connected);
   const [, setReconnecting] = useAtom(atomWeb3Reconnecting);
   const [, setDisconnected] = useAtom(atomWeb3Disconnected);
-
   const [, setEnsName] = useAtom(atomWeb3EnsName);
-
-  const [, setBlockNumber] = useAtom(atomWeb3BlockNumber);
+  // const [, setBlockNumber] = useAtom(atomWeb3BlockNumber);
 
 
   // address, connect
