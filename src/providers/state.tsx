@@ -33,7 +33,6 @@ export function StateProvider({
   const [, setEnsName] = useAtom(atomWeb3EnsName);
   // const [, setBlockNumber] = useAtom(atomWeb3BlockNumber);
 
-
   // address, connect
   const {
     address,
@@ -106,14 +105,12 @@ export function StateProvider({
     ensNameData
   ]);
 
-
   // // block number
   // const { data: blockNumberData, isLoading: blockNumberIsLoading } = useBlockNumber({
   //   // watch: true,
   //   // cacheTime: 60_000,
   //   // staleTime: 60_000,
   // });
-
 
   // useEffect(() => {
   //   if (blockNumberData) {
@@ -126,7 +123,6 @@ export function StateProvider({
   // ]);
 
   // // setBlockNumber
-
   // const { data: balanceData, isLoading: balanceIsLoading } = useBalance({
   //   address: address,
   // })
@@ -141,7 +137,6 @@ export function StateProvider({
   // }, [
   //   balanceData
   // ]);
-
 
   return (
     <>
