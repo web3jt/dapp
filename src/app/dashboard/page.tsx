@@ -10,6 +10,7 @@ import {
   atomWeb3AddressMask,
   atomWeb3EnsName,
   atomWeb3Name,
+  atomWeb3BlockNumber
 
 } from '@/store/store';
 
@@ -19,6 +20,7 @@ export default function XXX() {
   const [addressMask] = useAtom(atomWeb3AddressMask);
   const [ensName] = useAtom(atomWeb3EnsName);
   const [web3Name] = useAtom(atomWeb3Name);
+  const [blockNumber] = useAtom(atomWeb3BlockNumber);
 
   return (
     <>
@@ -35,6 +37,9 @@ export default function XXX() {
           </div>
           <div>
             web3Name: {web3Name}
+          </div>
+          <div>
+            blockNumber: {blockNumber}
           </div>
         </div>
       </div>

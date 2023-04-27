@@ -29,8 +29,8 @@ interface NavItem {
 
 const navigation: NavItem[] = [
   { name: 'Home', href: '/' },
-  { name: 'Team', href: '/xxx' },
-  { name: 'Projects', href: '/xxx/empty' },
+  { name: 'Debug', href: '/debug' },
+  { name: 'Placeholder', href: '/placeholder' },
 ]
 
 const userNavigation: NavItem[] = [

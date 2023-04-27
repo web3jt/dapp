@@ -2,7 +2,12 @@
 
 import { useAtom } from 'jotai';
 import { useEffect } from "react";
-import { useAccount, useEnsName } from "wagmi";
+import {
+  useAccount,
+  useEnsName,
+  useBlockNumber,
+  useBalance,
+} from "wagmi";
 import {
   atomWeb3Address,
   atomWeb3EnsName,
@@ -10,6 +15,8 @@ import {
   atomWeb3Connected,
   atomWeb3Reconnecting,
   atomWeb3Disconnected,
+
+  atomWeb3BlockNumber,
 } from '@/store/store';
 
 // export: state provider
@@ -25,6 +32,8 @@ export function StateProvider({
   const [, setDisconnected] = useAtom(atomWeb3Disconnected);
 
   const [, setEnsName] = useAtom(atomWeb3EnsName);
+
+  const [, setBlockNumber] = useAtom(atomWeb3BlockNumber);
 
 
   // address, connect
@@ -82,8 +91,8 @@ export function StateProvider({
     isDisconnected
   ]);
 
-
-  const { data: ensNameData } = useEnsName({
+  // ENS
+  const { data: ensNameData, isLoading: ensNameIsLoading } = useEnsName({
     address: address,
     suspense: true,
     // cacheTime: 300_000,
@@ -98,6 +107,43 @@ export function StateProvider({
   }, [
     ensNameData
   ]);
+
+
+  // // block number
+  // const { data: blockNumberData, isLoading: blockNumberIsLoading } = useBlockNumber({
+  //   // watch: true,
+  //   // cacheTime: 60_000,
+  //   // staleTime: 60_000,
+  // });
+
+
+  // useEffect(() => {
+  //   if (blockNumberData) {
+  //     setBlockNumber(blockNumberData);
+  //   } else {
+  //     setBlockNumber(undefined);
+  //   }
+  // }, [
+  //   blockNumberData
+  // ]);
+
+  // // setBlockNumber
+
+  // const { data: balanceData, isLoading: balanceIsLoading } = useBalance({
+  //   address: address,
+  // })
+
+  // useEffect(() => {
+  //   if (balanceData) {
+  //     console.log(balanceData);
+  //     // setBlockNumber(blockNumberData);
+  //   } else {
+  //     // setBlockNumber(undefined);
+  //   }
+  // }, [
+  //   balanceData
+  // ]);
+
 
   return (
     <>

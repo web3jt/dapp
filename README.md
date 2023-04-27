@@ -17,6 +17,7 @@
   - [x] Nav ENS Name
   - [ ] Nav Avatar
 - [x] [jotai](https://jotai.org/)
-  - [x] store: web3
-  - [x] StateProvider
+  - [x] store
+  - [x] StateProvider with `store`
+  - [x] computed atom
 - [ ] [usehooks-ts](https://usehooks-ts.com)

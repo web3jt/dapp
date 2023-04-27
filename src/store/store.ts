@@ -19,6 +19,7 @@ export const atomWeb3Connected = atomWithImmer<boolean>(false);
 export const atomWeb3Reconnecting = atomWithImmer<boolean>(false);
 export const atomWeb3Disconnected = atomWithImmer<boolean>(false);
 export const atomWeb3Chain = atomWithImmer<Web3Chain | undefined>(undefined);
+export const atomWeb3BlockNumber = atomWithImmer<number | undefined>(undefined);
 
 export const atomWeb3AddressMask = atom((get) => {
   const address = get(atomWeb3Address);
@@ -42,5 +43,10 @@ export const atomWeb3Name = atom((get) => {
 
   return 'Unnamed';
 });
+
+const unsubBlockNumber = store.sub(atomWeb3BlockNumber, () => {
+  const blockNumber = store.get(atomWeb3BlockNumber);
+  console.log(`blockNumber: ${blockNumber}`);
+})
 
 export default store;

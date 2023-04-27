@@ -18,6 +18,8 @@ import { configureChains, createClient, WagmiConfig } from 'wagmi';
 import { mainnet, goerli } from 'wagmi/chains';
 import { alchemyProvider } from 'wagmi/providers/alchemy';
 import { publicProvider } from 'wagmi/providers/public';
+// import { infuraProvider } from 'wagmi/providers/infura';
+// import { jsonRpcProvider } from 'wagmi/providers/jsonRpc';
 
 
 // default chain: goerli
@@ -45,6 +47,7 @@ const { chains, provider } = configureChains(
     goerli,
   ],
   [
+
     alchemyProvider({ apiKey: process.env.NEXT_PUBLIC_ALCHEMY_API_KEY || '' }),
     publicProvider(),
   ]
