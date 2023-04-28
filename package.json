@@ -34,7 +34,7 @@
     "wagmi": "^0.12.12"
   },
   "devDependencies": {
-    "@types/node": "^18.16.1",
+    "@types/node": "^18.16.2",
     "@types/react": "18.2.0",
     "@types/react-dom": "18.2.1"
   }
