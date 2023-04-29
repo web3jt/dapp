@@ -26,17 +26,16 @@ import {
   MoonIcon as MoonIconSolid,
 } from '@heroicons/react/20/solid';
 
-import { useTheme } from 'next-themes';
-
 import {
+  atomDarkMode,
+  atomTheme,
+
   atomWeb3AddressMask,
   atomWeb3Connecting,
   atomWeb3Connected,
   atomWeb3Name,
   atomWeb3Chain,
 } from '@/store/store';
-
-
 
 import imageLogo from '@/images/mark.svg';
 import imageUser from '@/images/user.avif';
@@ -48,7 +47,7 @@ interface NavItem {
 
 const navigation: NavItem[] = [
   { name: 'Home', href: '/' },
-  { name: 'Debug', href: '/debug' },
+  { name: 'Theme', href: '/theme' },
   { name: 'Placeholder', href: '/placeholder' },
 ]
 
@@ -62,7 +61,8 @@ export default function Nav() {
   const pathname = usePathname();
   const { openAccountModal } = useAccountModal();
 
-  const { theme, setTheme } = useTheme();
+  const [darkMode] = useAtom(atomDarkMode);
+  const [theme] = useAtom(atomTheme);
 
   const [web3Name] = useAtom(atomWeb3Name);
   const [web3AddressMask] = useAtom(atomWeb3AddressMask);
@@ -79,7 +79,14 @@ export default function Nav() {
               <div className="flex">
                 <div className="-ml-2 mr-2 flex items-center md:hidden">
                   {/* Mobile menu button */}
-                  <Disclosure.Button className="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+                  <Disclosure.Button className={clsx(
+                    "inline-flex items-center justify-center rounded-md p-2",
+                    "text-gray-400",
+                    "hover:bg-gray-100 hover:text-gray-500",
+                    "dark:hover:bg-gray-700 dark:hover:text-white",
+                    "focus:outline-none focus:ring-2 focus:ring-inset",
+                    "focus:ring-indigo-500 dark:focus:ring-white",
+                  )}>
                     <span className="sr-only">Open main menu</span>
                     {open ? (
                       <XMarkIcon className="block h-6 w-6" aria-hidden="true" />
@@ -90,24 +97,31 @@ export default function Nav() {
                 </div>
                 <Link href="/" className="flex flex-shrink-0 items-center">
                   <PhotoIcon
-                    className="block h-8 w-auto lg:hidden fill-indigo-500 hover:fill-indigo-400"
+                    className="block h-8 w-auto lg:hidden fill-indigo-500 hover:fill-indigo-600 dark:hover:fill-indigo-400"
                   // alt="Your Company"
                   // src={imageLogo}
                   />
                   <PhotoIcon
-                    className="hidden h-8 w-auto lg:block fill-indigo-500 hover:fill-indigo-400"
+                    className="hidden h-8 w-auto lg:block fill-indigo-500 hover:fill-indigo-600 dark:hover:fill-indigo-400"
                   // alt="Your Company"
                   // src={imageLogo}
                   />
                 </Link>
-                <div className="hidden md:ml-6 md:flex md:items-center md:space-x-4">
+                <div className={clsx(
+                  darkMode ? "hidden md:ml-6 md:flex md:items-center md:space-x-4" : "hidden md:ml-6 md:flex md:space-x-8",
+                )}>
                   {navigation.map((item) => (
                     <Link
                       key={item.name}
                       href={item.href}
                       className={clsx(
-                        item.href === pathname ? 'bg-gray-800 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                        'rounded-md px-3 py-2 text-sm font-medium'
+                        darkMode ? clsx(
+                          "rounded-md px-3 py-2 text-sm font-medium",
+                          item.href === pathname ? 'bg-gray-800 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                        ) : clsx(
+                          "inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium",
+                          item.href === pathname ? "border-indigo-500  text-gray-900" : "border-transparent  text-gray-500 hover:border-gray-300 hover:text-gray-700",
+                        ),
                       )}
                       aria-current={item.href === pathname ? 'page' : undefined}
                     >
@@ -185,7 +199,8 @@ export default function Nav() {
                             'transition backdrop-blur',
                             'relative inline-flex items-center gap-x-1.5',
                             'rounded-md shadow-sm px-3 py-2',
-                            'bg-rose-700 hover:bg-rose-600',
+                            'bg-rose-600 hover:bg-rose-700',
+                            'dark:bg-rose-700 dark:hover:bg-rose-600',
                             'text-sm font-semibold text-gray-200 hover:text-white',
                             'focus-visible:outline focus-visible:outline-2',
                             'focus-visible:outline-offset-2 focus-visible:outline-rose-500',
@@ -211,7 +226,10 @@ export default function Nav() {
                           <div>
                             <Menu.Button className={clsx(
                               "flex rounded-full text-sm",
-                              "focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 focus:ring-offset-gray-800",
+                              "focus:outline-none focus:ring-2 focus:ring-offset-2",
+                              "focus:ring-indigo-500 dark:focus:ring-gray-500",
+                              "dark:focus:ring-offset-gray-800",
+                              "text-gray-500 dark:text-gray-300",
                             )}>
                               <span className="sr-only">
                                 Open user menu
@@ -275,15 +293,21 @@ export default function Nav() {
           </div>
 
           <Disclosure.Panel className="md:hidden">
-            <div className="space-y-1 px-2 pb-3 pt-2 sm:px-3">
+            <div className="space-y-1 pb-3 pt-2 dark:px-2 dark:sm:px-3">
               {navigation.map((item) => (
                 <Disclosure.Button
                   key={item.name}
                   as={Link}
                   href={item.href}
                   className={clsx(
-                    item.href === pathname ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                    'block rounded-md px-3 py-2 text-base font-medium'
+                    darkMode ? clsx(
+                      'block rounded-md px-3 py-2 text-base font-medium',
+                      item.href === pathname ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                    ) : clsx(
+                      "block border-l-4 py-2 pl-3 pr-4 text-base font-medium sm:pl-5 sm:pr-6",
+                      item.href === pathname ? "border-indigo-500 bg-indigo-50 text-indigo-700"
+                        : "border-transparent text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700",
+                    ),
                   )}
                   aria-current={item.href === pathname ? 'page' : undefined}
                 >
@@ -292,9 +316,9 @@ export default function Nav() {
               ))}
             </div>
             {web3Connected && (
-              <div className="border-t border-gray-700 pb-3 pt-4">
+              <div className="border-t border-gray-300 dark:border-gray-700 pb-3 pt-4">
                 <div className="flex items-center px-5 sm:px-6">
-                  <div className="flex-shrink-0">
+                  <div className="flex-shrink-0 text-gray-500 dark:text-gray-300">
                     <FingerPrintIcon
                       className="h-10 w-10 rounded-full"
                     // src={user.image}
@@ -303,11 +327,11 @@ export default function Nav() {
                   </div>
                   <div className="ml-3">
                     {web3Name && (
-                      <div className="text-base font-medium text-white">
+                      <div className="text-base font-medium text-gray-700 dark:text-white">
                         {web3Name}
                       </div>
                     )}
-                    <div className="text-sm font-mono text-gray-400">
+                    <div className="text-sm font-mono text-gray-500 dark:text-gray-400">
                       {web3AddressMask}
                     </div>
                   </div>
@@ -315,25 +339,44 @@ export default function Nav() {
                     type="button"
                     onClick={openAccountModal}
                     className={clsx(
-                      'ml-auto flex-shrink-0 rounded-full p-1 text-gray-400 hover:text-white',
-                      'focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800',
+                      'ml-auto flex-shrink-0 rounded-full p-1',
+                      'focus:outline-none focus:ring-2  focus:ring-offset-2',
+
+                      // "focus:ring-indigo-500 dark:focus:ring-gray-500",
+                      // "dark:focus:ring-offset-gray-800",
+                      // "text-gray-500 dark:text-gray-300",
+                      clsx(
+                        darkMode
+                          ? "text-gray-400 hover:text-white focus:ring-white focus:ring-offset-gray-800"
+                          : "text-indigo-500 hover:text-indigo-600 focus:ring-indigo-500"
+                      )
                     )}
                   >
                     <span className="sr-only">View notifications</span>
                     <TicketIcon className="h-6 w-6" aria-hidden="true" />
                   </button>
                 </div>
-                <div className="mt-3 space-y-1 px-2 sm:px-3">
+                <div className="mt-3 space-y-1 dark:px-2 dark:sm:px-3">
                   {userNavigation.map((item) => (
                     <Disclosure.Button
                       key={item.name}
                       as={Link}
                       href={item.href}
                       className={clsx(
-                        item.href === pathname ? 'bg-gray-900 text-white' : 'text-gray-300 hover:text-white',
-                        "block rounded-md px-3 py-2 text-base font-medium text-gray-400",
-                        "hover:bg-gray-700 hover:text-white",
+                        darkMode ? clsx(
+                          'block rounded-md px-3 py-2 text-base font-medium',
+                          item.href === pathname ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                        ) : clsx(
+                          "block border-l-4 py-2 pl-3 pr-4 text-base font-medium sm:pl-5 sm:pr-6",
+                          item.href === pathname ? "border-indigo-500 bg-indigo-50 text-indigo-700"
+                            : "border-transparent text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700",
+                        ),
                       )}
+                    // className={clsx(
+                    //   item.href === pathname ? 'bg-gray-900 text-white' : 'text-gray-300 hover:text-white',
+                    //   "block rounded-md px-3 py-2 text-base font-medium text-gray-400",
+                    //   "hover:bg-gray-700 hover:text-white",
+                    // )}
                     >
                       {item.name}
                     </Disclosure.Button>

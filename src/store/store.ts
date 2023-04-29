@@ -13,6 +13,7 @@ export interface Web3Chain {
 }
 
 export const atomDarkMode = atomWithImmer<boolean>(true);
+export const atomTheme = atom((get) => get(atomDarkMode) ? 'dark' : 'light');
 
 export const atomWeb3Address = atomWithImmer<`0x${string}` | undefined>(undefined);
 export const atomWeb3EnsName = atomWithImmer<string | undefined | null>(undefined);
