@@ -121,7 +121,7 @@ export default function Nav() {
                           item.href === pathname ? 'bg-gray-800 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
                         ) : clsx(
                           "inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium",
-                          item.href === pathname ? "border-indigo-500  text-gray-900" : "border-transparent  text-gray-500 hover:border-gray-300 hover:text-gray-700",
+                          item.href === pathname ? "border-indigo-500  text-gray-900" : "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700",
                         ),
                       )}
                       aria-current={item.href === pathname ? 'page' : undefined}
