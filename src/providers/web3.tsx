@@ -2,7 +2,7 @@
 
 import '@rainbow-me/rainbowkit/styles.css';
 
-import { RainbowKitProvider, darkTheme, connectorsForWallets } from '@rainbow-me/rainbowkit';
+import { RainbowKitProvider, lightTheme, darkTheme, connectorsForWallets } from '@rainbow-me/rainbowkit';
 import {
   injectedWallet,
   metaMaskWallet,
@@ -18,7 +18,12 @@ import { configureChains, createClient, WagmiConfig } from 'wagmi';
 import { mainnet, goerli } from 'wagmi/chains';
 import { alchemyProvider } from 'wagmi/providers/alchemy';
 import { publicProvider } from 'wagmi/providers/public';
+// import { infuraProvider } from 'wagmi/providers/infura';
+// import { jsonRpcProvider } from 'wagmi/providers/jsonRpc';
 
+
+import { useAtom } from 'jotai';
+import { atomDarkMode } from '@/store/store';
 
 // default chain: goerli
 const getInitialChainId = () => {
@@ -45,6 +50,7 @@ const { chains, provider } = configureChains(
     goerli,
   ],
   [
+
     alchemyProvider({ apiKey: process.env.NEXT_PUBLIC_ALCHEMY_API_KEY || '' }),
     publicProvider(),
   ]
@@ -103,10 +109,12 @@ export function Web3Providers({
 }: {
   children: React.ReactNode
 }) {
+  const [darmMode] = useAtom(atomDarkMode);
+
   return (
     <WagmiConfig client={wagmiClient}>
       <RainbowKitProvider
-        theme={darkTheme()}
+        theme={darmMode ? darkTheme() : lightTheme()}
         modalSize="compact"
         chains={chains}
         initialChain={initialChainId}

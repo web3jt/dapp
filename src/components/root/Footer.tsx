@@ -1,5 +1,8 @@
+import clsx from 'clsx';
 import { PhotoIcon } from '@heroicons/react/20/solid';
 import { SVGProps } from 'react';
+import ThemeToggle from '@/components/root/ThemeToggle';
+
 
 
 const navigation = {
@@ -95,7 +98,10 @@ const navigation = {
 
 export default function Footer() {
   return (
-    <footer aria-labelledby="footer-heading">
+    <footer
+      aria-labelledby="footer-heading"
+      className=""
+    >
       <h2 id="footer-heading" className="sr-only">
         Footer
       </h2>
@@ -103,16 +109,22 @@ export default function Footer() {
         <div className="xl:grid xl:grid-cols-3 xl:gap-8">
           <div className="space-y-8">
             <PhotoIcon
-              className="h-7 fill-indigo-500 hover:fill-indigo-400"
+              className={clsx(
+                "h-7 fill-indigo-500 hover:fill-indigo-600",
+                "dark:hover:fill-indigo-400",
+              )}
             // alt="Company name"
             // src={imageLogo}
             />
-            <p className="text-sm leading-6 text-gray-300">
+            <p className="text-sm leading-6 text-gray-600 dark:text-gray-300">
               Making the world a better place through constructing elegant hierarchies.
             </p>
             <div className="flex space-x-6">
               {navigation.social.map((item) => (
-                <a key={item.name} href={item.href} className="text-gray-500 hover:text-gray-400">
+                <a key={item.name} href={item.href} className={clsx(
+                  "text-gray-400 dark:text-gray-500",
+                  "hover:text-gray-500 dark:hover:text-gray-400",
+                )}>
                   <span className="sr-only">{item.name}</span>
                   <item.icon className="h-6 w-6" aria-hidden="true" />
                 </a>
@@ -122,11 +134,17 @@ export default function Footer() {
           <div className="mt-16 grid grid-cols-2 gap-8 xl:col-span-2 xl:mt-0">
             <div className="md:grid md:grid-cols-2 md:gap-8">
               <div>
-                <h3 className="text-sm font-semibold leading-6 text-white">Solutions</h3>
+                <h3 className="text-sm font-semibold leading-6 text-gray-900 dark:text-white">
+                  Solutions
+                </h3>
                 <ul role="list" className="mt-6 space-y-4">
                   {navigation.solutions.map((item) => (
                     <li key={item.name}>
-                      <a href={item.href} className="text-sm leading-6 text-gray-300 hover:text-white">
+                      <a href={item.href} className={clsx(
+                        "text-sm leading-6",
+                        "text-gray-600 dark:text-gray-300",
+                        "hover:text-gray-900 dark:hover:text-white",
+                      )}>
                         {item.name}
                       </a>
                     </li>
@@ -134,11 +152,17 @@ export default function Footer() {
                 </ul>
               </div>
               <div className="mt-10 md:mt-0">
-                <h3 className="text-sm font-semibold leading-6 text-white">Support</h3>
+                <h3 className="text-sm font-semibold leading-6 text-gray-900 dark:text-white">
+                  Support
+                </h3>
                 <ul role="list" className="mt-6 space-y-4">
                   {navigation.support.map((item) => (
                     <li key={item.name}>
-                      <a href={item.href} className="text-sm leading-6 text-gray-300 hover:text-white">
+                      <a href={item.href} className={clsx(
+                        "text-sm leading-6",
+                        "text-gray-600 dark:text-gray-300",
+                        "hover:text-gray-900 dark:hover:text-white",
+                      )}>
                         {item.name}
                       </a>
                     </li>
@@ -148,11 +172,17 @@ export default function Footer() {
             </div>
             <div className="md:grid md:grid-cols-2 md:gap-8">
               <div>
-                <h3 className="text-sm font-semibold leading-6 text-white">Company</h3>
+                <h3 className="text-sm font-semibold leading-6 text-gray-900 dark:text-white">
+                  Company
+                </h3>
                 <ul role="list" className="mt-6 space-y-4">
                   {navigation.company.map((item) => (
                     <li key={item.name}>
-                      <a href={item.href} className="text-sm leading-6 text-gray-300 hover:text-white">
+                      <a href={item.href} className={clsx(
+                        "text-sm leading-6",
+                        "text-gray-600 dark:text-gray-300",
+                        "hover:text-gray-900 dark:hover:text-white",
+                      )}>
                         {item.name}
                       </a>
                     </li>
@@ -160,11 +190,17 @@ export default function Footer() {
                 </ul>
               </div>
               <div className="mt-10 md:mt-0">
-                <h3 className="text-sm font-semibold leading-6 text-white">Legal</h3>
+                <h3 className="text-sm font-semibold leading-6 text-gray-900 dark:text-white">
+                  Legal
+                </h3>
                 <ul role="list" className="mt-6 space-y-4">
                   {navigation.legal.map((item) => (
                     <li key={item.name}>
-                      <a href={item.href} className="text-sm leading-6 text-gray-300 hover:text-white">
+                      <a href={item.href} className={clsx(
+                        "text-sm leading-6",
+                        "text-gray-600 dark:text-gray-300",
+                        "hover:text-gray-900 dark:hover:text-white",
+                      )}>
                         {item.name}
                       </a>
                     </li>
@@ -174,8 +210,15 @@ export default function Footer() {
             </div>
           </div>
         </div>
-        <div className="mt-16 border-t border-white/10 pt-8 sm:mt-20 lg:mt-24">
-          <p className="text-xs leading-5 text-gray-400">&copy; 2020 Your Company, Inc. All rights reserved.</p>
+        <div className={clsx(
+          "mt-16 border-t pt-8 sm:mt-20 lg:mt-24",
+          "border-gray-900/10 dark:border-white/20",
+          "flex justify-between items-center",
+        )}>
+          <p className="text-xs leading-5 text-gray-500 dark:text-gray-400">
+            &copy; 2023 Your Company, Inc. All rights reserved.
+          </p>
+          <ThemeToggle />
         </div>
       </div>
     </footer>

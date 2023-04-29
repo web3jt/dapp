@@ -3,9 +3,9 @@
 
 // const inter = Inter({ subsets: ['latin'] });
 
-import Logos from '@/components/Logos';
+import Logos from '@/components/debug/Logos';
 
-export default function Home() {
+export default function Page() {
   return (
     <>
       <Logos />

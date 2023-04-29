@@ -4,45 +4,49 @@
 
 
 :root {
-  --foreground: 11, 24, 39;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  /* --foreground: 11, 24, 39; */
+  --foreground-rgb: 3, 7, 18;
+  --background-rgb: 255, 255, 255;
+  /* --background-start-rgb: 214, 219, 220; */
+  /* --background-end-rgb: 255, 255, 255; */
 }
 
 @media (prefers-color-scheme: light) {
   :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 3, 7, 18;
-    --background-end-rgb: 3, 7, 18;
+    --foreground-rgb: 3, 7, 18;
+    --background-rgb: 255, 255, 255;
+    /* --background-start-rgb: 3, 7, 18; */
+    /* --background-end-rgb: 3, 7, 18; */
   }
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 3, 7, 18;
-    --background-end-rgb: 3, 7, 18;
+    --background-rgb: 3, 7, 18;
+    /* --background-start-rgb: 3, 7, 18; */
+    /* --background-end-rgb: 3, 7, 18; */
   }
 }
 
 [data-theme='light'] {
-  --foreground: 11, 24, 39;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --foreground-rgb: 3, 7, 18;
+  --background-rgb: 255, 255, 255;
 }
 
 [data-theme='dark'] {
   --foreground-rgb: 255, 255, 255;
-  --background-start-rgb: 3, 7, 18;
-  --background-end-rgb: 3, 7, 18;
+  --background-rgb: 3, 7, 18;
 }
 
 html, body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
+  background: rgb(var(--background-rgb));
+  
+  /* background: linear-gradient(
       to bottom,
       transparent,
       rgb(var(--background-end-rgb))
     )
-    rgb(var(--background-start-rgb));
+    rgb(var(--background-start-rgb)); */
 }
