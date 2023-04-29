@@ -12,6 +12,8 @@ export interface Web3Chain {
   unsupported?: boolean;
 }
 
+export const atomDarkMode = atomWithImmer<boolean>(true);
+
 export const atomWeb3Address = atomWithImmer<`0x${string}` | undefined>(undefined);
 export const atomWeb3EnsName = atomWithImmer<string | undefined | null>(undefined);
 export const atomWeb3Connecting = atomWithImmer<boolean>(false);

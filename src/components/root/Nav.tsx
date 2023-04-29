@@ -5,12 +5,29 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Fragment, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
+import { useAtom } from 'jotai';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
-import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline';
-import { PhotoIcon, TicketIcon, ExclamationTriangleIcon, ArrowsRightLeftIcon, FingerPrintIcon, ChevronDownIcon } from '@heroicons/react/20/solid';
 import { ConnectButton, useAccountModal } from "@rainbow-me/rainbowkit";
 
-import { useAtom } from 'jotai';
+import {
+  Bars3Icon,
+  BellIcon,
+  XMarkIcon,
+  SunIcon as SunIconOutline,
+  MoonIcon as MoonIconOutline,
+} from '@heroicons/react/24/outline';
+import {
+  PhotoIcon,
+  TicketIcon,
+  ArrowsRightLeftIcon,
+  FingerPrintIcon,
+  ChevronDownIcon,
+  SunIcon as SunIconSolid,
+  MoonIcon as MoonIconSolid,
+} from '@heroicons/react/20/solid';
+
+import { useTheme } from 'next-themes';
+
 import {
   atomWeb3AddressMask,
   atomWeb3Connecting,
@@ -18,6 +35,8 @@ import {
   atomWeb3Name,
   atomWeb3Chain,
 } from '@/store/store';
+
+
 
 import imageLogo from '@/images/mark.svg';
 import imageUser from '@/images/user.avif';
@@ -43,6 +62,7 @@ export default function Nav() {
   const pathname = usePathname();
   const { openAccountModal } = useAccountModal();
 
+  const { theme, setTheme } = useTheme();
 
   const [web3Name] = useAtom(atomWeb3Name);
   const [web3AddressMask] = useAtom(atomWeb3AddressMask);
@@ -97,6 +117,29 @@ export default function Nav() {
                 </div>
               </div>
               <div className="flex items-center">
+                {/* {theme === 'dark' ? (
+                  <button
+                    className={clsx(
+                      'group flex rounded-full',
+                      'focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800',
+                    )}
+                    onClick={() => setTheme('light')}
+                  >
+                    <SunIconOutline className="block group-hover:hidden h-8 w-8 rounded-full" />
+                    <SunIconSolid className="hidden group-hover:block h-8 w-8 rounded-full " />
+                  </button>
+                ) : (
+                  <button
+                    className={clsx(
+                      'group flex rounded-full',
+                      'focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800',
+                    )}
+                    onClick={() => setTheme('dark')}
+                  >
+                    <MoonIconOutline className="block group-hover:hidden h-8 w-8 rounded-full" />
+                    <MoonIconSolid className="hidden group-hover:block h-8 w-8 rounded-full" />
+                  </button>
+                )} */}
                 <ConnectButton.Custom>
                   {({
                     account,
@@ -162,14 +205,17 @@ export default function Nav() {
                       );
                     }
 
-
                     return (
-                      <div className="hidden md:ml-4 md:flex md:flex-shrink-0 md:items-center">
+                      <div className="hidden md:ml-1 md:flex md:flex-shrink-0 md:items-center">
                         <Menu as="div" className="relative ml-3">
                           <div>
-                            <Menu.Button className="flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
-                              <span className="sr-only">Open user menu</span>
-
+                            <Menu.Button className={clsx(
+                              "flex rounded-full text-sm",
+                              "focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 focus:ring-offset-gray-800",
+                            )}>
+                              <span className="sr-only">
+                                Open user menu
+                              </span>
                               <FingerPrintIcon
                                 className="h-8 w-8 rounded-full"
                               // src={user.image}
