@@ -49,6 +49,7 @@ const navigation: NavItem[] = [
   { name: 'Home', href: '/' },
   { name: 'Theme', href: '/theme' },
   { name: 'Placeholder', href: '/placeholder' },
+  { name: 'Debug', href: '/debug' },
 ]
 
 const userNavigation: NavItem[] = [
@@ -71,7 +72,7 @@ export default function Nav() {
   const [web3Chain, setRawWeb3Chain] = useAtom(atomWeb3Chain);
 
   return (
-    <Disclosure as="nav">
+    <Disclosure as="nav" className="shadow">
       {({ open }) => (
         <>
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

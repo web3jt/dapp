@@ -17,7 +17,7 @@ const steps = [
 
 export default function Example() {
   return (
-    <div className="px-6 py-24 sm:py-32 lg:px-8">
+    <div className="px-6 py-24 sm:py-32 lg:px-8 bg-gray-950">
       <div className="mx-auto max-w-2xl flex item-center">
         <div className="mx-auto" aria-label="Progress">
           <ol role="list" className="overflow-hidden">

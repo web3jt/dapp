@@ -1,6 +1,6 @@
 export default function Example() {
   return (
-    <div className="px-6 py-24 sm:py-32 lg:px-8">
+    <div className="px-6 py-24 sm:py-32 lg:px-8 bg-gray-950">
       <div className="mx-auto max-w-2xl text-center">
         <p className="text-base font-semibold leading-7 text-indigo-500">
           Lorem ipsum dolor

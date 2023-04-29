@@ -1,4 +1,4 @@
-import Placeholder from '@/components/Placeholder';
+import Placeholder from '@/components/debug/Placeholder';
 
 export default function Page() {
   return (
