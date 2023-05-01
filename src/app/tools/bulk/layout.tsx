@@ -1,7 +1,7 @@
 'use client';
 
+import clsx from 'clsx';
 import Tabs from './tabs';
-import ThemeToggle from '@/components/root/ThemeToggle';
 
 export default function RootLayout({
   children,
@@ -11,10 +11,13 @@ export default function RootLayout({
   return (
     <>
       <Tabs />
-      <div>
+      <div className={clsx(
+        "mx-auto max-w-7xl",
+        "px-6 lg:px-8 pt-8 pb-4 sm:pt-12 sm:pb-6",
+        "space-y-6",
+      )}>
         {children}
       </div>
-      <ThemeToggle />
     </>
   )
 }

@@ -8,6 +8,7 @@ import { usePathname } from 'next/navigation';
 import { useAtom } from 'jotai';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { ConnectButton, useAccountModal } from "@rainbow-me/rainbowkit";
+import ThemeToggle from '@/components/root/ThemeToggle';
 
 import {
   Bars3Icon,
@@ -132,6 +133,7 @@ export default function Nav() {
                 </div>
               </div>
               <div className="flex items-center">
+                <ThemeToggle />
                 {/* {theme === 'dark' ? (
                   <button
                     className={clsx(
