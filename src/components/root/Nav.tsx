@@ -35,7 +35,7 @@ import {
   atomWeb3Connecting,
   atomWeb3Connected,
   atomWeb3Name,
-  atomWeb3Chain,
+  atomWeb3Network,
 } from '@/store/store';
 
 import imageLogo from '@/images/mark.svg';
@@ -70,7 +70,7 @@ export default function Nav() {
   const [web3AddressMask] = useAtom(atomWeb3AddressMask);
   const [web3Connecting] = useAtom(atomWeb3Connecting);
   const [web3Connected] = useAtom(atomWeb3Connected);
-  const [web3Chain, setRawWeb3Chain] = useAtom(atomWeb3Chain);
+  const [web3Network] = useAtom(atomWeb3Network);
 
   return (
     <Disclosure as="nav" className="shadow">
@@ -166,8 +166,6 @@ export default function Nav() {
                     openConnectModal,
                     mounted,
                   }) => {
-                    useEffect(() => setRawWeb3Chain(chain), [chain?.id]);
-
                     const connected = mounted && account && chain;
                     if (!connected) {
                       return (
@@ -193,7 +191,7 @@ export default function Nav() {
                       )
                     }
 
-                    if (web3Chain?.unsupported) {
+                    if (web3Network?.chain?.unsupported) {
                       return (
                         <button
                           type="button"
