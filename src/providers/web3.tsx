@@ -15,7 +15,7 @@ import {
 } from '@rainbow-me/rainbowkit/wallets';
 import type { Wallet } from '@rainbow-me/rainbowkit';
 import { configureChains, createClient, WagmiConfig } from 'wagmi';
-import { mainnet, goerli } from 'wagmi/chains';
+import { mainnet, goerli, bsc } from 'wagmi/chains';
 import { alchemyProvider } from 'wagmi/providers/alchemy';
 import { publicProvider } from 'wagmi/providers/public';
 // import { infuraProvider } from 'wagmi/providers/infura';
@@ -48,6 +48,7 @@ const { chains, provider } = configureChains(
   [
     mainnet,
     goerli,
+    bsc,
   ],
   [
 

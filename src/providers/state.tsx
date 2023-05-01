@@ -29,7 +29,7 @@ export function StateProvider({
   children: React.ReactNode
 }) {
 
-  const [, setNetwork] = useAtom(atomWeb3Network);
+  const [network, setNetwork] = useAtom(atomWeb3Network);
   const [, setAddress] = useAtom(atomWeb3Address);
   const [, setConnecting] = useAtom(atomWeb3Connecting);
   const [, setConnected] = useAtom(atomWeb3Connected);
@@ -100,7 +100,11 @@ export function StateProvider({
   const { data: ensNameData, isLoading: ensNameIsLoading } = useEnsName({
     address: address,
     suspense: true,
+    chainId: 1,
     // cacheTime: 300_000,
+    // onError(error) {
+    //   console.log('Error', error)
+    // },
   });
 
   useEffect(() => {
