@@ -8,6 +8,7 @@ import { usePathname } from 'next/navigation';
 import { useAtom } from 'jotai';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { ConnectButton, useAccountModal } from "@rainbow-me/rainbowkit";
+import ThemeToggle from '@/components/root/ThemeToggle';
 
 import {
   Bars3Icon,
@@ -34,7 +35,7 @@ import {
   atomWeb3Connecting,
   atomWeb3Connected,
   atomWeb3Name,
-  atomWeb3Chain,
+  atomWeb3Network,
 } from '@/store/store';
 
 import imageLogo from '@/images/mark.svg';
@@ -69,7 +70,7 @@ export default function Nav() {
   const [web3AddressMask] = useAtom(atomWeb3AddressMask);
   const [web3Connecting] = useAtom(atomWeb3Connecting);
   const [web3Connected] = useAtom(atomWeb3Connected);
-  const [web3Chain, setRawWeb3Chain] = useAtom(atomWeb3Chain);
+  const [web3Network] = useAtom(atomWeb3Network);
 
   return (
     <Disclosure as="nav" className="shadow">
@@ -121,7 +122,7 @@ export default function Nav() {
                           item.href === pathname ? 'bg-gray-800 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
                         ) : clsx(
                           "inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium",
-                          item.href === pathname ? "border-indigo-500  text-gray-900" : "border-transparent  text-gray-500 hover:border-gray-300 hover:text-gray-700",
+                          item.href === pathname ? "border-indigo-500  text-gray-900" : "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700",
                         ),
                       )}
                       aria-current={item.href === pathname ? 'page' : undefined}
@@ -132,6 +133,7 @@ export default function Nav() {
                 </div>
               </div>
               <div className="flex items-center">
+                <ThemeToggle />
                 {/* {theme === 'dark' ? (
                   <button
                     className={clsx(
@@ -164,8 +166,6 @@ export default function Nav() {
                     openConnectModal,
                     mounted,
                   }) => {
-                    useEffect(() => setRawWeb3Chain(chain), [chain?.id]);
-
                     const connected = mounted && account && chain;
                     if (!connected) {
                       return (
@@ -191,7 +191,7 @@ export default function Nav() {
                       )
                     }
 
-                    if (web3Chain?.unsupported) {
+                    if (web3Network?.chain?.unsupported) {
                       return (
                         <button
                           type="button"

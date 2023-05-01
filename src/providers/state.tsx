@@ -7,6 +7,7 @@ import {
   useEnsName,
   useBlockNumber,
   useBalance,
+  useNetwork,
 } from "wagmi";
 import {
   atomWeb3Address,
@@ -17,6 +18,8 @@ import {
   atomWeb3Disconnected,
 
   atomWeb3BlockNumber,
+
+  atomWeb3Network,
 } from '@/store/store';
 
 // export: state provider
@@ -25,6 +28,8 @@ export function StateProvider({
 }: {
   children: React.ReactNode
 }) {
+
+  const [network, setNetwork] = useAtom(atomWeb3Network);
   const [, setAddress] = useAtom(atomWeb3Address);
   const [, setConnecting] = useAtom(atomWeb3Connecting);
   const [, setConnected] = useAtom(atomWeb3Connected);
@@ -32,6 +37,9 @@ export function StateProvider({
   const [, setDisconnected] = useAtom(atomWeb3Disconnected);
   const [, setEnsName] = useAtom(atomWeb3EnsName);
   // const [, setBlockNumber] = useAtom(atomWeb3BlockNumber);
+
+  const { chain, chains } = useNetwork();
+  useEffect(() => setNetwork({ chain: chain, chains: chains }), [chain?.id, chains]);
 
   // address, connect
   const {
@@ -92,7 +100,11 @@ export function StateProvider({
   const { data: ensNameData, isLoading: ensNameIsLoading } = useEnsName({
     address: address,
     suspense: true,
+    chainId: 1,
     // cacheTime: 300_000,
+    // onError(error) {
+    //   console.log('Error', error)
+    // },
   });
 
   useEffect(() => {
