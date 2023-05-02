@@ -59,10 +59,7 @@ export default function Tabs() {
             Bulk Transfer
           </h2>
           <p className="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300">
-            {tab
-              ? tab.desc
-              : 'Nam posuere semper sapien sed pellentesque. Mauris accumsan tincidunt diam, eu luctus dolor tincidunt dictum.'
-            }
+            OPEN-SOURCED, FREE - SAVE GAS FEES
           </p>
         </div>
 
@@ -129,9 +126,11 @@ export default function Tabs() {
             </div>
           </div>
         </div>
-
-
-
+        {tab && (
+          <p className="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300">
+            {tab.desc}
+          </p>
+        )}
       </div >
     </>
   )

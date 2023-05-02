@@ -5,6 +5,7 @@
       [TailwindUI](https://tailwindui.com)
 - [x] [next-themes](https://github.com/pacocoursey/next-themes)
   - [x] Installation
+  - [x] `ThemeToggle`
   - [ ] Theme/UI Adaptation
 - [ ] [Rainbowkit](https://www.rainbowkit.com),
       [wagmi](https://wagmi.sh/core/) and
