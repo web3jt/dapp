@@ -45,6 +45,8 @@ export default function Tabs() {
     if (tab) router.push(tab.href);
   }
 
+  const tab = tabs.find((tab) => tab.href === pathname);
+
   return (
     <>
       <div className={clsx(
@@ -57,7 +59,10 @@ export default function Tabs() {
             Bulk Transfer
           </h2>
           <p className="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300">
-            {tabs.find((tab) => tab.href === pathname)?.desc}
+            {tab
+              ? tab.desc
+              : 'Nam posuere semper sapien sed pellentesque. Mauris accumsan tincidunt diam, eu luctus dolor tincidunt dictum.'
+            }
           </p>
         </div>
 

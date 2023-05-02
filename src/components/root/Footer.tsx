@@ -117,7 +117,7 @@ export default function Footer() {
             // src={imageLogo}
             />
             <p className="text-sm leading-6 text-gray-600 dark:text-gray-300">
-              Making the world a better place through constructing elegant hierarchies.
+              Praesent dictum orci eu est vestibulum dictum. Maecenas gravida id eros rhoncus rutrum.
             </p>
             <div className="flex space-x-6">
               {navigation.social.map((item) => (
