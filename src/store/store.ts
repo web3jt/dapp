@@ -32,7 +32,7 @@ export const atomWeb3NativeSymbol: Atom<string | undefined> = atom((get) => {
     return network.chain?.nativeCurrency.symbol;
   }
 
-  return 'N/A';
+  return undefined;
 });
 
 export const atomWeb3NativeDecimals: Atom<number | undefined> = atom((get) => {

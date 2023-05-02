@@ -5,7 +5,9 @@ import clsx from 'clsx';
 export default function Page() {
   return (
     <>
-      ERC20
+      <div className="text-gray-700 dark:text-white">
+        ERC1155
+      </div>
     </>
   )
 }

@@ -1,41 +1,49 @@
+'use client';
 
 import clsx from 'clsx';
 import Link from 'next/link';
 import { useRouter, usePathname } from 'next/navigation';
 import { useAtom } from 'jotai';
 import { atomDarkMode } from '@/store/store';
-import { CircleStackIcon, BanknotesIcon, PhotoIcon, IdentificationIcon } from '@heroicons/react/20/solid';
-
+import { CircleStackIcon, BanknotesIcon, PhotoIcon, IdentificationIcon, UserCircleIcon } from '@heroicons/react/20/solid';
 
 const tabs = [
   {
     name: 'ETH',
-    desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec non rutrum felis.',
-    href: '/tools/bulk/native',
+    type: 'A',
+    desc: 'Batch Transfer ETH',
+    href: '/tools/batch/native',
     icon: CircleStackIcon
   },
   {
     name: 'ERC20',
-    desc: 'Cras sed sapien nulla. Vestibulum lectus erat, facilisis at est in',
-    href: '/tools/bulk/erc20',
+    type: 'B',
+    desc: 'Batch Transfer ERC20 Tokens',
+    href: '/tools/batch/erc20',
     icon: BanknotesIcon
   },
   {
     name: 'ERC721',
-    desc: 'Aliquam in pellentesque est, vitae tristique enim. Proin hendrerit sed nisi et suscipit.',
-    href: '/tools/bulk/erc721',
+    type: 'C',
+    desc: 'Batch Transfer ERC721 NFTs',
+    href: '/tools/batch/erc721',
     icon: PhotoIcon
   },
   {
     name: 'ERC1155',
-    desc: 'Nullam tincidunt mauris vel velit commodo, sodales rutrum tortor hendrerit.',
-    href: '/tools/bulk/erc1155',
+    type: 'D',
+    desc: 'Batch Transfer ERC1155 NFTs',
+    href: '/tools/batch/erc1155',
     icon: IdentificationIcon
   },
 ]
 
 
-export default function Tabs() {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
   const router = useRouter();
   const pathname = usePathname();
   const [darkMode] = useAtom(atomDarkMode);
@@ -44,8 +52,6 @@ export default function Tabs() {
     const tab = tabs.find((tab) => tab.name === e.target.value);
     if (tab) router.push(tab.href);
   }
-
-  const tab = tabs.find((tab) => tab.href === pathname);
 
   return (
     <>
@@ -56,7 +62,7 @@ export default function Tabs() {
       )}>
         <div className="mx-auto max-w-2xl lg:mx-0">
           <h2 className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-6xl">
-            Bulk Transfer
+            Batch Transfer
           </h2>
           <p className="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300">
             OPEN-SOURCED, FREE - SAVE GAS FEES
@@ -79,7 +85,6 @@ export default function Tabs() {
                 <option key={tab.name}>{tab.name}</option>
               ))}
             </select>
-            {/* <List /> */}
           </div>
           <div className="hidden sm:block">
             <div className={clsx(
@@ -126,11 +131,10 @@ export default function Tabs() {
             </div>
           </div>
         </div>
-        {tab && (
-          <p className="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300">
-            {tab.desc}
-          </p>
-        )}
+
+        <>
+          {children}
+        </>
       </div >
     </>
   )
