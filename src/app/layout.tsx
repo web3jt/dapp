@@ -1,13 +1,10 @@
-// import { Head } from 'next/document'
 import clsx from 'clsx';
 import { Inter } from 'next/font/google';
 import { Providers } from './providers';
 import Tip from '@/components/tips/Sample';
-// import Nav from '@/components/root/Nav';
-import Nav from '@/components/root/Nav2';
+import Nav from '@/components/root/Nav';
 import Footer from '@/components/root/Footer';
 import '@/styles/globals.css';
-
 
 const inter = Inter({ subsets: ['latin'] });
 
