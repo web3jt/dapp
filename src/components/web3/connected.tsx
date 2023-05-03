@@ -25,7 +25,11 @@ export default function Web3Connected({
           {children}
         </>
       ) : (
-        <div className="text-center">
+        <div className={clsx(
+          "mx-auto max-w-7xl",
+          "px-6 lg:px-8 py-24 sm:py-32",
+          "text-center",
+        )}>
           <SignalSlashIcon className="mx-auto h-12 w-12 text-gray-400 dark:text-gray-600" />
 
           <h3 className="mt-4 text-sm font-semibold text-gray-900 dark:text-white">
