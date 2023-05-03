@@ -66,8 +66,10 @@ export default function Page() {
                 defaultChecked={sameAmount}
                 onChange={sameAmountOnchange}
                 className={clsx(
-                  "h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600",
-                  "dark:border-white/10 dark:bg-white/5 dark:focus:ring-offset-gray-900",
+                  "h-4 w-4 rounded text-indigo-600 focus:ring-indigo-600",
+                  "border-gray-300 dark:border-white/10",
+                  "dark:focus:ring-offset-gray-900",
+                  "dark:bg-white/5",
                 )}
               />
             </div>
@@ -92,8 +94,11 @@ export default function Page() {
               aria-describedby="recipient-value-raws"
               className={clsx(
                 "block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6",
-                "text-gray-900 dark:text-white  ring-gray-300 placeholder:text-gray-400 focus:ring-indigo-600 ",
-                "dark:bg-white/5 dark:ring-white/10 dark:focus:ring-indigo-500",
+                "text-gray-900 dark:text-white",
+                "ring-gray-300 dark:ring-white/10",
+                "placeholder:text-gray-400 dark:placeholder:text-gray-600",
+                "focus:ring-indigo-600 dark:focus:ring-indigo-500",
+                "dark:bg-white/5",
               )}
               rows={7}
               value={rawsText}
@@ -119,8 +124,11 @@ export default function Page() {
                 aria-describedby="amount-currency"
                 className={clsx(
                   "block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6",
-                  "text-gray-900 dark:text-white ring-gray-300 placeholder:text-gray-300 focus:ring-indigo-600",
-                  "dark:bg-white/5  dark:ring-white/10 dark:placeholder:text-gray-700 dark:focus:ring-indigo-500",
+                  "text-gray-900 dark:text-white",
+                  "ring-gray-300 dark:ring-white/10",
+                  "placeholder:text-gray-300 dark:placeholder:text-gray-600",
+                  "focus:ring-indigo-600 dark:focus:ring-indigo-500",
+                  "dark:bg-white/5",
                 )}
                 placeholder="0.0000"
                 value={amountText}
@@ -150,9 +158,11 @@ export default function Page() {
               aria-describedby="donate-currency"
               className={clsx(
                 "block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6",
-                "text-gray-900 dark:text-white ring-gray-300 placeholder:text-gray-300 focus:ring-indigo-600",
-                "dark:bg-white/5  dark:ring-white/10 dark:placeholder:text-gray-700 dark:focus:ring-indigo-500",
-
+                "text-gray-900 dark:text-white",
+                "ring-gray-300 dark:ring-white/10",
+                "placeholder:text-gray-300 dark:placeholder:text-gray-600",
+                "focus:ring-indigo-600 dark:focus:ring-indigo-500",
+                "dark:bg-white/5",
               )}
               placeholder="0.005"
               value={donateText}
