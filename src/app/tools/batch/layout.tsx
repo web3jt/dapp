@@ -6,6 +6,7 @@ import { useRouter, usePathname } from 'next/navigation';
 import { useAtom } from 'jotai';
 import { atomDarkMode } from '@/store/store';
 import { CircleStackIcon, BanknotesIcon, PhotoIcon, IdentificationIcon, UserCircleIcon } from '@heroicons/react/20/solid';
+import Web3Connected from '@/components/web3/connected';
 
 const tabs = [
   {
@@ -132,9 +133,9 @@ export default function RootLayout({
           </div>
         </div>
 
-        <>
+        <Web3Connected>
           {children}
-        </>
+        </Web3Connected>
       </div >
     </>
   )

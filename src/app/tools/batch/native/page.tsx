@@ -5,12 +5,13 @@ import clsx from 'clsx';
 import { useEffect } from 'react';
 import { atom, useAtom } from 'jotai';
 import { atomWeb3NativeSymbol } from '@/store/store';
+import Web3Connected from '@/components/web3/connected'
 
 const atomSameAmount = atom<boolean>(true);
 const atomRawsTitle = atom((get) => {
-  const _sameAmount = get(atomSameAmount);
   const _symbol = get(atomWeb3NativeSymbol);
-  if (_sameAmount && _symbol) return `Recipients and ${_symbol} values`;
+  const _sameAmount = get(atomSameAmount);
+  if (_symbol && !_sameAmount) return `Recipients and ${_symbol} values`;
   return 'Recipients';
 });
 

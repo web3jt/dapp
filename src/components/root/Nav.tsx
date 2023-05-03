@@ -175,10 +175,11 @@ export default function Nav() {
                           className={clsx(
                             'relative inline-flex items-center gap-x-1.5',
                             'rounded-md shadow-sm px-3 py-2',
-                            'bg-indigo-700 hover:bg-indigo-600',
+                            'bg-indigo-600 hover:bg-indigo-700',
+                            'dark:bg-indigo-700 dark:hover:bg-indigo-600',
                             'text-sm font-semibold text-gray-200 hover:text-white',
-                            'focus-visible:outline focus-visible:outline-2',
-                            'focus-visible:outline-offset-2 focus-visible:outline-indigo-500',
+                            'focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-indigo-500',
+                            'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500',
                           )}
                           onClick={openConnectModal}
                         >

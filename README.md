@@ -17,9 +17,11 @@
   - [x] Nav Address
   - [x] Nav ENS Name
   - [ ] Nav Avatar
+  - [x] `Web3Connected` Layout
 - [x] [jotai](https://jotai.org/)
   - [x] store
   - [x] StateProvider with `store`
   - [x] computed atom
 - [ ] [usehooks-ts](https://usehooks-ts.com)
 - [ ] [Firebase](https://firebase.google.com)
+- [ ] i18n
