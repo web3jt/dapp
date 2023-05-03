@@ -1,5 +1,6 @@
 *.remark
 
+.firebase
 .yarn
 .yarnrc.yml
 .vscode
