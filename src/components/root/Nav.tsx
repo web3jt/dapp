@@ -3,7 +3,7 @@
 import clsx from 'clsx';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Fragment, useEffect } from 'react';
+import { Fragment } from 'react';
 import { usePathname } from 'next/navigation';
 import { useAtom } from 'jotai';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
@@ -14,8 +14,6 @@ import {
   Bars3Icon,
   BellIcon,
   XMarkIcon,
-  SunIcon as SunIconOutline,
-  MoonIcon as MoonIconOutline,
 } from '@heroicons/react/24/outline';
 import {
   PhotoIcon,
@@ -23,8 +21,6 @@ import {
   ArrowsRightLeftIcon,
   FingerPrintIcon,
   ChevronDownIcon,
-  SunIcon as SunIconSolid,
-  MoonIcon as MoonIconSolid,
 } from '@heroicons/react/20/solid';
 
 import {
@@ -132,31 +128,8 @@ export default function Nav() {
                   ))}
                 </div>
               </div>
-              <div className="flex items-center">
+              <div className="flex justify-center items-center space-x-4">
                 <ThemeToggle />
-                {/* {theme === 'dark' ? (
-                  <button
-                    className={clsx(
-                      'group flex rounded-full',
-                      'focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800',
-                    )}
-                    onClick={() => setTheme('light')}
-                  >
-                    <SunIconOutline className="block group-hover:hidden h-8 w-8 rounded-full" />
-                    <SunIconSolid className="hidden group-hover:block h-8 w-8 rounded-full " />
-                  </button>
-                ) : (
-                  <button
-                    className={clsx(
-                      'group flex rounded-full',
-                      'focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800',
-                    )}
-                    onClick={() => setTheme('dark')}
-                  >
-                    <MoonIconOutline className="block group-hover:hidden h-8 w-8 rounded-full" />
-                    <MoonIconSolid className="hidden group-hover:block h-8 w-8 rounded-full" />
-                  </button>
-                )} */}
                 <ConnectButton.Custom>
                   {({
                     account,
