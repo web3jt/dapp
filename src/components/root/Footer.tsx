@@ -1,9 +1,20 @@
+'use client';
+
 import clsx from 'clsx';
-import { PhotoIcon } from '@heroicons/react/20/solid';
+import moment from 'moment';
+import { atom, useAtom } from 'jotai';
 import { SVGProps } from 'react';
+import { PhotoIcon } from '@heroicons/react/20/solid';
 import ThemeToggle from '@/components/root/ThemeToggle';
 
-
+const atomYears = atom((get) => {
+  const START_YEAR = 2023;
+  const CURRENT_YEAR = parseInt(moment().format('YYYY'));
+  if (CURRENT_YEAR > START_YEAR) {
+    return `${START_YEAR} - ${CURRENT_YEAR}`;
+  }
+  return '2023';
+})
 
 const navigation = {
   solutions: [
@@ -97,6 +108,8 @@ const navigation = {
 
 
 export default function Footer() {
+  const [years] = useAtom(atomYears);
+
   return (
     <footer
       aria-labelledby="footer-heading"
@@ -216,7 +229,7 @@ export default function Footer() {
           "flex justify-between items-center",
         )}>
           <p className="text-xs leading-5 text-gray-500 dark:text-gray-400">
-            &copy; 2023 Your Company, Inc. All rights reserved.
+            &copy; {years} Your Company, Inc. All rights reserved.
           </p>
           <ThemeToggle />
         </div>
