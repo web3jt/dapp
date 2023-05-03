@@ -1,4 +1,5 @@
 import { Atom, atom, createStore } from 'jotai';
+import { atomWithStorage } from 'jotai/utils';
 import { atomWithImmer } from 'jotai-immer';
 import { Chain } from 'wagmi';
 
@@ -11,8 +12,7 @@ type Web3Network = {
 
 const store = createStore();
 
-
-export const atomDarkMode = atomWithImmer<boolean>(true);
+export const atomDarkMode = atomWithStorage<boolean>('darkMode', true);
 export const atomTheme = atom((get) => get(atomDarkMode) ? 'dark' : 'light');
 
 export const atomWeb3Network = atomWithImmer<Web3Network | undefined>(undefined);
