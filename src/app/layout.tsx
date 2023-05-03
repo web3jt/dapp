@@ -1,9 +1,15 @@
+// import { Head } from 'next/document'
+import clsx from 'clsx';
+import { Inter } from 'next/font/google';
 import { Providers } from './providers';
 import Tip from '@/components/tips/Sample';
-import Nav from '@/components/root/Nav';
+// import Nav from '@/components/root/Nav';
+import Nav from '@/components/root/Nav2';
 import Footer from '@/components/root/Footer';
 import '@/styles/globals.css';
 
+
+const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
   title: 'Create Next App',
@@ -17,7 +23,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning={true}>
-      <body className="bg-white dark:bg-gray-950">
+
+      <body className={clsx(
+        inter.className,
+        "bg-white dark:bg-gray-950",
+      )}>
         <Providers>
           <Tip />
           <Nav />

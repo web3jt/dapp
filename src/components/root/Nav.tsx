@@ -196,8 +196,8 @@ export default function Nav() {
                     }
 
                     return (
-                      <div className="hidden md:ml-1 md:flex md:flex-shrink-0 md:items-center">
-                        <Menu as="div" className="relative ml-3">
+                      <div className="hidden md:flex md:flex-shrink-0 md:items-center">
+                        <Menu as="div" className="relative">
                           <div>
                             <Menu.Button className={clsx(
                               "flex rounded-full text-sm",

@@ -5,18 +5,17 @@ import clsx from 'clsx';
 import { useEffect } from 'react';
 import { atom, useAtom } from 'jotai';
 import { atomWeb3NativeSymbol } from '@/store/store';
-import Web3Connected from '@/components/web3/connected'
 
 const atomSameAmount = atom<boolean>(true);
-const atomRawsTitle = atom((get) => {
+const atomRecipientsTitle = atom((get) => {
   const _symbol = get(atomWeb3NativeSymbol);
   const _sameAmount = get(atomSameAmount);
   if (_symbol && !_sameAmount) return `Recipients and ${_symbol} values`;
   return 'Recipients';
 });
 
-const atomRawsText = atom<string>('');
-const atomRawsHint = atom((get) => {
+const atomRecipientsText = atom<string>('');
+const atomRecipientsHint = atom((get) => {
   // const _sameAmount = get(atomSameAmount);
   return 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.';
 });
@@ -37,55 +36,51 @@ const atomDonateHint = atom((get) => {
 export default function Page() {
   const [symbol] = useAtom(atomWeb3NativeSymbol);
   const [sameAmount, setSameAmount] = useAtom(atomSameAmount);
-  const [rawsTitle] = useAtom(atomRawsTitle);
+  const [recipientsTitle] = useAtom(atomRecipientsTitle);
 
-  const [rawsText, setRawsText] = useAtom(atomRawsText);
-  const [rawsHint] = useAtom(atomRawsHint);
+  const [recipientsText, setRawRecipientsText] = useAtom(atomRecipientsText);
+  const [recipientsHint] = useAtom(atomRecipientsHint);
 
-  const [amountText, setAmountText] = useAtom(atomAmountText);
+  const [amountText, setRawAmountText] = useAtom(atomAmountText);
   const [amountHint] = useAtom(atomAmountHint);
 
-  const [donateText, setDonateText] = useAtom(atomDonateText);
+  const [donateText, setRawDonateText] = useAtom(atomDonateText);
   const [donateHint] = useAtom(atomDonateHint);
 
   const sameAmountOnchange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSameAmount(e.target.checked);
   }
 
-
   return (
     <div className="space-y-12">
-      <div className="sm:col-span-4">
-        <fieldset className="mt-4">
-          <div className="mt-2 relative flex gap-x-3">
-            <div className="flex h-6 items-center">
-              <input
-                id="same"
-                name="same"
-                type="checkbox"
-                defaultChecked={sameAmount}
-                onChange={sameAmountOnchange}
-                className={clsx(
-                  "h-4 w-4 rounded text-indigo-600 focus:ring-indigo-600",
-                  "border-gray-300 dark:border-white/10",
-                  "dark:focus:ring-offset-gray-900",
-                  "dark:bg-white/5",
-                )}
-              />
-            </div>
-            <div className="text-sm leading-6 select-none">
-              <label htmlFor="same" className="text-gray-500 dark:text-gray-400 cursor-pointer">
-                Batch transfer {symbol} to multi recipients with the same amount.
-              </label>
-            </div>
+      <div className="mt-4 sm:col-span-4">
+        <div className="mt-2 relative flex gap-x-3">
+          <div className="flex h-6 items-center">
+            <input
+              id="same"
+              name="same"
+              type="checkbox"
+              defaultChecked={sameAmount}
+              onChange={sameAmountOnchange}
+              className={clsx(
+                "h-4 w-4 rounded text-indigo-600 focus:ring-indigo-600",
+                "border-gray-300 dark:border-white/10",
+                "dark:bg-white/5 dark:focus:ring-offset-gray-900",
+              )}
+            />
           </div>
-        </fieldset>
+          <div className="text-sm leading-6 select-none">
+            <label htmlFor="same" className="text-gray-500 dark:text-gray-400 cursor-pointer">
+              Batch transfer {symbol} to multi recipients with the same amount.
+            </label>
+          </div>
+        </div>
       </div>
 
       <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
         <div className="col-span-full">
           <label htmlFor="raws" className="block text-sm font-medium leading-6 text-gray-900 dark:text-white select-none">
-            {rawsTitle}
+            {recipientsTitle}
           </label>
           <div className="mt-2">
             <textarea
@@ -101,13 +96,15 @@ export default function Page() {
                 "dark:bg-white/5",
               )}
               rows={7}
-              value={rawsText}
-              onChange={(e) => setRawsText(e.target.value.trim())}
+              value={recipientsText}
+              onChange={(e) => setRawRecipientsText(e.target.value.trim())}
             />
           </div>
-          <p className="mt-3 text-sm leading-6 text-gray-600 dark:text-gray-400">
-            {rawsHint}
-          </p>
+          {recipientsHint && (
+            <p className="mt-3 text-sm leading-6 text-gray-600 dark:text-gray-400">
+              {recipientsHint}
+            </p>
+          )}
         </div>
 
         {sameAmount && (
@@ -132,7 +129,7 @@ export default function Page() {
                 )}
                 placeholder="0.0000"
                 value={amountText}
-                onChange={(e) => setAmountText(e.target.value.trim())}
+                onChange={(e) => setRawAmountText(e.target.value.trim())}
               />
               <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
                 <span className="text-gray-500 sm:text-sm" id="price-currency">
@@ -140,9 +137,11 @@ export default function Page() {
                 </span>
               </div>
             </div>
-            <p className="mt-3 text-sm leading-6 text-gray-600 dark:text-gray-400">
-              {amountHint}
-            </p>
+            {amountHint && (
+              <p className="mt-3 text-sm leading-6 text-gray-600 dark:text-gray-400">
+                {amountHint}
+              </p>
+            )}
           </div>
         )}
 
@@ -166,7 +165,7 @@ export default function Page() {
               )}
               placeholder="0.005"
               value={donateText}
-              onChange={(e) => setDonateText(e.target.value.trim())}
+              onChange={(e) => setRawDonateText(e.target.value.trim())}
             />
             <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
               <span className="text-gray-500 sm:text-sm" id="price-currency">
@@ -174,9 +173,11 @@ export default function Page() {
               </span>
             </div>
           </div>
-          <p className="mt-3 text-sm leading-6 text-gray-600 dark:text-gray-400">
-            {donateHint}
-          </p>
+          {donateHint && (
+            <p className="mt-3 text-sm leading-6 text-gray-600 dark:text-gray-400">
+              {donateHint}
+            </p>
+          )}
         </div>
       </div>
     </div>
