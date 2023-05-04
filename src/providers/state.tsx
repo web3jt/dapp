@@ -28,7 +28,6 @@ export function StateProvider({
 }: {
   children: React.ReactNode
 }) {
-
   const [network, setNetwork] = useAtom(atomWeb3Network);
   const [, setAddress] = useAtom(atomWeb3Address);
   const [, setConnecting] = useAtom(atomWeb3Connecting);
