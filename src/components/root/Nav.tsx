@@ -7,31 +7,26 @@ import { Fragment } from 'react';
 import { usePathname } from 'next/navigation';
 import { useAtom } from 'jotai';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
-import { ConnectButton, useAccountModal } from "@rainbow-me/rainbowkit";
+import { useAccountModal } from "@rainbow-me/rainbowkit";
 import ThemeToggle from '@/components/root/ThemeToggle';
+import Connect from '@/components/web3/connect';
 
 import {
   Bars3Icon,
-  BellIcon,
   XMarkIcon,
 } from '@heroicons/react/24/outline';
 import {
   PhotoIcon,
   TicketIcon,
-  ArrowsRightLeftIcon,
   FingerPrintIcon,
-  ChevronDownIcon,
 } from '@heroicons/react/20/solid';
 
 import {
   atomDarkMode,
-  atomTheme,
 
   atomWeb3AddressMask,
-  atomWeb3Connecting,
   atomWeb3Connected,
   atomWeb3Name,
-  atomWeb3Network,
 } from '@/store/store';
 
 import imageLogo from '@/images/mark.svg';
@@ -60,13 +55,10 @@ export default function Nav() {
   const { openAccountModal } = useAccountModal();
 
   const [darkMode] = useAtom(atomDarkMode);
-  const [theme] = useAtom(atomTheme);
 
   const [web3Name] = useAtom(atomWeb3Name);
   const [web3AddressMask] = useAtom(atomWeb3AddressMask);
-  const [web3Connecting] = useAtom(atomWeb3Connecting);
   const [web3Connected] = useAtom(atomWeb3Connected);
-  const [web3Network] = useAtom(atomWeb3Network);
 
   return (
     <Disclosure as="nav" className="shadow">
@@ -130,139 +122,72 @@ export default function Nav() {
               </div>
               <div className="flex justify-center items-center space-x-4">
                 <ThemeToggle />
-                <ConnectButton.Custom>
-                  {({
-                    account,
-                    chain,
-                    openAccountModal,
-                    openChainModal,
-                    openConnectModal,
-                    mounted,
-                  }) => {
-                    const connected = mounted && account && chain;
-                    if (!connected) {
-                      return (
-                        <button
-                          type="button"
-                          aria-label="Toggle dark mode"
-                          className={clsx(
-                            'relative inline-flex items-center gap-x-1.5',
-                            'rounded-md shadow-sm px-3 py-2',
-                            'bg-indigo-600 hover:bg-indigo-700',
-                            'dark:bg-indigo-700 dark:hover:bg-indigo-600',
-                            'text-sm font-semibold text-gray-200 hover:text-white',
-                            'focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-indigo-500',
-                            'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500',
-                          )}
-                          onClick={openConnectModal}
-                        >
-                          <TicketIcon className={clsx(
-                            web3Connecting ? 'animate-bounce' : '',
-                            "-ml-0.5 h-5 w-5",
-                          )} aria-hidden="true" />
-                          {web3Connecting ? 'Connecting...' : 'Connect Wallet'}
-                        </button>
-                      )
-                    }
-
-                    if (web3Network?.chain?.unsupported) {
-                      return (
-                        <button
-                          type="button"
-                          aria-label="Toggle dark mode"
-                          className={clsx([
-                            'transition backdrop-blur',
-                            'relative inline-flex items-center gap-x-1.5',
-                            'rounded-md shadow-sm px-3 py-2',
-                            'bg-rose-600 hover:bg-rose-700',
-                            'dark:bg-rose-700 dark:hover:bg-rose-600',
-                            'text-sm font-semibold text-gray-200 hover:text-white',
-                            'focus-visible:outline focus-visible:outline-2',
-                            'focus-visible:outline-offset-2 focus-visible:outline-rose-500',
-                          ])}
-                          onClick={openChainModal}
-                        >
-                          <ArrowsRightLeftIcon className={clsx(
-                            "-ml-0.5 h-5 w-5",
-                          )} aria-hidden="true" />
-
-                          <span>
-                            Wrong Network
+                <Connect>
+                  <div className="hidden md:flex md:flex-shrink-0 md:items-center">
+                    <Menu as="div" className="relative">
+                      <div>
+                        <Menu.Button className={clsx(
+                          "flex rounded-full text-sm",
+                          "focus:outline-none focus:ring-2 focus:ring-offset-2",
+                          "focus:ring-indigo-500 dark:focus:ring-gray-500",
+                          "dark:focus:ring-offset-gray-800",
+                          "text-gray-500 dark:text-gray-300",
+                        )}>
+                          <span className="sr-only">
+                            Open user menu
                           </span>
-
-                          <ChevronDownIcon className="h-5 w-5 " aria-hidden="true" />
-                        </button>
-                      );
-                    }
-
-                    return (
-                      <div className="hidden md:flex md:flex-shrink-0 md:items-center">
-                        <Menu as="div" className="relative">
-                          <div>
-                            <Menu.Button className={clsx(
-                              "flex rounded-full text-sm",
-                              "focus:outline-none focus:ring-2 focus:ring-offset-2",
-                              "focus:ring-indigo-500 dark:focus:ring-gray-500",
-                              "dark:focus:ring-offset-gray-800",
-                              "text-gray-500 dark:text-gray-300",
-                            )}>
-                              <span className="sr-only">
-                                Open user menu
-                              </span>
-                              <FingerPrintIcon
-                                className="h-8 w-8 rounded-full"
-                              // src={user.image}
-                              // alt=""
-                              />
-                            </Menu.Button>
-                          </div>
-                          <Transition
-                            as={Fragment}
-                            enter="transition ease-out duration-200"
-                            enterFrom="transform opacity-0 scale-95"
-                            enterTo="transform opacity-100 scale-100"
-                            leave="transition ease-in duration-75"
-                            leaveFrom="transform opacity-100 scale-100"
-                            leaveTo="transform opacity-0 scale-95"
-                          >
-                            <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                              <Menu.Item key="profile">
-                                <div className="pb-1 mb-1 border-b border-gray-200">
-                                  <div className="group block px-4 py-2 space-y-1 hover:bg-gray-100" onClick={openAccountModal}>
-                                    {web3Name && (
-                                      <p className="text-sm font-medium text-gray-700 group-hover:text-gray-900">
-                                        {web3Name}
-                                      </p>
-                                    )}
-                                    <p className="text-xs font-mono text-gray-500 group-hover:text-gray-700">
-                                      {web3AddressMask}
-                                    </p>
-                                  </div>
-                                </div>
-                              </Menu.Item>
-                              {userNavigation.map((item) => (
-                                <Menu.Item key={item.name}>
-                                  {({ active }) => (
-                                    <Link
-                                      href={item.href}
-                                      className={clsx(
-                                        item.href === pathname ? 'font-bold' : '',
-                                        active ? 'bg-gray-100' : '',
-                                        'block px-4 py-2 text-sm text-gray-700'
-                                      )}
-                                    >
-                                      {item.name}
-                                    </Link>
-                                  )}
-                                </Menu.Item>
-                              ))}
-                            </Menu.Items>
-                          </Transition>
-                        </Menu>
+                          <FingerPrintIcon
+                            className="h-8 w-8 rounded-full"
+                          // src={user.image}
+                          // alt=""
+                          />
+                        </Menu.Button>
                       </div>
-                    );
-                  }}
-                </ConnectButton.Custom>
+                      <Transition
+                        as={Fragment}
+                        enter="transition ease-out duration-200"
+                        enterFrom="transform opacity-0 scale-95"
+                        enterTo="transform opacity-100 scale-100"
+                        leave="transition ease-in duration-75"
+                        leaveFrom="transform opacity-100 scale-100"
+                        leaveTo="transform opacity-0 scale-95"
+                      >
+                        <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                          <Menu.Item key="profile">
+                            <div className="pb-1 mb-1 border-b border-gray-200">
+                              <div className="group block px-4 py-2 space-y-1 hover:bg-gray-100" onClick={openAccountModal}>
+                                {web3Name && (
+                                  <p className="text-sm font-medium text-gray-700 group-hover:text-gray-900">
+                                    {web3Name}
+                                  </p>
+                                )}
+                                <p className="text-xs font-mono text-gray-500 group-hover:text-gray-700">
+                                  {web3AddressMask}
+                                </p>
+                              </div>
+                            </div>
+                          </Menu.Item>
+                          {userNavigation.map((item) => (
+                            <Menu.Item key={item.name}>
+                              {({ active }) => (
+                                <Link
+                                  href={item.href}
+                                  className={clsx(
+                                    item.href === pathname ? 'font-bold' : '',
+                                    active ? 'bg-gray-100' : '',
+                                    'block px-4 py-2 text-sm text-gray-700'
+                                  )}
+                                >
+                                  {item.name}
+                                </Link>
+                              )}
+                            </Menu.Item>
+                          ))}
+                        </Menu.Items>
+                      </Transition>
+                    </Menu>
+                  </div>
+                </Connect>
               </div>
             </div>
           </div>

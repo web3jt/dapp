@@ -61,7 +61,7 @@ export default function RootLayout({
         "px-6 lg:px-8 pt-8 pb-4 sm:pt-12 sm:pb-6",
         "space-y-6",
       )}>
-        <div className="mx-auto max-w-2xl lg:mx-0">
+        <div className="mx-auto max-w-7xl lg:mx-0">
           <h2 className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-6xl">
             Batch Transfer
           </h2>

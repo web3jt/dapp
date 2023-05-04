@@ -37,5 +37,3 @@ export default function RootLayout({
     </html>
   )
 }
-
-// className="bg-gray-950"
