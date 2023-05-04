@@ -1,18 +1,16 @@
 'use client';
 
 import Placeholder from '@/components/debug/Placeholder';
+// import detectEthereumProvider from '@metamask/detect-provider';
+// import { ethers } from 'ethers';
 
-import { useAtom } from 'jotai';
-import { atomWeb3Provider } from '@/store/store';
-
-export default function Page() {
-  const [provider] = useAtom(atomWeb3Provider);
-  console.log('provider:', provider);
+export default async function Page() {
+  // const provider = await detectEthereumProvider();
+  // console.log('provider:', provider);
 
   return (
     <>
       <Placeholder />
-
     </>
   )
 }

@@ -2,7 +2,6 @@ import { Atom, atom, createStore } from 'jotai';
 import { atomWithStorage } from 'jotai/utils';
 import { atomWithImmer } from 'jotai-immer';
 import { Chain } from 'wagmi';
-import detectEthereumProvider from '@metamask/detect-provider';
 
 type Web3Network = {
   chain?: Chain & {
@@ -16,9 +15,6 @@ const store = createStore();
 export const atomDarkMode = atomWithStorage<boolean>('darkMode', true);
 export const atomTheme = atom((get) => get(atomDarkMode) ? 'dark' : 'light');
 
-export const atomWeb3Provider = atom(async (get) => {
-  return await detectEthereumProvider();
-});
 export const atomWeb3Network = atomWithImmer<Web3Network | undefined>(undefined);
 export const atomWeb3Address = atomWithImmer<`0x${string}` | undefined>(undefined);
 export const atomWeb3EnsName = atomWithImmer<string | undefined | null>(undefined);
