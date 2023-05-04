@@ -8,9 +8,6 @@ import { usePathname } from 'next/navigation';
 import { useAtom } from 'jotai';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { useAccountModal } from "@rainbow-me/rainbowkit";
-import ThemeToggle from '@/components/root/ThemeToggle';
-import Connect from '@/components/web3/connect';
-
 import {
   Bars3Icon,
   XMarkIcon,
@@ -20,7 +17,8 @@ import {
   TicketIcon,
   FingerPrintIcon,
 } from '@heroicons/react/20/solid';
-
+import ThemeToggle from '@/components/root/ThemeToggle';
+import Connect from '@/components/web3/connect';
 import {
   atomDarkMode,
 
