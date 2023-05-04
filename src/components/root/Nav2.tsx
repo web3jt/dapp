@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import Link from 'next/link';
 import { Fragment } from 'react';
 import { usePathname } from 'next/navigation';
-import { useAtom } from 'jotai';
+import { atom, useAtom } from 'jotai';
 import { useAccountModal } from "@rainbow-me/rainbowkit";
 import { Popover, Menu, Transition } from '@headlessui/react';
 import {
@@ -14,90 +14,94 @@ import {
 import {
   atomWeb3AddressMask,
   atomWeb3Name,
+  atomWeb3NativeSymbol,
 } from '@/store/store';
 import ThemeToggle from '@/components/root/ThemeToggle';
 import Connect from '@/components/web3/connect';
 
 
+const atomNavigation = atom((get) => {
+  const symbol = get(atomWeb3NativeSymbol);
+
+  return {
+    categories: [
+      {
+        name: 'Tools',
+        tools: [
+          [
+            { name: 'Gas', href: '#' },
+            { name: '#Aliquet', href: '#' },
+            { name: '#Tempor', href: '#' },
+            { name: '#Odio', href: '#' },
+            { name: '#Facilisis', href: '#' },
+            { name: '#Luctus', href: '#' },
+          ],
+          [
+            { name: '#Vitae', href: '#' },
+            { name: '#Nulla', href: '#' },
+            { name: '#Condimentum', href: '#' },
+            { name: '#Justo', href: '#' },
+            { name: '#Diam sit', href: '#' },
+          ],
+        ],
+        batch: [
+          { name: symbol || 'Native', href: '/tools/batch/native' },
+          { name: 'ERC20', href: '/tools/batch/erc20' },
+          { name: 'ERC721', href: '/tools/batch/erc721' },
+          { name: 'ERC1155', href: '/tools/batch/erc1155' },
+        ],
+        categories: [
+          { name: '#Scelerisque', href: '#' },
+          { name: '#Faucibus', href: '#' },
+          { name: '#Ornare', href: '#' },
+          { name: '#Egestas', href: '#' },
+          { name: '#Bibendum', href: '#' },
+        ],
+      },
+      // {
+      //   name: 'Men',
+      //   tools: [
+      //     [
+      //       { name: 'Dress Shirts', href: '#' },
+      //       { name: 'Pants', href: '#' },
+      //       { name: 'Jackets', href: '#' },
+      //       { name: 'T-Shirts', href: '#' },
+      //       { name: 'Jeans', href: '#' },
+      //       { name: 'Hoodies', href: '#' },
+      //     ],
+      //     [
+      //       { name: 'Vests', href: '#' },
+      //       { name: 'Kilts', href: '#' },
+      //       { name: 'Outdoors', href: '#' },
+      //       { name: 'Capes', href: '#' },
+      //       { name: 'Browse All', href: '#' },
+      //     ],
+      //   ],
+      //   batch: [
+      //     { name: 'Watches', href: '#' },
+      //     { name: 'Boots', href: '#' },
+      //     { name: 'Fanny Packs', href: '#' },
+      //     { name: 'Sunglasses', href: '#' },
+      //     { name: 'Browse All', href: '#' },
+      //   ],
+      //   categories: [
+      //     { name: 'Just Added', href: '#' },
+      //     { name: 'Clearance', href: '#' },
+      //     { name: 'Graphic Tees', href: '#' },
+      //   ],
+      // },
+    ],
+    other: [
+      { name: 'Placeholder', href: '/placeholder' },
+      { name: 'Debug', href: '/debug' },
+    ],
+  }
+});
+
 interface NavItem {
   name: string;
   href: string;
 }
-
-const navigation = {
-  categories: [
-    {
-      name: 'Tools',
-      tools: [
-        [
-          { name: 'Gas', href: '#' },
-          { name: '#Aliquet', href: '#' },
-          { name: '#Tempor', href: '#' },
-          { name: '#Odio', href: '#' },
-          { name: '#Facilisis', href: '#' },
-          { name: '#Luctus', href: '#' },
-        ],
-        [
-          { name: '#Vitae', href: '#' },
-          { name: '#Nulla', href: '#' },
-          { name: '#Condimentum', href: '#' },
-          { name: '#Justo', href: '#' },
-          { name: '#Diam sit', href: '#' },
-        ],
-      ],
-      batch: [
-        { name: 'Native', href: '/tools/batch/native' },
-        { name: 'ERC20', href: '/tools/batch/erc20' },
-        { name: 'ERC721', href: '/tools/batch/erc721' },
-        { name: 'ERC1155', href: '/tools/batch/erc1155' },
-      ],
-      categories: [
-        { name: '#Scelerisque', href: '#' },
-        { name: '#Faucibus', href: '#' },
-        { name: '#Ornare', href: '#' },
-        { name: '#Egestas', href: '#' },
-        { name: '#Bibendum', href: '#' },
-      ],
-    },
-    // {
-    //   name: 'Men',
-    //   tools: [
-    //     [
-    //       { name: 'Dress Shirts', href: '#' },
-    //       { name: 'Pants', href: '#' },
-    //       { name: 'Jackets', href: '#' },
-    //       { name: 'T-Shirts', href: '#' },
-    //       { name: 'Jeans', href: '#' },
-    //       { name: 'Hoodies', href: '#' },
-    //     ],
-    //     [
-    //       { name: 'Vests', href: '#' },
-    //       { name: 'Kilts', href: '#' },
-    //       { name: 'Outdoors', href: '#' },
-    //       { name: 'Capes', href: '#' },
-    //       { name: 'Browse All', href: '#' },
-    //     ],
-    //   ],
-    //   batch: [
-    //     { name: 'Watches', href: '#' },
-    //     { name: 'Boots', href: '#' },
-    //     { name: 'Fanny Packs', href: '#' },
-    //     { name: 'Sunglasses', href: '#' },
-    //     { name: 'Browse All', href: '#' },
-    //   ],
-    //   categories: [
-    //     { name: 'Just Added', href: '#' },
-    //     { name: 'Clearance', href: '#' },
-    //     { name: 'Graphic Tees', href: '#' },
-    //   ],
-    // },
-  ],
-  other: [
-    { name: 'Placeholder', href: '/placeholder' },
-    { name: 'Stores', href: '#' },
-  ],
-}
-
 
 const userNavigation: NavItem[] = [
   { name: 'Dashboard', href: '/dashboard' },
@@ -107,9 +111,9 @@ const userNavigation: NavItem[] = [
 export default function Nav() {
   const pathname = usePathname();
   const { openAccountModal } = useAccountModal();
-  const [web3Name] = useAtom(atomWeb3Name);
+  const [navigation] = useAtom(atomNavigation);
   const [web3AddressMask] = useAtom(atomWeb3AddressMask);
-
+  const [web3Name] = useAtom(atomWeb3Name);
 
   return (
     <div className="bg-white dark:bg-gray-950">
@@ -223,10 +227,10 @@ export default function Nav() {
                                           {category.batch.map((item) => (
                                             <li key={item.name} className="flex">
                                               <Link href={item.href} className={clsx(
-                                                item.name.startsWith('#') && 'text-gray-400 dark:text-gray-700 line-through',
+                                                item.name?.startsWith('#') && 'text-gray-400 dark:text-gray-700 line-through',
                                                 "hover:text-gray-800 dark:hover:text-gray-200",
                                               )}>
-                                                {item.name.replace(/^(\#)*/, '')}
+                                                {item.name?.replace(/^(\#)*/, '')}
                                               </Link>
                                             </li>
                                           ))}

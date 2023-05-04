@@ -3,51 +3,52 @@
 import clsx from 'clsx';
 import Link from 'next/link';
 import { useRouter, usePathname } from 'next/navigation';
-import { useAtom } from 'jotai';
+import { atom, useAtom } from 'jotai';
 import { atomDarkMode } from '@/store/store';
-import { CircleStackIcon, BanknotesIcon, PhotoIcon, IdentificationIcon, UserCircleIcon } from '@heroicons/react/20/solid';
+import { CircleStackIcon, BanknotesIcon, PhotoIcon, IdentificationIcon } from '@heroicons/react/20/solid';
+import { atomWeb3NativeSymbol } from '@/store/store';
 import Web3Connected from '@/components/web3/connected';
 
-const tabs = [
-  {
-    name: 'ETH',
-    type: 'A',
-    desc: 'Batch Transfer ETH',
-    href: '/tools/batch/native',
-    icon: CircleStackIcon
-  },
-  {
-    name: 'ERC20',
-    type: 'B',
-    desc: 'Batch Transfer ERC20 Tokens',
-    href: '/tools/batch/erc20',
-    icon: BanknotesIcon
-  },
-  {
-    name: 'ERC721',
-    type: 'C',
-    desc: 'Batch Transfer ERC721 NFTs',
-    href: '/tools/batch/erc721',
-    icon: PhotoIcon
-  },
-  {
-    name: 'ERC1155',
-    type: 'D',
-    desc: 'Batch Transfer ERC1155 NFTs',
-    href: '/tools/batch/erc1155',
-    icon: IdentificationIcon
-  },
-]
+
+const atomTabs = atom((get) => {
+  const symbol = get(atomWeb3NativeSymbol);
+
+  return [
+    {
+      name: symbol || 'Native',
+      desc: 'Batch Transfer ETH',
+      href: '/tools/batch/native',
+      icon: CircleStackIcon
+    },
+    {
+      name: 'ERC20',
+      desc: 'Batch Transfer ERC20 Tokens',
+      href: '/tools/batch/erc20',
+      icon: BanknotesIcon
+    },
+    {
+      name: 'ERC721',
+      desc: 'Batch Transfer ERC721 NFTs',
+      href: '/tools/batch/erc721',
+      icon: PhotoIcon
+    },
+    {
+      name: 'ERC1155',
+      desc: 'Batch Transfer ERC1155 NFTs',
+      href: '/tools/batch/erc1155',
+      icon: IdentificationIcon
+    },
+  ];
+});
 
 
-export default function RootLayout({
-  children,
-}: {
+export default function Layout({ children }: {
   children: React.ReactNode
 }) {
   const router = useRouter();
   const pathname = usePathname();
   const [darkMode] = useAtom(atomDarkMode);
+  const [tabs] = useAtom(atomTabs);
 
   const tabOnchange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const tab = tabs.find((tab) => tab.name === e.target.value);
