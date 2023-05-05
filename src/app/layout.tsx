@@ -18,7 +18,7 @@ export default function RootLayout({ children }: {
 }) {
   return (
     <html lang="en" suppressHydrationWarning={true}>
-      <body className={clsx(inter.className, "bg-white dark:bg-gray-950")}>
+      <body className={clsx(inter.className, "bg-white dark:bg-black")}>
         <Providers>
           <Tip />
           <Nav />

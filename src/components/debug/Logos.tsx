@@ -9,7 +9,7 @@ import logo5 from '@/downloads/statamic-logo-white.svg';
 
 export default function Logos() {
   return (
-    <div className="py-24 sm:py-32 bg-gray-950">
+    <div className="py-24 sm:py-32 bg-white dark:bg-black">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <h2 className="text-center text-lg font-semibold leading-8 text-white">
           Trusted by the world’s most innovative teams

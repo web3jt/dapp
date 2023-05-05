@@ -116,7 +116,7 @@ export default function Nav() {
   const [web3Name] = useAtom(atomWeb3Name);
 
   return (
-    <div className="bg-white dark:bg-gray-950">
+    <div className="bg-white dark:bg-black">
       <header className="relative">
         <nav aria-label="Top" className="mx-auto max-w-7xl sm:px-6 lg:px-8">
           <div className="border-b border-gray-200 dark:border-gray-800 px-4 pb-14 sm:px-0 sm:pb-0">
@@ -168,9 +168,9 @@ export default function Nav() {
                           >
                             <Popover.Panel className="absolute inset-x-0 z-10 top-full text-gray-500 sm:text-sm">
                               {/* Presentational element used to render the bottom shadow, if we put the shadow on the actual panel it pokes out the top, so we use this shorter element to hide the top of the shadow */}
-                              <div className="absolute inset-0 top-1/2 bg-white dark:bg-gray-950 shadow" aria-hidden="true" />
+                              <div className="absolute inset-0 top-1/2 bg-white dark:bg-black shadow" aria-hidden="true" />
 
-                              <div className="relative bg-white dark:bg-gray-950 dark:border-b dark:border-gray-900 select-none">
+                              <div className="relative bg-white dark:bg-black dark:border-b dark:border-gray-900 select-none">
                                 <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                                   <div className="grid grid-cols-1 items-start gap-x-6 gap-y-10 pb-12 pt-10 md:grid-cols-2 lg:gap-x-8">
                                     <div className="grid grid-cols-1 gap-x-6 gap-y-10 lg:gap-x-8">
