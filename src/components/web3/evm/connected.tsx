@@ -4,17 +4,17 @@ import clsx from 'clsx';
 import { SignalSlashIcon, CircleStackIcon } from '@heroicons/react/24/outline';
 import { ArrowsRightLeftIcon } from '@heroicons/react/20/solid';
 import { useAtom } from 'jotai';
-import { atomWeb3Connected, atomWeb3Network } from '@/store/store';
-import Connect from '@/components/web3/connect';
+import { atomEvmConnected, atomEvmNetwork } from '@/store/store';
+import { EvmConnect } from '@/components/web3/evm/connect';
 
 
-export default function Web3Connected({
+export function EvmConnected({
   children,
 }: {
   children: React.ReactNode
 }) {
-  const [connected] = useAtom(atomWeb3Connected);
-  const [web3Network] = useAtom(atomWeb3Network);
+  const [connected] = useAtom(atomEvmConnected);
+  const [web3Network] = useAtom(atomEvmNetwork);
 
   const switch2Chain = (chainId: number) => {
     console.log('switch2Chain', chainId);
@@ -38,7 +38,7 @@ export default function Web3Connected({
       </p>
 
       <div className="mt-6">
-        <Connect />
+        <EvmConnect />
       </div>
     </div>
   )

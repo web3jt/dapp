@@ -2,8 +2,8 @@
 
 import { Provider as AtomProvider } from 'jotai';
 import { ThemeProvider } from 'next-themes';
-import { Web3Providers } from '@/providers/web3';
-import { StateProvider } from '@/providers/state';
+import { EvmProviders } from '@/providers/evm';
+import { SuiProvider } from '@/providers/sui';
 import store from '@/store/store';
 
 export function Providers({
@@ -14,11 +14,11 @@ export function Providers({
   return (
     <AtomProvider store={store}>
       <ThemeProvider attribute="class" defaultTheme="dark">
-        <Web3Providers>
-          <StateProvider>
+        <EvmProviders>
+          <SuiProvider>
             {children}
-          </StateProvider>
-        </Web3Providers>
+          </SuiProvider>
+        </EvmProviders>
       </ThemeProvider>
     </AtomProvider>
   )

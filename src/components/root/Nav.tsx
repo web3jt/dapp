@@ -18,12 +18,12 @@ import {
   FingerPrintIcon,
 } from '@heroicons/react/20/solid';
 import ThemeToggle from '@/components/root/ThemeToggle';
-import Connect from '@/components/web3/connect';
+import { EvmConnect } from '@/components/web3/evm/connect';
 import {
   atomDarkMode,
 
-  atomWeb3AddressMask,
-  atomWeb3Connected,
+  atomEvmAddressMask,
+  atomEvmConnected,
   atomWeb3Name,
 } from '@/store/store';
 
@@ -55,8 +55,8 @@ export default function Nav() {
   const [darkMode] = useAtom(atomDarkMode);
 
   const [web3Name] = useAtom(atomWeb3Name);
-  const [web3AddressMask] = useAtom(atomWeb3AddressMask);
-  const [web3Connected] = useAtom(atomWeb3Connected);
+  const [web3AddressMask] = useAtom(atomEvmAddressMask);
+  const [web3Connected] = useAtom(atomEvmConnected);
 
   return (
     <Disclosure as="nav" className="shadow">
@@ -120,7 +120,7 @@ export default function Nav() {
               </div>
               <div className="flex justify-center items-center space-x-4">
                 <ThemeToggle />
-                <Connect>
+                <EvmConnect>
                   <div className="hidden md:flex md:flex-shrink-0 md:items-center">
                     <Menu as="div" className="relative">
                       <div>
@@ -185,7 +185,7 @@ export default function Nav() {
                       </Transition>
                     </Menu>
                   </div>
-                </Connect>
+                </EvmConnect>
               </div>
             </div>
           </div>

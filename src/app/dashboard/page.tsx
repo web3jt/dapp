@@ -2,16 +2,16 @@
 
 import { useAtom } from "jotai";
 import {
-  atomWeb3Address,
-  atomWeb3AddressMask,
-  atomWeb3EnsName,
+  atomEvmAddress,
+  atomEvmAddressMask,
+  atomEvmEnsName,
   atomWeb3Name,
 } from '@/store/store';
 
 export default function Page() {
-  const [address] = useAtom(atomWeb3Address);
-  const [addressMask] = useAtom(atomWeb3AddressMask);
-  const [ensName] = useAtom(atomWeb3EnsName);
+  const [address] = useAtom(atomEvmAddress);
+  const [addressMask] = useAtom(atomEvmAddressMask);
+  const [ensName] = useAtom(atomEvmEnsName);
   const [web3Name] = useAtom(atomWeb3Name);
 
   return (

@@ -6,12 +6,12 @@ import { useRouter, usePathname } from 'next/navigation';
 import { atom, useAtom } from 'jotai';
 import { atomDarkMode } from '@/store/store';
 import { CircleStackIcon, BanknotesIcon, PhotoIcon, IdentificationIcon } from '@heroicons/react/20/solid';
-import { atomWeb3NativeSymbol } from '@/store/store';
-import Web3Connected from '@/components/web3/connected';
+import { atomEvmNativeSymbol } from '@/store/store';
+import { EvmConnected } from '@/components/web3/evm/connected';
 
 
 const atomTabs = atom((get) => {
-  const symbol = get(atomWeb3NativeSymbol);
+  const symbol = get(atomEvmNativeSymbol);
 
   return [
     {
@@ -134,9 +134,9 @@ export default function Layout({ children }: {
           </div>
         </div>
 
-        <Web3Connected>
+        <EvmConnected>
           {children}
-        </Web3Connected>
+        </EvmConnected>
       </div >
     </>
   )

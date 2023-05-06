@@ -4,11 +4,11 @@ import clsx from 'clsx';
 
 import { useEffect } from 'react';
 import { atom, useAtom } from 'jotai';
-import { atomWeb3NativeSymbol } from '@/store/store';
+import { atomEvmNativeSymbol } from '@/store/store';
 
 const atomSameAmount = atom<boolean>(true);
 const atomRecipientsTitle = atom((get) => {
-  const _symbol = get(atomWeb3NativeSymbol);
+  const _symbol = get(atomEvmNativeSymbol);
   const _sameAmount = get(atomSameAmount);
   if (_symbol && !_sameAmount) return `Recipients and ${_symbol} values`;
   return 'Recipients';
@@ -34,7 +34,7 @@ const atomDonateHint = atom((get) => {
 
 
 export default function Page() {
-  const [symbol] = useAtom(atomWeb3NativeSymbol);
+  const [symbol] = useAtom(atomEvmNativeSymbol);
   const [sameAmount, setSameAmount] = useAtom(atomSameAmount);
   const [recipientsTitle] = useAtom(atomRecipientsTitle);
 

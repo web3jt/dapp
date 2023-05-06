@@ -12,16 +12,16 @@ import {
   FingerPrintIcon,
 } from '@heroicons/react/20/solid';
 import {
-  atomWeb3AddressMask,
+  atomEvmAddressMask,
   atomWeb3Name,
-  atomWeb3NativeSymbol,
+  atomEvmNativeSymbol,
 } from '@/store/store';
 import ThemeToggle from '@/components/root/ThemeToggle';
-import Connect from '@/components/web3/connect';
+import { EvmConnect } from '@/components/web3/evm/connect';
 
 
 const atomNavigation = atom((get) => {
-  const symbol = get(atomWeb3NativeSymbol);
+  const symbol = get(atomEvmNativeSymbol);
 
   return {
     categories: [
@@ -112,7 +112,7 @@ export default function Nav() {
   const pathname = usePathname();
   const { openAccountModal } = useAccountModal();
   const [navigation] = useAtom(atomNavigation);
-  const [web3AddressMask] = useAtom(atomWeb3AddressMask);
+  const [web3AddressMask] = useAtom(atomEvmAddressMask);
   const [web3Name] = useAtom(atomWeb3Name);
 
   return (
@@ -288,7 +288,7 @@ export default function Nav() {
 
               <div className="flex flex-1 items-center justify-end space-x-4">
                 <ThemeToggle />
-                <Connect>
+                <EvmConnect>
                   <div className="hidden md:flex md:flex-shrink-0 md:items-center">
                     <Menu as="div" className="relative">
                       <div>
@@ -353,7 +353,7 @@ export default function Nav() {
                       </Transition>
                     </Menu>
                   </div>
-                </Connect>
+                </EvmConnect>
 
                 {/* Cart */}
                 {/* <div className="ml-4 flow-root lg:ml-8">

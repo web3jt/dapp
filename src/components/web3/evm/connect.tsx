@@ -11,17 +11,17 @@ import {
 } from '@heroicons/react/20/solid';
 
 import {
-  atomWeb3Connecting,
-  atomWeb3Network,
+  atomEvmConnecting,
+  atomEvmNetwork,
 } from '@/store/store';
 
-export default function Web3Connect({
+export function EvmConnect({
   children,
 }: {
   children?: React.ReactNode
 }) {
-  const [web3Connecting] = useAtom(atomWeb3Connecting);
-  const [web3Network] = useAtom(atomWeb3Network);
+  const [evmConnecting] = useAtom(atomEvmConnecting);
+  const [evmNetwork] = useAtom(atomEvmNetwork);
 
   return (
     <ConnectButton.Custom>
@@ -50,15 +50,15 @@ export default function Web3Connect({
               onClick={openConnectModal}
             >
               <TicketIcon className={clsx(
-                web3Connecting ? 'animate-bounce' : '',
+                evmConnecting ? 'animate-bounce' : '',
                 "-ml-0.5 h-5 w-5",
               )} aria-hidden="true" />
-              {web3Connecting ? 'Connecting...' : 'Connect Wallet'}
+              {evmConnecting ? 'Connecting...' : 'Connect Wallet'}
             </button>
           )
         }
 
-        if (web3Network?.chain?.unsupported) {
+        if (evmNetwork?.chain?.unsupported) {
           return (
             <button
               type="button"
