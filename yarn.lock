@@ -2162,7 +2162,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mysten/sui.js@npm:0.33.0":
+"@mysten/sui.js@npm:0.33.0, @mysten/sui.js@npm:^0.33.0":
   version: 0.33.0
   resolution: "@mysten/sui.js@npm:0.33.0"
   dependencies:
@@ -5020,6 +5020,7 @@ __metadata:
     "@headlessui/react": ^1.7.14
     "@heroicons/react": ^2.0.17
     "@metamask/detect-provider": ^2.0.0
+    "@mysten/sui.js": ^0.33.0
     "@rainbow-me/rainbowkit": ^0.12.12
     "@suiet/wallet-kit": ^0.2.10
     "@tailwindcss/aspect-ratio": ^0.4.2

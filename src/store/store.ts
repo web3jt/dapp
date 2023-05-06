@@ -3,6 +3,10 @@ import { atomWithStorage } from 'jotai/utils';
 import { atomWithImmer } from 'jotai-immer';
 import { Chain } from 'wagmi';
 
+import { WalletContextState } from '@suiet/wallet-kit';
+
+// import { } from '@mysten/sui.js/dist/types'
+
 type EvmNetwork = {
   chain?: Chain & {
     unsupported?: boolean;
@@ -23,6 +27,10 @@ export const atomEvmConnected = atomWithImmer<boolean>(false);
 export const atomEvmReconnecting = atomWithImmer<boolean>(false);
 export const atomEvmDisconnected = atomWithImmer<boolean>(false);
 export const atomEvmBlockNumber = atomWithImmer<number | undefined>(undefined);
+
+export const atomSuiWallet = atom<WalletContextState | undefined>(undefined);
+
+
 
 
 export const atomEvmNativeSymbol: Atom<string | undefined> = atom((get) => {
