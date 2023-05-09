@@ -64,35 +64,41 @@ export function EvmStateProvider({
       setEnsName(undefined);
     }
   }, [
-    address
+    address,
+    setAddress,
+    setEnsName,
   ]);
 
   // isConnecting
   useEffect(() => {
     setConnecting(isConnecting);
   }, [
-    isConnecting
+    isConnecting,
+    setConnecting,
   ]);
 
   // isConnected
   useEffect(() => {
     setConnected(isConnected);
   }, [
-    isConnected
+    isConnected,
+    setConnected,
   ]);
 
   // isReconnecting
   useEffect(() => {
     setReconnecting(isReconnecting);
   }, [
-    isReconnecting
+    isReconnecting,
+    setReconnecting,
   ]);
 
   // isDisconnected
   useEffect(() => {
     setDisconnected(isDisconnected);
   }, [
-    isDisconnected
+    isDisconnected,
+    setDisconnected,
   ]);
 
   // ENS
@@ -113,7 +119,8 @@ export function EvmStateProvider({
       setEnsName(undefined);
     }
   }, [
-    ensNameData
+    ensNameData,
+    setEnsName,
   ]);
 
   // // block number
