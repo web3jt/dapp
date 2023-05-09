@@ -2593,9 +2593,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rainbow-me/rainbowkit@npm:^0.12.12":
-  version: 0.12.12
-  resolution: "@rainbow-me/rainbowkit@npm:0.12.12"
+"@rainbow-me/rainbowkit@npm:^0.12.14":
+  version: 0.12.14
+  resolution: "@rainbow-me/rainbowkit@npm:0.12.14"
   dependencies:
     "@vanilla-extract/css": 1.9.1
     "@vanilla-extract/dynamic": 2.0.2
@@ -2604,11 +2604,11 @@ __metadata:
     qrcode: 1.5.0
     react-remove-scroll: 2.5.4
   peerDependencies:
-    ethers: ">=5.5.1"
+    ethers: ">=5.6.8"
     react: ">=17"
     react-dom: ">=17"
     wagmi: 0.12.x
-  checksum: 6e5677ca1b6f32f26980121f1706d2bfc5566465becbbe2979f18083e95b52fe00e3f481a95456322f541ca4e8e939305abc96183a7af9345d8c1f80ba72fce3
+  checksum: 2b1eb284572737c626645f1d990c3b33e608e7ffdcebd2b8be806661a0e1093b2cf0319881ccc3738e8c414d1040ca3de4b8d484da161250e0918e4af0b392a0
   languageName: node
   linkType: hard
 
@@ -5028,7 +5028,7 @@ __metadata:
     "@heroicons/react": ^2.0.17
     "@metamask/detect-provider": ^2.0.0
     "@mysten/sui.js": ^0.33.0
-    "@rainbow-me/rainbowkit": ^0.12.12
+    "@rainbow-me/rainbowkit": ^0.12.14
     "@suiet/wallet-kit": ^0.2.10
     "@tailwindcss/aspect-ratio": ^0.4.2
     "@tailwindcss/forms": ^0.5.3
