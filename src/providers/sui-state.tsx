@@ -10,7 +10,6 @@ import {
 } from '@/store/store';
 
 
-
 // export: SUI state provider
 export function SuiStateProvider({
   children
@@ -24,7 +23,7 @@ export function SuiStateProvider({
   useEffect(() => {
     console.log('wallet', wallet);
     setSuiWallet(wallet);
-  }, [wallet, wallet?.status, setSuiWallet]);
+  }, [wallet, setSuiWallet]);
 
   return (
     <>

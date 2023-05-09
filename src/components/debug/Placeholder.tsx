@@ -55,7 +55,6 @@ export default function Example() {
         </div>
 
         <div>
-
           XXX: {wallet?.address}
         </div>
       </div>
