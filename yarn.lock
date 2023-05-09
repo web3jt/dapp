@@ -5044,7 +5044,7 @@ __metadata:
     eslint-config-next: 13.4.1
     ethers: ^5
     immer: ^10.0.1
-    jotai: ^2.0.4
+    jotai: ^2.1.0
     jotai-immer: ^0.2.0
     moment: ^2.29.4
     next: ^13.4.1
@@ -7034,15 +7034,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jotai@npm:^2.0.4":
-  version: 2.0.4
-  resolution: "jotai@npm:2.0.4"
+"jotai@npm:^2.1.0":
+  version: 2.1.0
+  resolution: "jotai@npm:2.1.0"
   peerDependencies:
     react: ">=17.0.0"
   peerDependenciesMeta:
     react:
       optional: true
-  checksum: 8e32fa126ef18850a1ac9c25e1260bebf0cb79c704ed9c564236904c0a5f28064de9b6a901c395dfbf2aa47f5ae7600ae97e3acadcc79778eda94d92da3a0ded
+  checksum: 060b78dd221950c52e2c796f122b86b2cbbe99ba2b57e8c999a9b5403fd5f970cb8834296f0ac20bace85af8f96a8aac573efb9515382d215bbeace6c417a074
   languageName: node
   linkType: hard
 
