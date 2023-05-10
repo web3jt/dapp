@@ -20,7 +20,7 @@
   - [x] `SuiConnect` - Custom Connect Wallet Button
   - [ ] `SuiConnected` - Layout
 - [ ] `Web3Connect` Button to give 2 options for EVM & SUI
-- [ ] User Menu on Nav
+- [x] User Menu on Nav
   - [x] ENS Name
   - [x] EVM Address
   - [x] SUI Address
