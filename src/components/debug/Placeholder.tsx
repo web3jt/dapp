@@ -3,12 +3,7 @@
 import clsx from 'clsx';
 import Link from 'next/link';
 
-import { useAtom } from 'jotai';
-import { atomSuiWallet } from '@/store/store';
-
-
 export default function Example() {
-  const [wallet] = useAtom(atomSuiWallet);
 
   return (
     <div className="bg-white dark:bg-black">
@@ -52,10 +47,6 @@ export default function Example() {
               </radialGradient>
             </defs>
           </svg> */}
-        </div>
-
-        <div>
-          XXX: {wallet?.address}
         </div>
       </div>
     </div>

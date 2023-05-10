@@ -49,10 +49,13 @@ export function EvmConnect({
               )}
               onClick={openConnectModal}
             >
-              <TicketIcon className={clsx(
-                evmConnecting ? 'animate-bounce' : '',
-                "-ml-0.5 h-5 w-5",
-              )} aria-hidden="true" />
+              <TicketIcon
+                className={clsx(
+                  "-ml-0.5 h-5 w-5",
+                  evmConnecting ? 'animate-bounce' : '',
+                )}
+                aria-hidden="true"
+              />
               {evmConnecting ? 'Connecting...' : 'Connect Wallet'}
             </button>
           )
@@ -75,15 +78,11 @@ export function EvmConnect({
               ])}
               onClick={openChainModal}
             >
-              <ArrowsRightLeftIcon className={clsx(
-                "-ml-0.5 h-5 w-5",
-              )} aria-hidden="true" />
-
+              <ArrowsRightLeftIcon className="-ml-0.5 h-5 w-5" aria-hidden="true" />
               <span>
                 Wrong Network
               </span>
-
-              <ChevronDownIcon className="h-5 w-5 " aria-hidden="true" />
+              <ChevronDownIcon className="h-5 w-5" aria-hidden="true" />
             </button>
           );
         }

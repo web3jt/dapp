@@ -15,6 +15,9 @@ import {
   atomEvmAddressMask,
   atomWeb3Name,
   atomEvmNativeSymbol,
+
+  atomEvmNetwork,
+  atomEvmConnected,
 } from '@/store/store';
 import ThemeToggle from '@/components/root/ThemeToggle';
 import { EvmConnect } from '@/components/web3/evm/connect';
@@ -112,8 +115,14 @@ export default function Nav() {
   const pathname = usePathname();
   const { openAccountModal } = useAccountModal();
   const [navigation] = useAtom(atomNavigation);
+
+  const [evmConnected] = useAtom(atomEvmConnected);
+  const [evmNetwork] = useAtom(atomEvmNetwork);
+
   const [web3AddressMask] = useAtom(atomEvmAddressMask);
   const [web3Name] = useAtom(atomWeb3Name);
+  const [evmSymbol] = useAtom(atomEvmNativeSymbol);
+
 
   return (
     <div className="bg-white dark:bg-black">
@@ -288,8 +297,9 @@ export default function Nav() {
 
               <div className="flex flex-1 items-center justify-end space-x-4">
                 <ThemeToggle />
-                <EvmConnect>
-                  <div className="hidden md:flex md:flex-shrink-0 md:items-center">
+                <EvmConnect />
+                {evmConnected && !evmNetwork?.chain?.unsupported && (
+                  <div className="md:flex md:flex-shrink-0 md:items-center">
                     <Menu as="div" className="relative">
                       <div>
                         <Menu.Button className={clsx(
@@ -328,7 +338,7 @@ export default function Nav() {
                                   </p>
                                 )}
                                 <p className="text-xs font-mono text-gray-500 group-hover:text-gray-700">
-                                  {web3AddressMask}
+                                  {evmSymbol}: {web3AddressMask}
                                 </p>
                               </div>
                             </div>
@@ -353,7 +363,7 @@ export default function Nav() {
                       </Transition>
                     </Menu>
                   </div>
-                </EvmConnect>
+                )}
 
                 {/* Cart */}
                 {/* <div className="ml-4 flow-root lg:ml-8">

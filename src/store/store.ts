@@ -62,7 +62,7 @@ export const atomEvmAddressMask: Atom<string | undefined> = atom((get) => {
   const address = get(atomEvmAddress);
 
   if (address) {
-    return `${address.slice(0, 6)}...${address.slice(-6)}`;
+    return `${address.slice(0, 6)}...${address.slice(-4)}`;
   }
 
   return undefined;
@@ -113,8 +113,6 @@ const unsubSuiWallet = store.sub(atomSuiWallet, () => {
   console.log(`atomSuiWallet:`, wallet);
 })
 
-
-
 export const atomSuiAddress = atom((get) => {
   const wallet = get(atomSuiWallet);
   if (wallet) {
@@ -128,7 +126,7 @@ export const atomSuiAddressMask: Atom<string | undefined> = atom((get) => {
   const address = get(atomSuiAddress);
 
   if (address) {
-    return `${address.slice(0, 6)}...${address.slice(-6)}`;
+    return `${address.slice(0, 6)}...${address.slice(-4)}`;
   }
 
   return undefined;
