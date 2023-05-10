@@ -13,7 +13,7 @@ import {
   atomSuiConnecting,
 } from '@/store/store';
 
-const atomShow = atom<boolean>(false);
+const atomShowConnnectModal = atom<boolean>(false);
 
 
 export function SuiConnect({
@@ -23,12 +23,12 @@ export function SuiConnect({
   buttonText?: string,
   children?: React.ReactNode
 }) {
-  const [show, setShow] = useAtom(atomShow);
+  const [showConnectModal, setShowConnectModal] = useAtom(atomShowConnnectModal);
   const [connected] = useAtom(atomSuiConnected);
   const [connecting] = useAtom(atomSuiConnecting);
 
   const handleConnect = () => {
-    setShow(true);
+    setShowConnectModal(true);
   }
 
   return (
@@ -40,8 +40,8 @@ export function SuiConnect({
       ) : (
         <>
           <ConnectModal
-            open={show}
-            onOpenChange={(open) => setShow(open)}
+            open={showConnectModal}
+            onOpenChange={(open) => setShowConnectModal(open)}
           >
             <button
               type="button"
