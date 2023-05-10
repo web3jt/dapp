@@ -26,7 +26,7 @@ export const atomEvmNetwork = atomWithImmer<EvmNetwork | undefined>(undefined);
 
 const unsubEvmNetwork = store.sub(atomEvmNetwork, () => {
   const network = store.get(atomEvmNetwork);
-  // console.log(`new network:`, network);
+  // console.log(`new EVM network:`, network);
 })
 
 export const atomEvmNativeSymbol: Atom<string | undefined> = atom((get) => {
@@ -55,7 +55,7 @@ export const atomEvmAddress = atomWithImmer<`0x${string}` | undefined>(undefined
 
 const unsubEvmAddress = store.sub(atomEvmAddress, () => {
   const address = store.get(atomEvmAddress);
-  // console.log(`new address: ${address}`);
+  // console.log(`new EVM address: ${address}`);
 })
 
 export const atomEvmAddressMask: Atom<string | undefined> = atom((get) => {
@@ -72,7 +72,7 @@ export const atomEvmEnsName = atomWithImmer<string | undefined | null>(undefined
 
 const unsubEvmEnsName = store.sub(atomEvmEnsName, () => {
   const ensName = store.get(atomEvmEnsName);
-  // console.log(`new ensName: ${ensName}`);
+  // console.log(`new ENS Name: ${ensName}`);
 })
 
 export const atomWeb3Name: Atom<string | undefined> = atom((get) => {
@@ -97,7 +97,7 @@ export const atomEvmBlockNumber = atomWithImmer<number | undefined>(undefined);
 
 const unsubEvmBlockNumber = store.sub(atomEvmBlockNumber, () => {
   const blockNumber = store.get(atomEvmBlockNumber);
-  console.log(`new block number: ${blockNumber}`);
+  console.log(`new EVM block number: ${blockNumber}`);
 })
 
 
@@ -110,7 +110,7 @@ export const atomSuiWallet = atomWithImmer<WalletContextState | undefined>(undef
 
 const unsubSuiWallet = store.sub(atomSuiWallet, () => {
   const wallet = store.get(atomSuiWallet);
-  console.log(`atomSuiWallet:`, wallet);
+  // console.log(`new SUI wallet:`, wallet);
 })
 
 export const atomSuiAddress = atom((get) => {
