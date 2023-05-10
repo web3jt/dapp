@@ -12,12 +12,13 @@ import {
   FingerPrintIcon,
 } from '@heroicons/react/20/solid';
 import {
-  atomEvmAddressMask,
   atomWeb3Name,
+  atomEvmAddressMask,
+  atomEvmConnected,
+  atomEvmNetwork,
   atomEvmNativeSymbol,
 
-  atomEvmNetwork,
-  atomEvmConnected,
+  atomWeb3Connected,
 } from '@/store/store';
 import ThemeToggle from '@/components/root/ThemeToggle';
 import { EvmConnect } from '@/components/web3/evm/connect';
@@ -122,6 +123,8 @@ export default function Nav() {
   const [web3AddressMask] = useAtom(atomEvmAddressMask);
   const [web3Name] = useAtom(atomWeb3Name);
   const [evmSymbol] = useAtom(atomEvmNativeSymbol);
+
+  const [web3Connected] = useAtom(atomWeb3Connected);
 
 
   return (
@@ -298,7 +301,8 @@ export default function Nav() {
               <div className="flex flex-1 items-center justify-end space-x-4">
                 <ThemeToggle />
                 <EvmConnect />
-                {evmConnected && !evmNetwork?.chain?.unsupported && (
+
+                {web3Connected && (
                   <div className="md:flex md:flex-shrink-0 md:items-center">
                     <Menu as="div" className="relative">
                       <div>

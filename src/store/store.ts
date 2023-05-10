@@ -151,4 +151,17 @@ export const atomSuiConnecting = atom((get) => {
 });
 
 
+export const atomWeb3Connected = atom((get) => {
+  const evmConnected = get(atomEvmConnected);
+  if (evmConnected) {
+    const evmNetwork = get(atomEvmNetwork);
+    if (!evmNetwork?.chain?.unsupported) return true;
+  }
+
+  return false;
+});
+
+
+
+
 export default store;
