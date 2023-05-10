@@ -21,8 +21,8 @@
   - [x] Nav Connect
   - [ ] Nav Avatar
 - [ ] [Suiet Wallet Kit](https://kit.suiet.app/)
-  - [x] Custom Connect Wallet Button
-  - [ ] Add to user menu on Nav
+  - [x] `SuiConnect` - Custom Connect Wallet Button
+  - [ ] `SuiConnected` - Layout
 - [ ] `Web3Connect` Button to give 2 options for EVM & SUI
 - [ ] User Menu on Nav
   - [x] ENS Name
