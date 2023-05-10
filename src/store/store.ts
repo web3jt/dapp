@@ -151,11 +151,23 @@ export const atomSuiConnecting = atom((get) => {
 });
 
 
+
+
+
+
+/**
+ * Web3
+ */
 export const atomWeb3Connected = atom((get) => {
   const evmConnected = get(atomEvmConnected);
   if (evmConnected) {
     const evmNetwork = get(atomEvmNetwork);
     if (!evmNetwork?.chain?.unsupported) return true;
+  }
+
+  const suiConnected = get(atomSuiConnected);
+  if (suiConnected) {
+    return true;
   }
 
   return false;

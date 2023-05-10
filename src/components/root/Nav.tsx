@@ -18,11 +18,14 @@ import {
   atomEvmNetwork,
   atomEvmNativeSymbol,
 
+  atomSuiConnected,
+  atomSuiAddressMask,
+
   atomWeb3Connected,
 } from '@/store/store';
 import ThemeToggle from '@/components/root/ThemeToggle';
 import { EvmConnect } from '@/components/web3/evm/connect';
-
+import { SuiConnect } from '@/components/web3/sui/connect';
 
 const atomNavigation = atom((get) => {
   const symbol = get(atomEvmNativeSymbol);
@@ -117,12 +120,17 @@ export default function Nav() {
   const { openAccountModal } = useAccountModal();
   const [navigation] = useAtom(atomNavigation);
 
+  const [web3Name] = useAtom(atomWeb3Name);
+
   const [evmConnected] = useAtom(atomEvmConnected);
+  const [evmSymbol] = useAtom(atomEvmNativeSymbol);
+  const [evmAddressMask] = useAtom(atomEvmAddressMask);
+
+  const [suiConnected] = useAtom(atomSuiConnected);
+  const [suiAddressMask] = useAtom(atomSuiAddressMask);
+
   const [evmNetwork] = useAtom(atomEvmNetwork);
 
-  const [web3AddressMask] = useAtom(atomEvmAddressMask);
-  const [web3Name] = useAtom(atomWeb3Name);
-  const [evmSymbol] = useAtom(atomEvmNativeSymbol);
 
   const [web3Connected] = useAtom(atomWeb3Connected);
 
@@ -341,9 +349,22 @@ export default function Nav() {
                                     {web3Name}
                                   </p>
                                 )}
-                                <p className="text-xs font-mono text-gray-500 group-hover:text-gray-700">
-                                  {evmSymbol}: {web3AddressMask}
-                                </p>
+
+                                {evmConnected && (
+                                  <p className="text-xs font-mono text-gray-500 group-hover:text-gray-700">
+                                    {evmSymbol}: {evmAddressMask}
+                                  </p>
+                                )}
+
+                                {suiConnected && (
+                                  <p className="text-xs font-mono text-gray-500 group-hover:text-gray-700">
+                                    SUI: {suiAddressMask}
+                                  </p>
+                                )}
+
+                                {/* {!suiConnected && (
+                                  <SuiConnect buttonText='Connect SUI' />
+                                )} */}
                               </div>
                             </div>
                           </Menu.Item>

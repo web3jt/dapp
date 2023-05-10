@@ -16,8 +16,10 @@ import {
 } from '@/store/store';
 
 export function EvmConnect({
+  buttonText = 'Connect Wallet',
   children,
 }: {
+  buttonText?: string,
   children?: React.ReactNode
 }) {
   const [evmConnecting] = useAtom(atomEvmConnecting);
