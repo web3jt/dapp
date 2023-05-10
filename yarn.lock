@@ -3450,15 +3450,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vercel/postgres@npm:^0.2.1":
-  version: 0.2.1
-  resolution: "@vercel/postgres@npm:0.2.1"
+"@vercel/postgres@npm:^0.3.0":
+  version: 0.3.0
+  resolution: "@vercel/postgres@npm:0.3.0"
   dependencies:
     "@neondatabase/serverless": 0.4.3
     bufferutil: 4.0.7
     utf-8-validate: 6.0.3
     ws: 8.13.0
-  checksum: 2c2de3b8b7c0c68a5571d0a4157900f3177219864f1078de9aad3107fe1f79dcfbc1cddb66d399c841a6c78310f18dd03e186fec37e76a28e29164bf0caeda5a
+  checksum: 5ad08710dcf2219eeefcaeab2163aad1ee94abd764fcde81970f375ed893991860c66ea1103dc1e8057bf05738bb98f66dbcbc7b253d30ab66c39af95a2c099e
   languageName: node
   linkType: hard
 
@@ -5036,7 +5036,7 @@ __metadata:
     "@types/node": ^20.1.1
     "@types/react": 18.2.6
     "@types/react-dom": 18.2.4
-    "@vercel/postgres": ^0.2.1
+    "@vercel/postgres": ^0.3.0
     autoprefixer: 10.4.14
     clsx: ^1.2.1
     encoding: ^0.1.13
