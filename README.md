@@ -21,12 +21,13 @@
   - [x] Nav Connect
   - [ ] Nav Avatar
 - [ ] [Suiet Wallet Kit](https://kit.suiet.app/)
-  - [ ] Custom Connect Wallet Button
+  - [x] Custom Connect Wallet Button
   - [ ] Add to user menu on Nav
+- [ ] `Web3Connect` Button to give 2 options for EVM & SUI
 - [ ] User Menu on Nav
   - [x] ENS Name
   - [x] EVM Address
-  - [ ] SUI Address
+  - [x] SUI Address
 - [ ] [usehooks-ts](https://usehooks-ts.com)
 - [ ] [Firebase](https://firebase.google.com)
 - [ ] i18n
