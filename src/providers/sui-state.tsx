@@ -6,9 +6,8 @@ import { useEffect } from "react";
 import { useWallet } from '@suiet/wallet-kit';
 
 import {
-  atomSuiAddress,
+  atomSuiWallet,
 } from '@/store/store';
-
 
 // export: SUI state provider
 export function SuiStateProvider({
@@ -17,13 +16,8 @@ export function SuiStateProvider({
   children: React.ReactNode
 }) {
   const wallet = useWallet();
-
-  const [, setSuiAddress] = useAtom(atomSuiAddress);
-
-  useEffect(() => {
-    console.log('wallet', wallet);
-    setSuiAddress(wallet.address);
-  }, [wallet, wallet?.address, setSuiAddress]);
+  const [, setWallet] = useAtom(atomSuiWallet);
+  useEffect(() => setWallet(wallet), [wallet, wallet?.address, setWallet]);
 
   return (
     <>

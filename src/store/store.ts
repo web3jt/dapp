@@ -19,20 +19,15 @@ const store = createStore();
 export const atomDarkMode = atomWithStorage<boolean>('darkMode', true);
 export const atomTheme = atom((get) => get(atomDarkMode) ? 'dark' : 'light');
 
+/**
+ * EVM
+ */
 export const atomEvmNetwork = atomWithImmer<EvmNetwork | undefined>(undefined);
-export const atomEvmAddress = atomWithImmer<`0x${string}` | undefined>(undefined);
-export const atomEvmEnsName = atomWithImmer<string | undefined | null>(undefined);
-export const atomEvmConnecting = atomWithImmer<boolean>(false);
-export const atomEvmConnected = atomWithImmer<boolean>(false);
-export const atomEvmReconnecting = atomWithImmer<boolean>(false);
-export const atomEvmDisconnected = atomWithImmer<boolean>(false);
-export const atomEvmBlockNumber = atomWithImmer<number | undefined>(undefined);
 
-export const atomSuiWallet = atomWithImmer<WalletContextState | undefined>(undefined);
-export const atomSuiAddress = atomWithImmer<string | undefined>(undefined);
-
-
-
+const unsubEvmNetwork = store.sub(atomEvmNetwork, () => {
+  const network = store.get(atomEvmNetwork);
+  // console.log(`new network:`, network);
+})
 
 export const atomEvmNativeSymbol: Atom<string | undefined> = atom((get) => {
   const network = get(atomEvmNetwork);
@@ -54,15 +49,31 @@ export const atomEvmNativeDecimals: Atom<number | undefined> = atom((get) => {
   return undefined;
 });
 
+
+
+export const atomEvmAddress = atomWithImmer<`0x${string}` | undefined>(undefined);
+
+const unsubEvmAddress = store.sub(atomEvmAddress, () => {
+  const address = store.get(atomEvmAddress);
+  // console.log(`new address: ${address}`);
+})
+
 export const atomEvmAddressMask: Atom<string | undefined> = atom((get) => {
   const address = get(atomEvmAddress);
 
   if (address) {
-    return `${address.slice(0, 6)}...${address.slice(-8)}`;
+    return `${address.slice(0, 6)}...${address.slice(-6)}`;
   }
 
   return undefined;
 });
+
+export const atomEvmEnsName = atomWithImmer<string | undefined | null>(undefined);
+
+const unsubEvmEnsName = store.sub(atomEvmEnsName, () => {
+  const ensName = store.get(atomEvmEnsName);
+  // console.log(`new ensName: ${ensName}`);
+})
 
 export const atomWeb3Name: Atom<string | undefined> = atom((get) => {
   const ensName = store.get(atomEvmEnsName);
@@ -77,25 +88,69 @@ export const atomWeb3Name: Atom<string | undefined> = atom((get) => {
   return 'Unnamed';
 });
 
-const unsubEvmNetwork = store.sub(atomEvmNetwork, () => {
-  const network = store.get(atomEvmNetwork);
-  console.log(`new network:`, network);
-})
+export const atomEvmConnecting = atomWithImmer<boolean>(false);
+export const atomEvmConnected = atomWithImmer<boolean>(false);
+export const atomEvmReconnecting = atomWithImmer<boolean>(false);
+export const atomEvmDisconnected = atomWithImmer<boolean>(false);
 
+export const atomEvmBlockNumber = atomWithImmer<number | undefined>(undefined);
 
 const unsubEvmBlockNumber = store.sub(atomEvmBlockNumber, () => {
   const blockNumber = store.get(atomEvmBlockNumber);
   console.log(`new block number: ${blockNumber}`);
 })
 
-const unsubEvmAddress = store.sub(atomEvmAddress, () => {
-  const address = store.get(atomEvmAddress);
-  console.log(`new address: ${address}`);
+
+
+
+/**
+ * SUI
+ */
+export const atomSuiWallet = atomWithImmer<WalletContextState | undefined>(undefined);
+
+const unsubSuiWallet = store.sub(atomSuiWallet, () => {
+  const wallet = store.get(atomSuiWallet);
+  console.log(`atomSuiWallet:`, wallet);
 })
 
-const unsubEvmEnsName = store.sub(atomEvmEnsName, () => {
-  const ensName = store.get(atomEvmEnsName);
-  console.log(`new ensName: ${ensName}`);
-})
+
+
+export const atomSuiAddress = atom((get) => {
+  const wallet = get(atomSuiWallet);
+  if (wallet) {
+    return wallet.address;
+  }
+
+  return undefined;
+});
+
+export const atomSuiAddressMask: Atom<string | undefined> = atom((get) => {
+  const address = get(atomSuiAddress);
+
+  if (address) {
+    return `${address.slice(0, 6)}...${address.slice(-6)}`;
+  }
+
+  return undefined;
+});
+
+export const atomSuiConnected = atom((get) => {
+  const wallet = get(atomSuiWallet);
+  if (wallet) {
+    return wallet.connected;
+  }
+
+  return false;
+});
+
+export const atomSuiConnecting = atom((get) => {
+  const wallet = get(atomSuiWallet);
+  if (wallet) {
+    return wallet.connecting;
+  }
+
+  return false;
+});
+
 
 export default store;

@@ -1,9 +1,9 @@
-import Account from './account';
+import Info from '@/components/sui/Info';
 
 export default function Page() {
   return (
     <>
-      <Account />
+      <Info />
     </>
   )
 }
