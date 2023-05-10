@@ -29,15 +29,7 @@ export const atomEvmDisconnected = atomWithImmer<boolean>(false);
 export const atomEvmBlockNumber = atomWithImmer<number | undefined>(undefined);
 
 export const atomSuiWallet = atomWithImmer<WalletContextState | undefined>(undefined);
-
-export const atomSuiAddress = atom((get) => {
-  const wallet = get(atomSuiWallet);
-  if (wallet) {
-    return wallet.address;
-  }
-
-  return undefined;
-});
+export const atomSuiAddress = atomWithImmer<string | undefined>(undefined);
 
 
 
