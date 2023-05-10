@@ -16,15 +16,17 @@
       [ethers.js v5](https://docs.ethers.org/v5)
   - [x] Installation
   - [x] Initialization
-  - [x] Custom Connect Wallet Button
+  - [x] `EvmConnect` - Custom Connect Wallet Button
+  - [x] `EvmConnected` - Layout
   - [x] Nav Connect
-  - [x] Nav Address
-  - [x] Nav ENS Name
   - [ ] Nav Avatar
-  - [x] `Web3Connected` Layout
 - [ ] [Suiet Wallet Kit](https://kit.suiet.app/)
   - [ ] Custom Connect Wallet Button
   - [ ] Add to user menu on Nav
+- [ ] User Menu on Nav
+  - [x] ENS Name
+  - [x] EVM Address
+  - [ ] SUI Address
 - [ ] [usehooks-ts](https://usehooks-ts.com)
 - [ ] [Firebase](https://firebase.google.com)
 - [ ] i18n
