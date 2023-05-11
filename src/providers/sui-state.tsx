@@ -12,7 +12,7 @@ export function SuiStateProvider({
 }: {
   children: React.ReactNode
 }) {
-  const [showConnectModal, setShowConnectModal] = useAtom(atomShowSuiConnectModal);
+  const [showSuiConnectModal, setShowSuiConnectModal] = useAtom(atomShowSuiConnectModal);
 
   const wallet = useWallet();
   const [, setWallet] = useAtom(atomSuiWallet);
@@ -21,8 +21,8 @@ export function SuiStateProvider({
   return (
     <>
       <ConnectModal
-        open={showConnectModal}
-        onOpenChange={(open) => setShowConnectModal(open)}
+        open={showSuiConnectModal}
+        onOpenChange={(open) => setShowSuiConnectModal(open)}
       />
 
       {children}
