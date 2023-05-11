@@ -13,15 +13,22 @@ import {
 import {
   atomEvmConnecting,
   atomEvmNetwork,
+
+  atomShowWeb3ConnectModal
 } from '@/store/store';
 
 export function EvmConnect({
+  className,
+  unsupportedClassName,
   buttonText = 'Connect Wallet',
   children,
 }: {
+  className?: string,
+  unsupportedClassName?: string,
   buttonText?: string,
   children?: React.ReactNode
 }) {
+  const [, setShowWeb3ConnectModal] = useAtom(atomShowWeb3ConnectModal);
   const [evmConnecting] = useAtom(atomEvmConnecting);
   const [evmNetwork] = useAtom(atomEvmNetwork);
 
@@ -34,13 +41,18 @@ export function EvmConnect({
         openConnectModal,
         mounted,
       }) => {
+        const handleOpenConnectModal = () => {
+          setShowWeb3ConnectModal(false);
+          openConnectModal();
+        }
+
         const connected = mounted && account && chain;
         if (!connected) {
           return (
             <button
               type="button"
               aria-label="Toggle dark mode"
-              className={clsx(
+              className={className || clsx(
                 'relative inline-flex items-center gap-x-1.5',
                 'rounded-md shadow-sm px-3 py-2',
                 'bg-indigo-600 hover:bg-indigo-700',
@@ -49,7 +61,7 @@ export function EvmConnect({
                 'focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-indigo-500',
                 'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500',
               )}
-              onClick={openConnectModal}
+              onClick={handleOpenConnectModal}
             >
               <TicketIcon
                 className={clsx(
@@ -58,7 +70,9 @@ export function EvmConnect({
                 )}
                 aria-hidden="true"
               />
-              {evmConnecting ? 'Connecting...' : 'Connect Wallet'}
+              <span>
+                {evmConnecting ? 'Connecting...' : buttonText}
+              </span>
             </button>
           )
         }
@@ -68,7 +82,7 @@ export function EvmConnect({
             <button
               type="button"
               aria-label="Toggle dark mode"
-              className={clsx([
+              className={unsupportedClassName || clsx([
                 'transition backdrop-blur',
                 'relative inline-flex items-center gap-x-1.5',
                 'rounded-md shadow-sm px-3 py-2',

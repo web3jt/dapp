@@ -11,23 +11,30 @@ import {
 import {
   atomSuiConnected,
   atomSuiConnecting,
+  atomShowSuiConnectModal,
+  atomShowWeb3ConnectModal,
 } from '@/store/store';
-
-const atomShowConnnectModal = atom<boolean>(false);
 
 
 export function SuiConnect({
+  className,
+  unsupportedClassName,
   buttonText = 'Connect Wallet',
   children,
 }: {
+  className?: string,
+  unsupportedClassName?: string,
   buttonText?: string,
   children?: React.ReactNode
 }) {
-  const [showConnectModal, setShowConnectModal] = useAtom(atomShowConnnectModal);
+  const [, setShowWeb3ConnectModal] = useAtom(atomShowWeb3ConnectModal);
+  const [showConnectModal, setShowConnectModal] = useAtom(atomShowSuiConnectModal);
+
   const [connected] = useAtom(atomSuiConnected);
   const [connecting] = useAtom(atomSuiConnecting);
 
-  const handleConnect = () => {
+  const handleOpenConnectModal = () => {
+    setShowWeb3ConnectModal(false);
     setShowConnectModal(true);
   }
 
@@ -46,7 +53,7 @@ export function SuiConnect({
             <button
               type="button"
               aria-label="Toggle dark mode"
-              className={clsx(
+              className={className || clsx(
                 'relative inline-flex items-center gap-x-1.5',
                 'rounded-md shadow-sm px-3 py-2',
                 'bg-indigo-600 hover:bg-indigo-700',
@@ -55,7 +62,7 @@ export function SuiConnect({
                 'focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-indigo-500',
                 'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500',
               )}
-              onClick={handleConnect}
+              onClick={handleOpenConnectModal}
             >
               <TicketIcon
                 className={clsx(
@@ -64,7 +71,9 @@ export function SuiConnect({
                 )}
                 aria-hidden="true"
               />
-              {connecting ? 'Connecting...' : buttonText}
+              <span>
+                {connecting ? 'Connecting...' : buttonText}
+              </span>
             </button>
           </ConnectModal>
         </>

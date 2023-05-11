@@ -16,8 +16,13 @@ type EvmNetwork = {
 
 const store = createStore();
 
+
+
 export const atomDarkMode = atomWithStorage<boolean>('darkMode', true);
 export const atomTheme = atom((get) => get(atomDarkMode) ? 'dark' : 'light');
+
+
+
 
 /**
  * EVM
@@ -106,11 +111,12 @@ const unsubEvmBlockNumber = store.sub(atomEvmBlockNumber, () => {
 /**
  * SUI
  */
+export const atomShowSuiConnectModal = atom<boolean>(false);
 export const atomSuiWallet = atomWithImmer<WalletContextState | undefined>(undefined);
 
 const unsubSuiWallet = store.sub(atomSuiWallet, () => {
   const wallet = store.get(atomSuiWallet);
-  // console.log(`new SUI wallet:`, wallet);
+  console.log(`new SUI wallet:`, wallet);
 })
 
 export const atomSuiAddress = atom((get) => {
@@ -150,14 +156,20 @@ export const atomSuiConnecting = atom((get) => {
   return false;
 });
 
+export const atomSuiAvailableWalletCount = atom((get) => {
+  const wallet = get(atomSuiWallet);
+  if (wallet) {
+    return wallet.allAvailableWallets.length;
+  }
 
-
-
+  return 0;
+});
 
 
 /**
  * Web3
  */
+export const atomShowWeb3ConnectModal = atomWithImmer<boolean>(true);
 export const atomWeb3Connected = atom((get) => {
   const evmConnected = get(atomEvmConnected);
   if (evmConnected) {
