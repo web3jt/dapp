@@ -112,11 +112,21 @@ const unsubEvmBlockNumber = store.sub(atomEvmBlockNumber, () => {
  * SUI
  */
 export const atomShowSuiConnectModal = atom<boolean>(false);
+const unsubSuiShowConnectModal = store.sub(atomShowSuiConnectModal, () => {
+  const connected = store.get(atomShowSuiConnectModal);
+  if (connected) store.set(atomShowWeb3ConnectModal, false);
+})
+
+
 export const atomSuiWallet = atomWithImmer<WalletContextState | undefined>(undefined);
 
 const unsubSuiWallet = store.sub(atomSuiWallet, () => {
   const wallet = store.get(atomSuiWallet);
   console.log(`new SUI wallet:`, wallet);
+
+  if (wallet?.connected) {
+    store.set(atomShowSuiConnectModal, false);
+  }
 })
 
 export const atomSuiAddress = atom((get) => {
