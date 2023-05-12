@@ -11,31 +11,34 @@ import {
   PhotoIcon,
   FingerPrintIcon,
 } from '@heroicons/react/20/solid';
+import ThemeToggle from '@/components/root/ThemeToggle';
 import {
+  atomWeb3Connected,
   atomWeb3Name,
+
   atomEvmAddressMask,
   atomEvmConnected,
-  atomEvmNetwork,
   atomEvmNativeSymbol,
 
   atomSuiConnected,
   atomSuiAddressMask,
-
-  atomWeb3Connected,
 } from '@/store/store';
-import ThemeToggle from '@/components/root/ThemeToggle';
-import { EvmConnect } from '@/components/web3/evm/connect';
-import { SuiConnect } from '@/components/web3/sui/connect';
 import { Web3Connect } from '@/components/web3/connect';
+import { userNavigations } from '@/constants/nav';
 
-const atomNavigation = atom((get) => {
+
+/**
+ * TODO: I dont know how to move this to a .ts file like `@/constants/nav`
+ *       If I try to move an `atom` to it, the Page does not render.
+ */
+const atomNavigations = atom((get) => {
   const symbol = get(atomEvmNativeSymbol);
 
   return {
     categories: [
       {
         name: 'Tools',
-        tools: [
+        col0: [
           [
             { name: 'Gas', href: '#' },
             { name: '#Aliquet', href: '#' },
@@ -52,13 +55,13 @@ const atomNavigation = atom((get) => {
             { name: '#Diam sit', href: '#' },
           ],
         ],
-        batch: [
+        col2: [
           { name: symbol || 'Native', href: '/tools/batch/native' },
           { name: 'ERC20', href: '/tools/batch/erc20' },
           { name: 'ERC721', href: '/tools/batch/erc721' },
           { name: 'ERC1155', href: '/tools/batch/erc1155' },
         ],
-        categories: [
+        col3: [
           { name: '#Scelerisque', href: '#' },
           { name: '#Faucibus', href: '#' },
           { name: '#Ornare', href: '#' },
@@ -66,38 +69,6 @@ const atomNavigation = atom((get) => {
           { name: '#Bibendum', href: '#' },
         ],
       },
-      // {
-      //   name: 'Men',
-      //   tools: [
-      //     [
-      //       { name: 'Dress Shirts', href: '#' },
-      //       { name: 'Pants', href: '#' },
-      //       { name: 'Jackets', href: '#' },
-      //       { name: 'T-Shirts', href: '#' },
-      //       { name: 'Jeans', href: '#' },
-      //       { name: 'Hoodies', href: '#' },
-      //     ],
-      //     [
-      //       { name: 'Vests', href: '#' },
-      //       { name: 'Kilts', href: '#' },
-      //       { name: 'Outdoors', href: '#' },
-      //       { name: 'Capes', href: '#' },
-      //       { name: 'Browse All', href: '#' },
-      //     ],
-      //   ],
-      //   batch: [
-      //     { name: 'Watches', href: '#' },
-      //     { name: 'Boots', href: '#' },
-      //     { name: 'Fanny Packs', href: '#' },
-      //     { name: 'Sunglasses', href: '#' },
-      //     { name: 'Browse All', href: '#' },
-      //   ],
-      //   categories: [
-      //     { name: 'Just Added', href: '#' },
-      //     { name: 'Clearance', href: '#' },
-      //     { name: 'Graphic Tees', href: '#' },
-      //   ],
-      // },
     ],
     other: [
       { name: 'Placeholder', href: '/placeholder' },
@@ -106,21 +77,13 @@ const atomNavigation = atom((get) => {
   }
 });
 
-interface NavItem {
-  name: string;
-  href: string;
-}
-
-const userNavigation: NavItem[] = [
-  { name: 'Dashboard', href: '/dashboard' },
-  { name: 'Preferences', href: '/dashboard/preferences' },
-]
 
 export default function Nav() {
   const pathname = usePathname();
   const { openAccountModal } = useAccountModal();
-  const [navigation] = useAtom(atomNavigation);
+  const [navigations] = useAtom(atomNavigations);
 
+  const [web3Connected] = useAtom(atomWeb3Connected);
   const [web3Name] = useAtom(atomWeb3Name);
 
   const [evmConnected] = useAtom(atomEvmConnected);
@@ -129,11 +92,6 @@ export default function Nav() {
 
   const [suiConnected] = useAtom(atomSuiConnected);
   const [suiAddressMask] = useAtom(atomSuiAddressMask);
-
-  const [evmNetwork] = useAtom(atomEvmNetwork);
-
-
-  const [web3Connected] = useAtom(atomWeb3Connected);
 
 
   return (
@@ -159,7 +117,7 @@ export default function Nav() {
               {/* Flyout menus */}
               <Popover.Group className="absolute inset-x-0 bottom-0 sm:static sm:flex-1 sm:self-stretch">
                 <div className="flex h-14 space-x-8 overflow-x-auto border-t dark:border-gray-800 px-4 pb-px sm:h-full sm:justify-center sm:overflow-visible sm:border-t-0 sm:pb-0">
-                  {navigation.categories.map((category, categoryIdx) => (
+                  {navigations.categories.map((category, categoryIdx) => (
                     <Popover key={categoryIdx} className="flex">
                       {({ open }) => (
                         <>
@@ -205,7 +163,7 @@ export default function Nav() {
                                             aria-labelledby="tools-heading"
                                             className="space-y-6 sm:space-y-4"
                                           >
-                                            {category.tools[0].map((item) => (
+                                            {category.col0[0].map((item) => (
                                               <li key={item.name} className="flex">
                                                 <Link href={item.href} className={clsx(
                                                   item.name.startsWith('#') && 'text-gray-400 dark:text-gray-700 line-through',
@@ -221,7 +179,7 @@ export default function Nav() {
                                             aria-label="More tools"
                                             className="mt-6 space-y-6 sm:mt-0 sm:space-y-4"
                                           >
-                                            {category.tools[1].map((item) => (
+                                            {category.col0[1].map((item) => (
                                               <li key={item.name} className="flex">
                                                 <Link href={item.href} className={clsx(
                                                   item.name.startsWith('#') && 'text-gray-400 dark:text-gray-700 line-through',
@@ -245,7 +203,7 @@ export default function Nav() {
                                           aria-labelledby="batch-heading"
                                           className="mt-4 space-y-6 border-t border-gray-200 dark:border-gray-700 pt-6 sm:space-y-4"
                                         >
-                                          {category.batch.map((item) => (
+                                          {category.col2.map((item) => (
                                             <li key={item.name} className="flex">
                                               <Link href={item.href} className={clsx(
                                                 item.name?.startsWith('#') && 'text-gray-400 dark:text-gray-700 line-through',
@@ -266,7 +224,7 @@ export default function Nav() {
                                           aria-labelledby="categories-heading"
                                           className="mt-4 space-y-6 border-t border-gray-200 dark:border-gray-700 pt-6 sm:space-y-4"
                                         >
-                                          {category.categories.map((item) => (
+                                          {category.col3.map((item) => (
                                             <li key={item.name} className="flex">
                                               <Link href={item.href} className={clsx(
                                                 item.name.startsWith('#') && 'text-gray-400 dark:text-gray-700 line-through',
@@ -289,7 +247,7 @@ export default function Nav() {
                     </Popover>
                   ))}
 
-                  {navigation.other.map((item) => (
+                  {navigations.other.map((item) => (
                     <Link
                       key={item.name}
                       href={item.href}
@@ -382,7 +340,7 @@ export default function Nav() {
                               </div>
                             </div>
                           </Menu.Item>
-                          {userNavigation.map((item) => (
+                          {userNavigations.map((item) => (
                             <Menu.Item key={item.name}>
                               {({ active }) => (
                                 <Link
