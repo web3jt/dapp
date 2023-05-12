@@ -3,19 +3,17 @@
 import clsx from 'clsx';
 import { useAtom } from 'jotai';
 import { ConnectButton } from "@rainbow-me/rainbowkit";
-
 import {
   TicketIcon,
   ArrowsRightLeftIcon,
   ChevronDownIcon,
 } from '@heroicons/react/20/solid';
-
 import {
   atomEvmConnecting,
   atomEvmNetwork,
-
   atomShowWeb3ConnectModal
 } from '@/store/store';
+
 
 export function EvmConnect({
   className,

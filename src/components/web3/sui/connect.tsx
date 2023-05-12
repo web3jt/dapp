@@ -1,13 +1,8 @@
 'use client';
 
 import clsx from 'clsx';
-import { atom, useAtom } from 'jotai';
-import { ConnectModal } from '@suiet/wallet-kit';
-
-import {
-  TicketIcon,
-} from '@heroicons/react/20/solid';
-
+import { useAtom } from 'jotai';
+import { TicketIcon } from '@heroicons/react/20/solid';
 import {
   atomSuiConnected,
   atomSuiConnecting,
