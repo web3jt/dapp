@@ -8,18 +8,11 @@ import {
   atomEvmAddressMask,
   atomEvmEnsName,
 
-  atomEvmConnected,
-
-
   atomSuiAddress,
   atomSuiAddressMask,
-
-  atomSuiConnected,
 } from '@/store/store';
 
-import { EvmConnect } from '@/components/web3/evm/connect';
 import { EvmConnected } from '@/components/web3/evm/connected';
-import { SuiConnect } from '@/components/web3/sui/connect';
 import { SuiConnected } from '@/components/web3/sui/connected';
 
 
@@ -33,9 +26,6 @@ export default function Component() {
   const [suiAddress] = useAtom(atomSuiAddress);
   const [suiAddressMask] = useAtom(atomSuiAddressMask);
 
-  const [evmConnected] = useAtom(atomEvmConnected);
-  const [suiConnected] = useAtom(atomSuiConnected);
-
   return (
     <>
       <div className="py-24 sm:py-32">
@@ -46,22 +36,26 @@ export default function Component() {
 
           <EvmConnected>
             <div>
-              EVM address: {evmAddress}
-            </div>
-            <div>
-              EVM addressMask: {evmAddressMask}
-            </div>
-            <div>
-              ENS Name: {ensName}
+              <div>
+                EVM address: {evmAddress}
+              </div>
+              <div>
+                EVM addressMask: {evmAddressMask}
+              </div>
+              <div>
+                ENS Name: {ensName}
+              </div>
             </div>
           </EvmConnected>
 
           <SuiConnected>
             <div>
-              SUI address: {suiAddress}
-            </div>
-            <div>
-              SUI addressMask: {suiAddressMask}
+              <div>
+                SUI address: {suiAddress}
+              </div>
+              <div>
+                SUI addressMask: {suiAddressMask}
+              </div>
             </div>
           </SuiConnected>
         </div>
