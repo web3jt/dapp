@@ -30,6 +30,10 @@ import { userNavigations } from '@/constants/nav';
 /**
  * TODO: I dont know how to move this to a .ts file like `@/constants/nav`
  *       If I try to move an `atom` to it, the Page does not render.
+ * 
+ *       Why use an `atom` here?
+ *         - to update the `symbol` when the user switchs the network.
+ *         - that's for the `Batch Transfer` tool.
  */
 const atomNavigations = atom((get) => {
   const symbol = get(atomEvmNativeSymbol);
