@@ -63,16 +63,20 @@ export function EvmConnect({
               )}
               onClick={handleOpenConnectModal}
             >
-              <TicketIcon
-                className={clsx(
-                  "-ml-0.5 h-5 w-5",
-                  evmConnecting ? 'animate-bounce' : '',
-                )}
-                aria-hidden="true"
-              />
-              <span>
-                {evmConnecting ? 'Connecting...' : buttonText}
-              </span>
+              {children || (
+                <>
+                  <TicketIcon
+                    className={clsx(
+                      "-ml-0.5 h-5 w-5",
+                      evmConnecting ? 'animate-bounce' : '',
+                    )}
+                    aria-hidden="true"
+                  />
+                  <span>
+                    {evmConnecting ? 'Connecting...' : buttonText}
+                  </span>
+                </>
+              )}
             </button>
           )
         }
@@ -96,7 +100,7 @@ export function EvmConnect({
             >
               <ArrowsRightLeftIcon className="-ml-0.5 h-5 w-5" aria-hidden="true" />
               <span>
-                Wrong Network
+                Wrong EVM Network
               </span>
               <ChevronDownIcon className="h-5 w-5" aria-hidden="true" />
             </button>

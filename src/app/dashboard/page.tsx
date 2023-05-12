@@ -1,9 +1,13 @@
 import Account from './account';
 
+import { Web3Connected } from '@/components/web3/connected';
+
 export default function Page() {
   return (
     <>
-      <Account />
+      <Web3Connected>
+        <Account />
+      </Web3Connected>
     </>
   )
 }

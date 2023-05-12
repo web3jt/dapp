@@ -26,6 +26,7 @@ import {
 import ThemeToggle from '@/components/root/ThemeToggle';
 import { EvmConnect } from '@/components/web3/evm/connect';
 import { SuiConnect } from '@/components/web3/sui/connect';
+import { Web3Connect } from '@/components/web3/connect';
 
 const atomNavigation = atom((get) => {
   const symbol = get(atomEvmNativeSymbol);
@@ -308,9 +309,10 @@ export default function Nav() {
 
               <div className="flex flex-1 items-center justify-end space-x-4">
                 <ThemeToggle />
-                <EvmConnect />
 
-                {web3Connected && (
+                {0 === web3Connected ? (
+                  <Web3Connect />
+                ) : (
                   <div className="md:flex md:flex-shrink-0 md:items-center">
                     <Menu as="div" className="relative">
                       <div>
@@ -352,19 +354,31 @@ export default function Nav() {
 
                                 {evmConnected && (
                                   <p className="text-xs font-mono text-gray-500 group-hover:text-gray-700">
-                                    {evmSymbol}: {evmAddressMask}
+                                    {1 === web3Connected ? (
+                                      <>
+                                        {evmAddressMask}
+                                      </>
+                                    ) : (
+                                      <>
+                                        {evmSymbol}: {evmAddressMask}
+                                      </>
+                                    )}
                                   </p>
                                 )}
 
                                 {suiConnected && (
                                   <p className="text-xs font-mono text-gray-500 group-hover:text-gray-700">
-                                    SUI: {suiAddressMask}
+                                    {1 === web3Connected ? (
+                                      <>
+                                        {suiAddressMask}
+                                      </>
+                                    ) : (
+                                      <>
+                                        SUI: {suiAddressMask}
+                                      </>
+                                    )}
                                   </p>
                                 )}
-
-                                {/* {!suiConnected && (
-                                  <SuiConnect buttonText='Connect SUI' />
-                                )} */}
                               </div>
                             </div>
                           </Menu.Item>
@@ -389,6 +403,7 @@ export default function Nav() {
                     </Menu>
                   </div>
                 )}
+
 
                 {/* Cart */}
                 {/* <div className="ml-4 flow-root lg:ml-8">

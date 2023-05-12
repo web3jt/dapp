@@ -30,7 +30,7 @@ export function EvmConnected({
       <SignalSlashIcon className="mx-auto h-12 w-12 text-gray-400 dark:text-gray-600" />
 
       <h3 className="mt-4 text-sm font-semibold text-gray-900 dark:text-white">
-        Not connected
+        ETH/EVM Network Not Connected
       </h3>
 
       <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
@@ -38,7 +38,7 @@ export function EvmConnected({
       </p>
 
       <div className="mt-6">
-        <EvmConnect />
+        <EvmConnect buttonText="Connect to ETH/EVM" />
       </div>
     </div>
   )

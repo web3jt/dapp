@@ -12,6 +12,16 @@ import { SuiConnect } from '@/components/web3/sui/connect';
 import { atomShowWeb3ConnectModal, atomSuiAvailableWalletCount } from '@/store/store';
 
 
+const defaultClassName = clsx(
+  'relative inline-flex w-full items-center justify-start gap-x-3',
+  'rounded-md shadow-sm px-5 py-4',
+  'bg-indigo-600 hover:bg-indigo-700',
+  'dark:bg-indigo-700 dark:hover:bg-indigo-600',
+  'text-sm font-semibold text-gray-200 hover:text-white',
+  'focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-indigo-500',
+  'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500',
+);
+
 export function Web3ConnectModal() {
   const [open, setOpen] = useAtom(atomShowWeb3ConnectModal);
   const [suiAvailableWalletCount] = useAtom(atomSuiAvailableWalletCount);
@@ -61,30 +71,26 @@ export function Web3ConnectModal() {
                 <div className="mt-5 sm:mt-6 space-y-3">
                   <EvmConnect
                     buttonText='Connect to ETH/EVM'
-                    className={clsx(
-                      'relative inline-flex w-full items-center justify-start gap-x-3',
+                    className={defaultClassName}
+                    unsupportedClassName={clsx([
+                      'transition backdrop-blur',
+                      'relative inline-flex items-center w-full justify-between gap-x-1.5',
                       'rounded-md shadow-sm px-5 py-4',
-                      'bg-indigo-600 hover:bg-indigo-700',
-                      'dark:bg-indigo-700 dark:hover:bg-indigo-600',
+                      'bg-rose-600 hover:bg-rose-700',
+                      'dark:bg-rose-700 dark:hover:bg-rose-600',
                       'text-sm font-semibold text-gray-200 hover:text-white',
-                      'focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-indigo-500',
-                      'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500',
-                    )}
-                  />
-                  {suiAvailableWalletCount > 0 && (
-                    <SuiConnect
-                      buttonText='Connect to SUI'
-                      className={clsx(
-                        'relative inline-flex w-full items-center justify-start gap-x-3',
-                        'rounded-md shadow-sm px-5 py-4',
-                        'bg-indigo-600 hover:bg-indigo-700',
-                        'dark:bg-indigo-700 dark:hover:bg-indigo-600',
-                        'text-sm font-semibold text-gray-200 hover:text-white',
-                        'focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-indigo-500',
-                        'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500',
-                      )}
-                    />
-                  )}
+                      'focus-visible:outline focus-visible:outline-2',
+                      'focus-visible:outline-offset-2 focus-visible:outline-rose-500',
+                    ])}
+                  >
+                    Connect to ETH/EVM
+                  </EvmConnect>
+                  <SuiConnect
+                    buttonText='Connect to SUI'
+                    className={defaultClassName}
+                  >
+                    Connect to SUI
+                  </SuiConnect>
                 </div>
               </Dialog.Panel>
             </Transition.Child>

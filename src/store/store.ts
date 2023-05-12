@@ -1,27 +1,20 @@
 import { Atom, atom, createStore } from 'jotai';
 import { atomWithStorage } from 'jotai/utils';
 import { atomWithImmer } from 'jotai-immer';
-import { Chain } from 'wagmi';
+import { Chain as EvmChain } from 'wagmi';
 
-import { WalletContextState } from '@suiet/wallet-kit';
-
-// import { } from '@mysten/sui.js/dist/types'
+import { WalletContextState as SuiWalletContextState } from '@suiet/wallet-kit';
 
 type EvmNetwork = {
-  chain?: Chain & {
-    unsupported?: boolean;
-  };
-  chains: Chain[];
+  chain?: EvmChain & { unsupported?: boolean; };
+  chains: EvmChain[];
 };
 
 const store = createStore();
 
 
-
 export const atomDarkMode = atomWithStorage<boolean>('darkMode', true);
 export const atomTheme = atom((get) => get(atomDarkMode) ? 'dark' : 'light');
-
-
 
 
 /**
@@ -53,8 +46,6 @@ export const atomEvmNativeDecimals: Atom<number | undefined> = atom((get) => {
 
   return undefined;
 });
-
-
 
 export const atomEvmAddress = atomWithImmer<`0x${string}` | undefined>(undefined);
 
@@ -117,8 +108,7 @@ const unsubSuiShowConnectModal = store.sub(atomShowSuiConnectModal, () => {
   if (connected) store.set(atomShowWeb3ConnectModal, false);
 })
 
-
-export const atomSuiWallet = atomWithImmer<WalletContextState | undefined>(undefined);
+export const atomSuiWallet = atomWithImmer<SuiWalletContextState | undefined>(undefined);
 
 const unsubSuiWallet = store.sub(atomSuiWallet, () => {
   const wallet = store.get(atomSuiWallet);
@@ -181,18 +171,20 @@ export const atomSuiAvailableWalletCount = atom((get) => {
  */
 export const atomShowWeb3ConnectModal = atomWithImmer<boolean>(false);
 export const atomWeb3Connected = atom((get) => {
+  let connected: number = 0;
+
   const evmConnected = get(atomEvmConnected);
   if (evmConnected) {
     const evmNetwork = get(atomEvmNetwork);
-    if (!evmNetwork?.chain?.unsupported) return true;
+    if (!evmNetwork?.chain?.unsupported) connected++;
   }
 
   const suiConnected = get(atomSuiConnected);
   if (suiConnected) {
-    return true;
+    connected++;
   }
 
-  return false;
+  return connected;
 });
 
 
