@@ -3,10 +3,10 @@
 import {
   WalletProvider,
 
-  IDefaultWallet,
-  SuietWallet,
-  SuiWallet,
-  EthosWallet,
+  // IDefaultWallet,
+  // SuietWallet,
+  // SuiWallet,
+  // EthosWallet,
 
   Chain,
   SuiDevnetChain,
@@ -18,11 +18,11 @@ import { SuiStateProvider } from '@/providers/sui-state';
 
 import '@suiet/wallet-kit/style.css';
 
-const wallets: IDefaultWallet[] = [
-  SuietWallet,
-  SuiWallet,
-  EthosWallet,
-]
+// const wallets: IDefaultWallet[] = [
+//   SuietWallet,
+//   SuiWallet,
+//   EthosWallet,
+// ]
 
 const chains: Chain[] = [
   SuiMainnetChain,
@@ -31,13 +31,7 @@ const chains: Chain[] = [
 ];
 
 // export: Web3Providers
-export function SuiProvider({
-  children
-}: {
-  children: React.ReactNode
-}) {
-  // const [darmMode] = useAtom(atomDarkMode);
-
+export function SuiProvider({ children }: { children: React.ReactNode }) {
   return (
     <WalletProvider
       // defaultWallets={wallets}

@@ -107,11 +107,7 @@ const wagmiClient = createClient({
 
 
 // export: Web3Providers
-export function EvmProviders({
-  children
-}: {
-  children: React.ReactNode
-}) {
+export function EvmProviders({ children }: { children: React.ReactNode }) {
   const [darmMode] = useAtom(atomDarkMode);
 
   return (

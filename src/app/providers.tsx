@@ -4,6 +4,7 @@ import { Provider as AtomProvider } from 'jotai';
 import { ThemeProvider } from 'next-themes';
 import { EvmProviders } from '@/providers/evm';
 import { SuiProvider } from '@/providers/sui';
+import { ModalProviders } from '@/providers/modals';
 import store from '@/store/store';
 
 export function Providers({
@@ -16,7 +17,9 @@ export function Providers({
       <ThemeProvider attribute="class" defaultTheme="dark">
         <EvmProviders>
           <SuiProvider>
-            {children}
+            <ModalProviders>
+              {children}
+            </ModalProviders>
           </SuiProvider>
         </EvmProviders>
       </ThemeProvider>

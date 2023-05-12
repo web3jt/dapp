@@ -7,11 +7,7 @@ import { atomSuiWallet, atomShowSuiConnectModal } from '@/store/store';
 
 
 // export: SUI state provider
-export function SuiStateProvider({
-  children
-}: {
-  children: React.ReactNode
-}) {
+export function SuiStateProvider({ children }: { children: React.ReactNode }) {
   const [showSuiConnectModal, setShowSuiConnectModal] = useAtom(atomShowSuiConnectModal);
 
   const wallet = useWallet();

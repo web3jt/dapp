@@ -179,7 +179,7 @@ export const atomSuiAvailableWalletCount = atom((get) => {
 /**
  * Web3
  */
-export const atomShowWeb3ConnectModal = atomWithImmer<boolean>(true);
+export const atomShowWeb3ConnectModal = atomWithImmer<boolean>(false);
 export const atomWeb3Connected = atom((get) => {
   const evmConnected = get(atomEvmConnected);
   if (evmConnected) {
@@ -194,8 +194,6 @@ export const atomWeb3Connected = atom((get) => {
 
   return false;
 });
-
-
 
 
 export default store;

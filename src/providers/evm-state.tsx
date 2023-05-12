@@ -23,12 +23,8 @@ import {
 } from '@/store/store';
 
 // export: EVM state provider
-export function EvmStateProvider({
-  children
-}: {
-  children: React.ReactNode
-}) {
-  const [network, setNetwork] = useAtom(atomEvmNetwork);
+export function EvmStateProvider({ children }: { children: React.ReactNode }) {
+  const [, setNetwork] = useAtom(atomEvmNetwork);
   const [, setAddress] = useAtom(atomEvmAddress);
   const [, setConnecting] = useAtom(atomEvmConnecting);
   const [, setConnected] = useAtom(atomEvmConnected);
@@ -102,7 +98,10 @@ export function EvmStateProvider({
   ]);
 
   // ENS
-  const { data: ensNameData, isLoading: ensNameIsLoading } = useEnsName({
+  const {
+    data: ensNameData,
+    // isLoading: ensNameIsLoading,
+  } = useEnsName({
     address: address,
     suspense: true,
     chainId: 1,
