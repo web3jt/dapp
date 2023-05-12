@@ -24,8 +24,31 @@ export const atomEvmNetwork = atomWithImmer<EvmNetwork | undefined>(undefined);
 
 const unsubEvmNetwork = store.sub(atomEvmNetwork, () => {
   const network = store.get(atomEvmNetwork);
-  // console.log(`new EVM network:`, network);
+  console.log(`new EVM network:`, network);
 })
+
+export const atomEvmChainName: Atom<string | undefined> = atom((get) => {
+  const network = get(atomEvmNetwork);
+
+  if (network) {
+    const chainName = network.chain?.name;
+    if (chainName) return `${chainName.slice(0, 1).toUpperCase()}${chainName.slice(1).toLowerCase()}`;
+  }
+
+  return undefined;
+});
+
+export const atomEvmChainId: Atom<number | undefined> = atom((get) => {
+  const network = get(atomEvmNetwork);
+
+  if (network) {
+    const chainId = network.chain?.id;
+    if (chainId) return chainId;
+  }
+
+  return undefined;
+});
+
 
 export const atomEvmNativeSymbol: Atom<string | undefined> = atom((get) => {
   const network = get(atomEvmNetwork);
@@ -118,6 +141,27 @@ const unsubSuiWallet = store.sub(atomSuiWallet, () => {
     store.set(atomShowSuiConnectModal, false);
   }
 })
+
+export const atomSuiChainName = atom((get) => {
+  const wallet = get(atomSuiWallet);
+  if (wallet) {
+    const chain = wallet.chain;
+    if (chain) return chain.name;
+  }
+
+  return undefined;
+});
+
+export const atomSuiChainId = atom((get) => {
+  const wallet = get(atomSuiWallet);
+  if (wallet) {
+    const chain = wallet.chain;
+    if (chain) return chain.id;
+  }
+
+  return undefined;
+});
+
 
 export const atomSuiAddress = atom((get) => {
   const wallet = get(atomSuiWallet);

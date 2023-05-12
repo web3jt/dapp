@@ -29,7 +29,7 @@ import { userNavigations } from '@/constants/nav';
 
 /**
  * TODO: I dont know how to move this to a .ts file like `@/constants/nav`
- *       If I try to move an `atom` to it, the Page does not render.
+ *       If I try to move an `atom` to it, then the Page does not render.
  * 
  *       Why use an `atom` here?
  *         - to update the `symbol` when the user switchs the network.
