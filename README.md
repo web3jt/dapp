@@ -16,10 +16,10 @@
   - [x] `EvmConnected` - Layout
   - [x] Nav Connect
   - [ ] Nav Avatar
-- [ ] [Suiet Wallet Kit](https://kit.suiet.app/)
+- [x] [Suiet Wallet Kit](https://kit.suiet.app/)
   - [x] `SuiConnect` - Custom Connect Wallet Button
-  - [ ] `SuiConnected` - Layout
-- [ ] `Web3Connect` Button to give 2 options for EVM & SUI
+  - [x] `SuiConnected` - Layout
+- [x] `Web3Connect` Button to give 2 options for EVM & SUI
 - [x] User Menu on Nav
   - [x] ENS Name
   - [x] EVM Address
