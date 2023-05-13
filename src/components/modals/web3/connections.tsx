@@ -14,6 +14,7 @@ import {
   atomEvmAddressMask,
   atomEvmChainName,
 
+  atomSuiWalletName,
   atomSuiConnected,
   atomSuiConnecting,
   atomSuiAddressMask,
@@ -50,6 +51,7 @@ export function Web3ConnectionsModal() {
   const [evmChainTestnet] = useAtom(atomEvmChainTestnet);
   const [evmAddressMask] = useAtom(atomEvmAddressMask);
 
+  const [suiWalletName] = useAtom(atomSuiWalletName);
   const [suiConnected] = useAtom(atomSuiConnected);
   const [suiConnecting] = useAtom(atomSuiConnecting);
   const [suiChainName] = useAtom(atomSuiChainName);
@@ -75,7 +77,7 @@ export function Web3ConnectionsModal() {
           leaveFrom="opacity-100"
           leaveTo="opacity-0"
         >
-          <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
+          <div className="fixed inset-0 bg-black bg-opacity-75 transition-opacity" />
         </Transition.Child>
 
         <div className="fixed inset-0 z-10 overflow-y-auto">
@@ -195,7 +197,7 @@ export function Web3ConnectionsModal() {
                             {suiAddressMask}
                           </p>
                           <p className="truncate text-sm text-gray-600 dark:text-gray-400">
-                            {suiChainName}
+                            {suiChainName}{suiWalletName ? ` (${suiWalletName})` : ''}
                           </p>
                         </div>
                       </div>

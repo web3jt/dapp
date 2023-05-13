@@ -15,20 +15,20 @@ For both EVM network and SUI network
 - [x] [Next.js 13](https://nextjs.org/docs)
 - [x] [TailwindCSS](https://tailwindcss.com) and
       [TailwindUI](https://tailwindui.com)
-- [x] [jotai](https://jotai.org/)
+- [x] [jotai](https://jotai.org)
   - [x] Global `store`
   - [x] Context: `AtomProvider` with `store`
 - [x] [next-themes](https://github.com/pacocoursey/next-themes)
   - [x] `ThemeToggle`
   - [ ] Theme/UI Adaptation
-- [ ] [Rainbowkit](https://www.rainbowkit.com),
-      [wagmi](https://wagmi.sh/core/) and
-      [ethers.js v5](https://docs.ethers.org/v5)
+- [ ] [Rainbowkit v1](https://www.rainbowkit.com),
+      [wagmi v1](https://wagmi.sh/core) and
+      [viem](https://viem.sh)
   - [x] `EvmConnect` - Custom Connect Wallet Button
   - [x] `EvmConnected` - Layout
   - [x] Nav Connect
   - [ ] Nav Avatar
-- [x] [Suiet Wallet Kit](https://kit.suiet.app/)
+- [x] [Suiet Wallet Kit](https://kit.suiet.app)
   - [x] `SuiConnect` - Custom Connect Wallet Button
   - [x] `SuiConnected` - Layout
 - [x] `Web3Connect` Button to give 2 options for EVM & SUI

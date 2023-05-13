@@ -1,7 +1,17 @@
 'use client';
 
+/**
+ * RainbowKit
+ */
+import '@rainbow-me/rainbowkit/styles.css';
 import type { Wallet } from '@rainbow-me/rainbowkit';
-import { RainbowKitProvider, lightTheme, darkTheme, connectorsForWallets } from '@rainbow-me/rainbowkit';
+import {
+  // getDefaultWallets,
+  RainbowKitProvider,
+  lightTheme,
+  darkTheme,
+  connectorsForWallets,
+} from '@rainbow-me/rainbowkit';
 import {
   injectedWallet,
   metaMaskWallet,
@@ -12,23 +22,42 @@ import {
   trustWallet,
   // imTokenWallet,
 } from '@rainbow-me/rainbowkit/wallets';
-import { configureChains, createClient, WagmiConfig } from 'wagmi';
-import { mainnet, goerli, bsc } from 'wagmi/chains';
+
+/**
+ * Wagmi
+ */
+import { configureChains, createConfig, WagmiConfig } from 'wagmi';
+import {
+  mainnet,
+  goerli,
+  // polygon,
+  // optimism,
+  // arbitrum,
+  bsc,
+} from 'wagmi/chains';
 import { alchemyProvider } from 'wagmi/providers/alchemy';
-import { publicProvider } from 'wagmi/providers/public';
 // import { infuraProvider } from 'wagmi/providers/infura';
 // import { jsonRpcProvider } from 'wagmi/providers/jsonRpc';
+import { publicProvider } from 'wagmi/providers/public';
+// import { InjectedConnector } from 'wagmi/connectors/injected';
+// import { WalletConnectConnector } from 'wagmi/connectors/walletConnect';
+// import { CoinbaseWalletConnector } from 'wagmi/connectors/coinbaseWallet';
 
+/**
+ * Viem
+ */
+// import { createPublicClient, http } from 'viem';
+
+/**
+ * State
+ */
 import { useAtom } from 'jotai';
 import { atomDarkMode } from '@/store/store';
-
 import { EvmStateProvider } from '@/providers/evm-state';
-
-import '@rainbow-me/rainbowkit/styles.css';
 
 
 // default chain: goerli
-const getInitialChainId = () => {
+const _getInitialChainId = () => {
   try {
     const _id = parseInt(process.env.NEXT_PUBLIC_INITIAL_CHAIN_ID || '5');
     if (_id === mainnet.id || _id === goerli.id) {
@@ -43,25 +72,25 @@ const getInitialChainId = () => {
 
 // app info
 const appName = "dApp";
-const initialChainId = getInitialChainId();
+const initialChainId = _getInitialChainId();
 
 // chains, provider
-const { chains, provider } = configureChains(
+const { chains, publicClient, webSocketPublicClient } = configureChains(
   [
     mainnet,
     goerli,
     bsc,
   ],
   [
-
     alchemyProvider({ apiKey: process.env.NEXT_PUBLIC_ALCHEMY_API_KEY || '' }),
     publicProvider(),
   ]
 );
 
 // Wallet[]
-const getConnectorsWallets = (): Wallet[] => {
+const _getConnectorsWallets = (): Wallet[] => {
   let records: Wallet[] = [];
+  records.push(injectedWallet({ chains }));
   records.push(metaMaskWallet({ chains }));
   records.push(rainbowWallet({ chains }));
   records.push(braveWallet({ chains }));
@@ -71,13 +100,12 @@ const getConnectorsWallets = (): Wallet[] => {
     records.push(walletConnectWallet({ chains, projectId: walletConnectProjectId }));
   }
 
-  const needsInjectedWalletFallback =
-    typeof window !== "undefined" &&
-    window.ethereum &&
-    !window.ethereum.isMetaMask &&
-    !window.ethereum.isCoinbaseWallet;
-
-  if (needsInjectedWalletFallback) records.push(injectedWallet({ chains }));
+  // const needsInjectedWalletFallback =
+  //   typeof window !== "undefined" &&
+  //   window.ethereum &&
+  //   !window.ethereum.isMetaMask &&
+  //   !window.ethereum.isCoinbaseWallet;
+  // if (needsInjectedWalletFallback) records.push(injectedWallet({ chains }));
 
   return records;
 }
@@ -86,7 +114,7 @@ const getConnectorsWallets = (): Wallet[] => {
 const connectors = connectorsForWallets([
   {
     groupName: "Popular",
-    wallets: getConnectorsWallets(),
+    wallets: _getConnectorsWallets(),
   },
   {
     groupName: "Other",
@@ -98,11 +126,13 @@ const connectors = connectorsForWallets([
   },
 ]);
 
-// wagmi client
-const wagmiClient = createClient({
+
+// wagmi config
+const wagmiConfig = createConfig({
   autoConnect: true,
   connectors,
-  provider
+  publicClient,
+  webSocketPublicClient,
 })
 
 
@@ -111,7 +141,7 @@ export function EvmProviders({ children }: { children: React.ReactNode }) {
   const [darmMode] = useAtom(atomDarkMode);
 
   return (
-    <WagmiConfig client={wagmiClient}>
+    <WagmiConfig config={wagmiConfig}>
       <RainbowKitProvider
         theme={darmMode ? darkTheme() : lightTheme()}
         modalSize="compact"
