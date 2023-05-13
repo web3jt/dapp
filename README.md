@@ -1,3 +1,12 @@
+# A dApp scaffold
+
+## Preview
+
+[Main Branch](https://dpreview.web3jt.com)
+[Develop Branch](https://developreview.web3jt.com)
+
+
+## Dependencies
 
 - [x] [TypeScript](https://www.typescriptlang.org)
 - [x] [Next.js 13](https://nextjs.org/docs)
