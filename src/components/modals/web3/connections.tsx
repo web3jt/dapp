@@ -113,7 +113,7 @@ export function Web3ConnectionsModal() {
                     )}>
                       <div className={clsx(" flex items-center justify-between space-x-3 px-6 py-5")}>
                         <div className="flex-shrink-0">
-                          <EthereumIcon className="h-10 w-10 fill-gray-400 group-hover:fill-gray-500" />
+                          <EthereumIcon className="h-8 w-8 fill-gray-400 group-hover:fill-gray-500" />
                         </div>
                         <div className="min-w-0 flex-1">
                           <p className="text-sm font-medium text-gray-900 font-mono">
@@ -160,7 +160,7 @@ export function Web3ConnectionsModal() {
                     )}>
                       <div className={clsx(" flex items-center justify-between space-x-3 px-6 py-5")}>
                         <div className="flex-shrink-0">
-                          <BeakerIcon className="h-10 w-10 text-gray-400 group-hover:text-gray-500" />
+                          <BeakerIcon className="h-8 w-8 text-gray-400 group-hover:text-gray-500" />
                         </div>
                         <div className="min-w-0 flex-1">
                           <p className="text-sm font-medium text-gray-900 font-mono">
