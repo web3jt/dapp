@@ -89,7 +89,7 @@ export function Web3ConnectionsModal() {
               leaveFrom="opacity-100 translate-y-0 sm:scale-100"
               leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
             >
-              <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-sm sm:p-6">
+              <Dialog.Panel className="relative transform overflow-hidden w-full max-w-sm rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:p-6">
                 <div>
                   <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-indigo-100">
                     <WalletIcon className="h-6 w-6 text-indigo-600" aria-hidden="true" />
@@ -111,7 +111,7 @@ export function Web3ConnectionsModal() {
                     <div className={clsx(
                       "group relative rounded-lg border border-gray-300 hover:border-gray-400 bg-white shadow-sm"
                     )}>
-                      <div className={clsx(" flex items-center justify-between space-x-3 px-6 py-5")}>
+                      <div className={clsx("flex items-center justify-between space-x-3 px-6 py-5")}>
                         <div className="flex-shrink-0">
                           <EthereumIcon className="h-8 w-8 fill-gray-400 group-hover:fill-gray-500" />
                         </div>
@@ -200,7 +200,6 @@ export function Web3ConnectionsModal() {
                       </span>
                     </SuiConnect>
                   )}
-
                 </div>
               </Dialog.Panel>
             </Transition.Child>
