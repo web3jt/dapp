@@ -4,6 +4,8 @@
  * @type {import('next').NextConfig}
  */
 const nextConfig = {
+  reactStrictMode: true,
+
   experimental: {
     appDir: true,
   },
@@ -35,6 +37,8 @@ const nextConfig = {
 
     // Modify the file loader rule to ignore *.svg, since we have it handled now.
     fileLoaderRule.exclude = /\.svg$/i
+
+    config.resolve.fallback = { fs: false, net: false, tls: false };
 
     return config
   },

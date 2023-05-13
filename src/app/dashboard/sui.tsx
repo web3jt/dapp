@@ -3,6 +3,7 @@
 import clsx from 'clsx';
 import { useAtom } from "jotai";
 import {
+  atomSuiWalletName,
   atomSuiChainName,
   atomSuiChainId,
   atomSuiAddress,
@@ -11,6 +12,7 @@ import {
 import { SuiConnected } from '@/components/web3/sui/connected';
 
 export function SuiConnection() {
+  const [walletName] = useAtom(atomSuiWalletName);
   const [chainName] = useAtom(atomSuiChainName);
   const [chainId] = useAtom(atomSuiChainId);
   const [address] = useAtom(atomSuiAddress);
@@ -24,7 +26,7 @@ export function SuiConnection() {
             {chainName}
           </h3>
           <p className="mt-1 max-w-2xl text-sm leading-6 text-gray-500 dark:text-gray-400">
-            Chain ID #{chainId}
+            {walletName ? `[${walletName}] - ` : ''}Chain ID #{chainId}
           </p>
         </div>
         <div className="mt-6 border-t border-gray-100 dark:border-white/10">

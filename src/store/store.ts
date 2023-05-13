@@ -153,6 +153,16 @@ const unsubSuiWallet = store.sub(atomSuiWallet, () => {
   }
 })
 
+export const atomSuiWalletName = atom((get) => {
+  const wallet = get(atomSuiWallet);
+  if (wallet && wallet.name) {
+    return wallet.name;
+  }
+
+  return undefined;
+});
+
+
 export const atomSuiChainName = atom((get) => {
   const wallet = get(atomSuiWallet);
   if (wallet) {
