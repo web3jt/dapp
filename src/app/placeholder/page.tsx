@@ -1,6 +1,13 @@
-import Placeholder from '@/components/debug/Placeholder';
+'use client';
 
-export default function Page() {
+import Placeholder from '@/components/debug/Placeholder';
+// import detectEthereumProvider from '@metamask/detect-provider';
+// import { ethers } from 'ethers';
+
+export default async function Page() {
+  // const provider = await detectEthereumProvider();
+  // console.log('provider:', provider);
+
   return (
     <>
       <Placeholder />

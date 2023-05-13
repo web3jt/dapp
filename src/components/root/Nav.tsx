@@ -2,392 +2,383 @@
 
 import clsx from 'clsx';
 import Link from 'next/link';
-import Image from 'next/image';
-import { Fragment, useEffect } from 'react';
+import { Fragment } from 'react';
 import { usePathname } from 'next/navigation';
-import { useAtom } from 'jotai';
-import { Disclosure, Menu, Transition } from '@headlessui/react';
-import { ConnectButton, useAccountModal } from "@rainbow-me/rainbowkit";
-import ThemeToggle from '@/components/root/ThemeToggle';
-
-import {
-  Bars3Icon,
-  BellIcon,
-  XMarkIcon,
-  SunIcon as SunIconOutline,
-  MoonIcon as MoonIconOutline,
-} from '@heroicons/react/24/outline';
+import { atom, useAtom } from 'jotai';
+import { useAccountModal } from "@rainbow-me/rainbowkit";
+import { Popover, Menu, Transition } from '@headlessui/react';
 import {
   PhotoIcon,
-  TicketIcon,
-  ArrowsRightLeftIcon,
   FingerPrintIcon,
-  ChevronDownIcon,
-  SunIcon as SunIconSolid,
-  MoonIcon as MoonIconSolid,
 } from '@heroicons/react/20/solid';
-
+import ThemeToggle from '@/components/root/ThemeToggle';
 import {
-  atomDarkMode,
-  atomTheme,
-
-  atomWeb3AddressMask,
-  atomWeb3Connecting,
   atomWeb3Connected,
   atomWeb3Name,
-  atomWeb3Network,
+
+  atomEvmAddressMask,
+  atomEvmConnected,
+  atomEvmNativeSymbol,
+
+  atomSuiConnected,
+  atomSuiAddressMask,
+
+  atomShowWeb3ConnectionsModal,
 } from '@/store/store';
+import { Web3Connect } from '@/components/web3/connect';
+import { userNavigations } from '@/constants/nav';
 
-import imageLogo from '@/images/mark.svg';
-import imageUser from '@/images/user.avif';
 
-interface NavItem {
-  name: string;
-  href: string;
-}
+/**
+ * TODO: I dont know how to move this to a .ts file like `@/constants/nav`
+ *       If I try to move an `atom` to it, then the Page does not render.
+ * 
+ *       Why use an `atom` here?
+ *         - to update the `symbol` when the user switchs the network.
+ *         - that's for the `Batch Transfer` tool.
+ */
+const atomNavigations = atom((get) => {
+  const symbol = get(atomEvmNativeSymbol);
 
-const navigation: NavItem[] = [
-  { name: 'Home', href: '/' },
-  { name: 'Theme', href: '/theme' },
-  { name: 'Placeholder', href: '/placeholder' },
-  { name: 'Debug', href: '/debug' },
-]
-
-const userNavigation: NavItem[] = [
-  { name: 'Dashboard', href: '/dashboard' },
-  { name: 'Preferences', href: '/dashboard/preferences' },
-]
+  return {
+    categories: [
+      {
+        name: 'Tools',
+        col0: [
+          [
+            { name: 'Gas', href: '#' },
+            { name: '#Aliquet', href: '#' },
+            { name: '#Tempor', href: '#' },
+            { name: '#Odio', href: '#' },
+            { name: '#Facilisis', href: '#' },
+            { name: '#Luctus', href: '#' },
+          ],
+          [
+            { name: '#Vitae', href: '#' },
+            { name: '#Nulla', href: '#' },
+            { name: '#Condimentum', href: '#' },
+            { name: '#Justo', href: '#' },
+            { name: '#Diam sit', href: '#' },
+          ],
+        ],
+        col2: [
+          { name: symbol || 'Native', href: '/tools/batch/native' },
+          { name: 'ERC20', href: '/tools/batch/erc20' },
+          { name: 'ERC721', href: '/tools/batch/erc721' },
+          { name: 'ERC1155', href: '/tools/batch/erc1155' },
+        ],
+        col3: [
+          { name: '#Scelerisque', href: '#' },
+          { name: '#Faucibus', href: '#' },
+          { name: '#Ornare', href: '#' },
+          { name: '#Egestas', href: '#' },
+          { name: '#Bibendum', href: '#' },
+        ],
+      },
+    ],
+    other: [
+      { name: 'Placeholder', href: '/placeholder' },
+      { name: 'Debug', href: '/debug' },
+    ],
+  }
+});
 
 
 export default function Nav() {
   const pathname = usePathname();
   const { openAccountModal } = useAccountModal();
+  const [navigations] = useAtom(atomNavigations);
 
-  const [darkMode] = useAtom(atomDarkMode);
-  const [theme] = useAtom(atomTheme);
-
-  const [web3Name] = useAtom(atomWeb3Name);
-  const [web3AddressMask] = useAtom(atomWeb3AddressMask);
-  const [web3Connecting] = useAtom(atomWeb3Connecting);
   const [web3Connected] = useAtom(atomWeb3Connected);
-  const [web3Network] = useAtom(atomWeb3Network);
+  const [web3Name] = useAtom(atomWeb3Name);
+
+  const [evmConnected] = useAtom(atomEvmConnected);
+  const [evmSymbol] = useAtom(atomEvmNativeSymbol);
+  const [evmAddressMask] = useAtom(atomEvmAddressMask);
+
+  const [suiConnected] = useAtom(atomSuiConnected);
+  const [suiAddressMask] = useAtom(atomSuiAddressMask);
+
+  const [, setShowWeb3ConnectionsModal] = useAtom(atomShowWeb3ConnectionsModal);
+  const handleShowWeb3ConnectionsModal = () => setShowWeb3ConnectionsModal(true);
 
   return (
-    <Disclosure as="nav" className="shadow">
-      {({ open }) => (
-        <>
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="flex h-16 justify-between">
-              <div className="flex">
-                <div className="-ml-2 mr-2 flex items-center md:hidden">
-                  {/* Mobile menu button */}
-                  <Disclosure.Button className={clsx(
-                    "inline-flex items-center justify-center rounded-md p-2",
-                    "text-gray-400",
-                    "hover:bg-gray-100 hover:text-gray-500",
-                    "dark:hover:bg-gray-700 dark:hover:text-white",
-                    "focus:outline-none focus:ring-2 focus:ring-inset",
-                    "focus:ring-indigo-500 dark:focus:ring-white",
-                  )}>
-                    <span className="sr-only">Open main menu</span>
-                    {open ? (
-                      <XMarkIcon className="block h-6 w-6" aria-hidden="true" />
-                    ) : (
-                      <Bars3Icon className="block h-6 w-6" aria-hidden="true" />
-                    )}
-                  </Disclosure.Button>
-                </div>
-                <Link href="/" className="flex flex-shrink-0 items-center">
+    <div className="bg-white dark:bg-black">
+      <header className="relative">
+        <nav aria-label="Top" className="mx-auto max-w-7xl sm:px-6 lg:px-8">
+          <div className="border-b border-gray-200 dark:border-gray-800 px-4 pb-14 sm:px-0 sm:pb-0">
+            <div className="flex h-16 items-center justify-between">
+              {/* Logo */}
+              <div className="flex flex-1">
+                <Link href="/">
+                  <span className="sr-only">
+                    Home
+                  </span>
                   <PhotoIcon
-                    className="block h-8 w-auto lg:hidden fill-indigo-500 hover:fill-indigo-600 dark:hover:fill-indigo-400"
-                  // alt="Your Company"
-                  // src={imageLogo}
-                  />
-                  <PhotoIcon
-                    className="hidden h-8 w-auto lg:block fill-indigo-500 hover:fill-indigo-600 dark:hover:fill-indigo-400"
-                  // alt="Your Company"
-                  // src={imageLogo}
+                    className="h-8 w-auto fill-indigo-500 hover:fill-indigo-600 dark:hover:fill-indigo-400"
+                  // src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+                  // alt=""
                   />
                 </Link>
-                <div className={clsx(
-                  darkMode ? "hidden md:ml-6 md:flex md:items-center md:space-x-4" : "hidden md:ml-6 md:flex md:space-x-8",
-                )}>
-                  {navigation.map((item) => (
+              </div>
+
+              {/* Flyout menus */}
+              <Popover.Group className="absolute inset-x-0 bottom-0 sm:static sm:flex-1 sm:self-stretch">
+                <div className="flex h-14 space-x-8 overflow-x-auto border-t dark:border-gray-800 px-4 pb-px sm:h-full sm:justify-center sm:overflow-visible sm:border-t-0 sm:pb-0">
+                  {navigations.categories.map((category, categoryIdx) => (
+                    <Popover key={categoryIdx} className="flex">
+                      {({ open }) => (
+                        <>
+                          <div className="relative flex">
+                            <Popover.Button
+                              className={clsx(
+                                open
+                                  ? 'border-indigo-600 text-indigo-600 dark:border-white dark:text-white'
+                                  : 'border-transparent text-gray-700 hover:text-gray-800 dark:text-gray-400 dark:hover:text-white',
+                                "transition-colors duration-200 ease-out",
+                                "relative z-10 -mb-px flex items-center border-b-2 pt-px text-sm font-medium",
+                                "focus:outline-none",
+                              )}
+                            >
+                              {category.name}
+                            </Popover.Button>
+                          </div>
+
+                          <Transition
+                            as={Fragment}
+                            enter="transition ease-out duration-200"
+                            enterFrom="opacity-0"
+                            enterTo="opacity-100"
+                            leave="transition ease-in duration-150"
+                            leaveFrom="opacity-100"
+                            leaveTo="opacity-0"
+                          >
+                            <Popover.Panel className="absolute inset-x-0 z-10 top-full text-gray-500 sm:text-sm">
+                              {/* Presentational element used to render the bottom shadow, if we put the shadow on the actual panel it pokes out the top, so we use this shorter element to hide the top of the shadow */}
+                              <div className="absolute inset-0 top-1/2 bg-white dark:bg-black shadow" aria-hidden="true" />
+
+                              <div className="relative bg-white dark:bg-black dark:border-b dark:border-gray-900 select-none">
+                                <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                                  <div className="grid grid-cols-1 items-start gap-x-6 gap-y-10 pb-12 pt-10 md:grid-cols-2 lg:gap-x-8">
+                                    <div className="grid grid-cols-1 gap-x-6 gap-y-10 lg:gap-x-8">
+                                      <div>
+                                        <p id="tools-heading" className="font-medium text-gray-900 dark:text-white">
+                                          Lorem ipsum dolor
+                                        </p>
+                                        <div className="mt-4 border-t border-gray-200 dark:border-gray-700 pt-6 sm:grid sm:grid-cols-2 sm:gap-x-6">
+                                          <ul
+                                            role="list"
+                                            aria-labelledby="tools-heading"
+                                            className="space-y-6 sm:space-y-4"
+                                          >
+                                            {category.col0[0].map((item) => (
+                                              <li key={item.name} className="flex">
+                                                <Link href={item.href} className={clsx(
+                                                  item.name.startsWith('#') && 'text-gray-400 dark:text-gray-700 line-through',
+                                                  "hover:text-gray-800 dark:hover:text-gray-200",
+                                                )}>
+                                                  {item.name.replace(/^(\#)*/, '')}
+                                                </Link>
+                                              </li>
+                                            ))}
+                                          </ul>
+                                          <ul
+                                            role="list"
+                                            aria-label="More tools"
+                                            className="mt-6 space-y-6 sm:mt-0 sm:space-y-4"
+                                          >
+                                            {category.col0[1].map((item) => (
+                                              <li key={item.name} className="flex">
+                                                <Link href={item.href} className={clsx(
+                                                  item.name.startsWith('#') && 'text-gray-400 dark:text-gray-700 line-through',
+                                                  "hover:text-gray-800 dark:hover:text-gray-200",
+                                                )}>
+                                                  {item.name.replace(/^(\#)*/, '')}
+                                                </Link>
+                                              </li>
+                                            ))}
+                                          </ul>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:gap-x-8">
+                                      <div>
+                                        <p id="batch-heading" className="font-medium text-gray-900 dark:text-white">
+                                          Batch Transfer
+                                        </p>
+                                        <ul
+                                          role="list"
+                                          aria-labelledby="batch-heading"
+                                          className="mt-4 space-y-6 border-t border-gray-200 dark:border-gray-700 pt-6 sm:space-y-4"
+                                        >
+                                          {category.col2.map((item) => (
+                                            <li key={item.name} className="flex">
+                                              <Link href={item.href} className={clsx(
+                                                item.name?.startsWith('#') && 'text-gray-400 dark:text-gray-700 line-through',
+                                                "hover:text-gray-800 dark:hover:text-gray-200",
+                                              )}>
+                                                {item.name?.replace(/^(\#)*/, '')}
+                                              </Link>
+                                            </li>
+                                          ))}
+                                        </ul>
+                                      </div>
+                                      <div>
+                                        <p id="categories-heading" className="font-medium text-gray-900 dark:text-white">
+                                          Debug
+                                        </p>
+                                        <ul
+                                          role="list"
+                                          aria-labelledby="categories-heading"
+                                          className="mt-4 space-y-6 border-t border-gray-200 dark:border-gray-700 pt-6 sm:space-y-4"
+                                        >
+                                          {category.col3.map((item) => (
+                                            <li key={item.name} className="flex">
+                                              <Link href={item.href} className={clsx(
+                                                item.name.startsWith('#') && 'text-gray-400 dark:text-gray-700 line-through',
+                                                "hover:text-gray-800 dark:hover:text-gray-200",
+                                              )}>
+                                                {item.name.replace(/^(\#)*/, '')}
+                                              </Link>
+                                            </li>
+                                          ))}
+                                        </ul>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </Popover.Panel>
+                          </Transition>
+                        </>
+                      )}
+                    </Popover>
+                  ))}
+
+                  {navigations.other.map((item) => (
                     <Link
                       key={item.name}
                       href={item.href}
                       className={clsx(
-                        darkMode ? clsx(
-                          "rounded-md px-3 py-2 text-sm font-medium",
-                          item.href === pathname ? 'bg-gray-800 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                        ) : clsx(
-                          "inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium",
-                          item.href === pathname ? "border-indigo-500  text-gray-900" : "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700",
-                        ),
+                        "transition ease-out duration-200",
+                        "flex items-center text-sm font-medium",
+                        "text-gray-700 dark:text-gray-400",
+                        "hover:text-gray-800 dark:hover:text-white",
+                        item.href === pathname && "border-indigo-600 text-indigo-600 dark:border-white dark:text-white",
                       )}
-                      aria-current={item.href === pathname ? 'page' : undefined}
                     >
                       {item.name}
                     </Link>
                   ))}
                 </div>
-              </div>
-              <div className="flex items-center">
+              </Popover.Group>
+
+              <div className="flex flex-1 items-center justify-end space-x-4">
                 <ThemeToggle />
-                {/* {theme === 'dark' ? (
-                  <button
-                    className={clsx(
-                      'group flex rounded-full',
-                      'focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800',
-                    )}
-                    onClick={() => setTheme('light')}
-                  >
-                    <SunIconOutline className="block group-hover:hidden h-8 w-8 rounded-full" />
-                    <SunIconSolid className="hidden group-hover:block h-8 w-8 rounded-full " />
-                  </button>
+
+                {0 === web3Connected ? (
+                  <Web3Connect />
                 ) : (
-                  <button
-                    className={clsx(
-                      'group flex rounded-full',
-                      'focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800',
-                    )}
-                    onClick={() => setTheme('dark')}
-                  >
-                    <MoonIconOutline className="block group-hover:hidden h-8 w-8 rounded-full" />
-                    <MoonIconSolid className="hidden group-hover:block h-8 w-8 rounded-full" />
-                  </button>
-                )} */}
-                <ConnectButton.Custom>
-                  {({
-                    account,
-                    chain,
-                    openAccountModal,
-                    openChainModal,
-                    openConnectModal,
-                    mounted,
-                  }) => {
-                    const connected = mounted && account && chain;
-                    if (!connected) {
-                      return (
-                        <button
-                          type="button"
-                          aria-label="Toggle dark mode"
-                          className={clsx(
-                            'relative inline-flex items-center gap-x-1.5',
-                            'rounded-md shadow-sm px-3 py-2',
-                            'bg-indigo-700 hover:bg-indigo-600',
-                            'text-sm font-semibold text-gray-200 hover:text-white',
-                            'focus-visible:outline focus-visible:outline-2',
-                            'focus-visible:outline-offset-2 focus-visible:outline-indigo-500',
-                          )}
-                          onClick={openConnectModal}
-                        >
-                          <TicketIcon className={clsx(
-                            web3Connecting ? 'animate-bounce' : '',
-                            "-ml-0.5 h-5 w-5",
-                          )} aria-hidden="true" />
-                          {web3Connecting ? 'Connecting...' : 'Connect Wallet'}
-                        </button>
-                      )
-                    }
-
-                    if (web3Network?.chain?.unsupported) {
-                      return (
-                        <button
-                          type="button"
-                          aria-label="Toggle dark mode"
-                          className={clsx([
-                            'transition backdrop-blur',
-                            'relative inline-flex items-center gap-x-1.5',
-                            'rounded-md shadow-sm px-3 py-2',
-                            'bg-rose-600 hover:bg-rose-700',
-                            'dark:bg-rose-700 dark:hover:bg-rose-600',
-                            'text-sm font-semibold text-gray-200 hover:text-white',
-                            'focus-visible:outline focus-visible:outline-2',
-                            'focus-visible:outline-offset-2 focus-visible:outline-rose-500',
-                          ])}
-                          onClick={openChainModal}
-                        >
-                          <ArrowsRightLeftIcon className={clsx(
-                            "-ml-0.5 h-5 w-5",
-                          )} aria-hidden="true" />
-
-                          <span>
-                            Wrong Network
+                  <div className="md:flex md:flex-shrink-0 md:items-center">
+                    <Menu as="div" className="relative">
+                      <div>
+                        <Menu.Button className={clsx(
+                          "flex rounded-full text-sm",
+                          "focus:outline-none focus:ring-2 focus:ring-offset-2",
+                          "focus:ring-indigo-500 dark:focus:ring-gray-500",
+                          "dark:focus:ring-offset-gray-800",
+                          "text-gray-500 dark:text-gray-300",
+                        )}>
+                          <span className="sr-only">
+                            Open user menu
                           </span>
-
-                          <ChevronDownIcon className="h-5 w-5 " aria-hidden="true" />
-                        </button>
-                      );
-                    }
-
-                    return (
-                      <div className="hidden md:ml-1 md:flex md:flex-shrink-0 md:items-center">
-                        <Menu as="div" className="relative ml-3">
-                          <div>
-                            <Menu.Button className={clsx(
-                              "flex rounded-full text-sm",
-                              "focus:outline-none focus:ring-2 focus:ring-offset-2",
-                              "focus:ring-indigo-500 dark:focus:ring-gray-500",
-                              "dark:focus:ring-offset-gray-800",
-                              "text-gray-500 dark:text-gray-300",
-                            )}>
-                              <span className="sr-only">
-                                Open user menu
-                              </span>
-                              <FingerPrintIcon
-                                className="h-8 w-8 rounded-full"
-                              // src={user.image}
-                              // alt=""
-                              />
-                            </Menu.Button>
-                          </div>
-                          <Transition
-                            as={Fragment}
-                            enter="transition ease-out duration-200"
-                            enterFrom="transform opacity-0 scale-95"
-                            enterTo="transform opacity-100 scale-100"
-                            leave="transition ease-in duration-75"
-                            leaveFrom="transform opacity-100 scale-100"
-                            leaveTo="transform opacity-0 scale-95"
-                          >
-                            <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                              <Menu.Item key="profile">
-                                <div className="pb-1 mb-1 border-b border-gray-200">
-                                  <div className="group block px-4 py-2 space-y-1 hover:bg-gray-100" onClick={openAccountModal}>
-                                    {web3Name && (
-                                      <p className="text-sm font-medium text-gray-700 group-hover:text-gray-900">
-                                        {web3Name}
-                                      </p>
-                                    )}
-                                    <p className="text-xs font-mono text-gray-500 group-hover:text-gray-700">
-                                      {web3AddressMask}
-                                    </p>
-                                  </div>
-                                </div>
-                              </Menu.Item>
-                              {userNavigation.map((item) => (
-                                <Menu.Item key={item.name}>
-                                  {({ active }) => (
-                                    <Link
-                                      href={item.href}
-                                      className={clsx(
-                                        item.href === pathname ? 'font-bold' : '',
-                                        active ? 'bg-gray-100' : '',
-                                        'block px-4 py-2 text-sm text-gray-700'
-                                      )}
-                                    >
-                                      {item.name}
-                                    </Link>
-                                  )}
-                                </Menu.Item>
-                              ))}
-                            </Menu.Items>
-                          </Transition>
-                        </Menu>
+                          <FingerPrintIcon
+                            className="h-8 w-8 rounded-full"
+                          // src={user.image}
+                          // alt=""
+                          />
+                        </Menu.Button>
                       </div>
-                    );
-                  }}
-                </ConnectButton.Custom>
+                      <Transition
+                        as={Fragment}
+                        enter="transition ease-out duration-200"
+                        enterFrom="transform opacity-0 scale-95"
+                        enterTo="transform opacity-100 scale-100"
+                        leave="transition ease-in duration-75"
+                        leaveFrom="transform opacity-100 scale-100"
+                        leaveTo="transform opacity-0 scale-95"
+                      >
+                        <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                          <Menu.Item key="profile">
+                            <div className="pb-1 mb-1 border-b border-gray-200">
+                              <div className="group block px-4 py-2 space-y-1 hover:bg-gray-100" onClick={handleShowWeb3ConnectionsModal}>
+                                {web3Name && (
+                                  <p className="text-sm font-medium text-gray-700 group-hover:text-gray-900">
+                                    {web3Name}
+                                  </p>
+                                )}
+
+                                {evmConnected && (
+                                  <p className="text-xs font-mono text-gray-500 group-hover:text-gray-700">
+                                    {1 === web3Connected ? evmAddressMask : (
+                                      <>
+                                        {evmSymbol}: {evmAddressMask}
+                                      </>
+                                    )}
+                                  </p>
+                                )}
+
+                                {suiConnected && (
+                                  <p className="text-xs font-mono text-gray-500 group-hover:text-gray-700">
+                                    {1 === web3Connected ? suiAddressMask : (
+                                      <>
+                                        SUI: {suiAddressMask}
+                                      </>
+                                    )}
+                                  </p>
+                                )}
+                              </div>
+                            </div>
+                          </Menu.Item>
+                          {userNavigations.map((item) => (
+                            <Menu.Item key={item.name}>
+                              {({ active }) => (
+                                <Link
+                                  href={item.href}
+                                  className={clsx(
+                                    item.href === pathname ? 'font-bold' : '',
+                                    active ? 'bg-gray-100' : '',
+                                    'block px-4 py-2 text-sm text-gray-700'
+                                  )}
+                                >
+                                  {item.name}
+                                </Link>
+                              )}
+                            </Menu.Item>
+                          ))}
+                        </Menu.Items>
+                      </Transition>
+                    </Menu>
+                  </div>
+                )}
+
+
+                {/* Cart */}
+                {/* <div className="ml-4 flow-root lg:ml-8">
+                  <Link href="#" className="group -m-2 flex items-center p-2">
+                    <ShoppingBagIcon
+                      className="h-6 w-6 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
+                      aria-hidden="true"
+                    />
+                    <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">0</span>
+                    <span className="sr-only">items in cart, view bag</span>
+                  </Link>
+                </div> */}
               </div>
             </div>
           </div>
-
-          <Disclosure.Panel className="md:hidden">
-            <div className="space-y-1 pb-3 pt-2 dark:px-2 dark:sm:px-3">
-              {navigation.map((item) => (
-                <Disclosure.Button
-                  key={item.name}
-                  as={Link}
-                  href={item.href}
-                  className={clsx(
-                    darkMode ? clsx(
-                      'block rounded-md px-3 py-2 text-base font-medium',
-                      item.href === pathname ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                    ) : clsx(
-                      "block border-l-4 py-2 pl-3 pr-4 text-base font-medium sm:pl-5 sm:pr-6",
-                      item.href === pathname ? "border-indigo-500 bg-indigo-50 text-indigo-700"
-                        : "border-transparent text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700",
-                    ),
-                  )}
-                  aria-current={item.href === pathname ? 'page' : undefined}
-                >
-                  {item.name}
-                </Disclosure.Button>
-              ))}
-            </div>
-            {web3Connected && (
-              <div className="border-t border-gray-300 dark:border-gray-700 pb-3 pt-4">
-                <div className="flex items-center px-5 sm:px-6">
-                  <div className="flex-shrink-0 text-gray-500 dark:text-gray-300">
-                    <FingerPrintIcon
-                      className="h-10 w-10 rounded-full"
-                    // src={user.image}
-                    // alt=""
-                    />
-                  </div>
-                  <div className="ml-3">
-                    {web3Name && (
-                      <div className="text-base font-medium text-gray-700 dark:text-white">
-                        {web3Name}
-                      </div>
-                    )}
-                    <div className="text-sm font-mono text-gray-500 dark:text-gray-400">
-                      {web3AddressMask}
-                    </div>
-                  </div>
-                  <button
-                    type="button"
-                    onClick={openAccountModal}
-                    className={clsx(
-                      'ml-auto flex-shrink-0 rounded-full p-1',
-                      'focus:outline-none focus:ring-2  focus:ring-offset-2',
-
-                      // "focus:ring-indigo-500 dark:focus:ring-gray-500",
-                      // "dark:focus:ring-offset-gray-800",
-                      // "text-gray-500 dark:text-gray-300",
-                      clsx(
-                        darkMode
-                          ? "text-gray-400 hover:text-white focus:ring-white focus:ring-offset-gray-800"
-                          : "text-indigo-500 hover:text-indigo-600 focus:ring-indigo-500"
-                      )
-                    )}
-                  >
-                    <span className="sr-only">View notifications</span>
-                    <TicketIcon className="h-6 w-6" aria-hidden="true" />
-                  </button>
-                </div>
-                <div className="mt-3 space-y-1 dark:px-2 dark:sm:px-3">
-                  {userNavigation.map((item) => (
-                    <Disclosure.Button
-                      key={item.name}
-                      as={Link}
-                      href={item.href}
-                      className={clsx(
-                        darkMode ? clsx(
-                          'block rounded-md px-3 py-2 text-base font-medium',
-                          item.href === pathname ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                        ) : clsx(
-                          "block border-l-4 py-2 pl-3 pr-4 text-base font-medium sm:pl-5 sm:pr-6",
-                          item.href === pathname ? "border-indigo-500 bg-indigo-50 text-indigo-700"
-                            : "border-transparent text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700",
-                        ),
-                      )}
-                    // className={clsx(
-                    //   item.href === pathname ? 'bg-gray-900 text-white' : 'text-gray-300 hover:text-white',
-                    //   "block rounded-md px-3 py-2 text-base font-medium text-gray-400",
-                    //   "hover:bg-gray-700 hover:text-white",
-                    // )}
-                    >
-                      {item.name}
-                    </Disclosure.Button>
-                  ))}
-                </div>
-              </div>
-            )}
-          </Disclosure.Panel>
-        </>
-      )}
-    </Disclosure>
+        </nav>
+      </header>
+    </div>
   )
 }

@@ -1,44 +1,54 @@
+'use client';
 
 import clsx from 'clsx';
 import Link from 'next/link';
 import { useRouter, usePathname } from 'next/navigation';
-import { useAtom } from 'jotai';
+import { atom, useAtom } from 'jotai';
 import { atomDarkMode } from '@/store/store';
 import { CircleStackIcon, BanknotesIcon, PhotoIcon, IdentificationIcon } from '@heroicons/react/20/solid';
+import { atomEvmNativeSymbol } from '@/store/store';
+import { EvmConnected } from '@/components/web3/evm/connected';
 
 
-const tabs = [
-  {
-    name: 'ETH',
-    desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec non rutrum felis.',
-    href: '/tools/bulk/native',
-    icon: CircleStackIcon
-  },
-  {
-    name: 'ERC20',
-    desc: 'Cras sed sapien nulla. Vestibulum lectus erat, facilisis at est in',
-    href: '/tools/bulk/erc20',
-    icon: BanknotesIcon
-  },
-  {
-    name: 'ERC721',
-    desc: 'Aliquam in pellentesque est, vitae tristique enim. Proin hendrerit sed nisi et suscipit.',
-    href: '/tools/bulk/erc721',
-    icon: PhotoIcon
-  },
-  {
-    name: 'ERC1155',
-    desc: 'Nullam tincidunt mauris vel velit commodo, sodales rutrum tortor hendrerit.',
-    href: '/tools/bulk/erc1155',
-    icon: IdentificationIcon
-  },
-]
+const atomTabs = atom((get) => {
+  const symbol = get(atomEvmNativeSymbol);
+
+  return [
+    {
+      name: symbol || 'Native',
+      desc: 'Batch Transfer ETH',
+      href: '/tools/batch/native',
+      icon: CircleStackIcon
+    },
+    {
+      name: 'ERC20',
+      desc: 'Batch Transfer ERC20 Tokens',
+      href: '/tools/batch/erc20',
+      icon: BanknotesIcon
+    },
+    {
+      name: 'ERC721',
+      desc: 'Batch Transfer ERC721 NFTs',
+      href: '/tools/batch/erc721',
+      icon: PhotoIcon
+    },
+    {
+      name: 'ERC1155',
+      desc: 'Batch Transfer ERC1155 NFTs',
+      href: '/tools/batch/erc1155',
+      icon: IdentificationIcon
+    },
+  ];
+});
 
 
-export default function Tabs() {
+export default function Layout({ children }: {
+  children: React.ReactNode
+}) {
   const router = useRouter();
   const pathname = usePathname();
   const [darkMode] = useAtom(atomDarkMode);
+  const [tabs] = useAtom(atomTabs);
 
   const tabOnchange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const tab = tabs.find((tab) => tab.name === e.target.value);
@@ -52,12 +62,12 @@ export default function Tabs() {
         "px-6 lg:px-8 pt-8 pb-4 sm:pt-12 sm:pb-6",
         "space-y-6",
       )}>
-        <div className="mx-auto max-w-2xl lg:mx-0">
+        <div className="mx-auto max-w-7xl lg:mx-0">
           <h2 className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-6xl">
-            Bulk Transfer
+            Batch Transfer
           </h2>
           <p className="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300">
-            {tabs.find((tab) => tab.href === pathname)?.desc}
+            OPEN-SOURCED, FREE - SAVE GAS FEES
           </p>
         </div>
 
@@ -77,7 +87,6 @@ export default function Tabs() {
                 <option key={tab.name}>{tab.name}</option>
               ))}
             </select>
-            {/* <List /> */}
           </div>
           <div className="hidden sm:block">
             <div className={clsx(
@@ -125,8 +134,9 @@ export default function Tabs() {
           </div>
         </div>
 
-
-
+        <EvmConnected>
+          {children}
+        </EvmConnected>
       </div >
     </>
   )

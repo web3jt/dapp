@@ -25,7 +25,7 @@ const ActiveLink = ({ children, className, activeClassName, defaultClassName, ..
     const newClassName = isActive ? clsx(className, activeClassName) : clsx(className, defaultClassName);
     if (newClassName !== computedClassName) setComputedClassName(newClassName);
   }, [
-    location.href,
+    isActive,
     props.href,
     className,
     defaultClassName,

@@ -14,7 +14,7 @@ export default function ThemeToggle() {
 
   useEffect(() => {
     setTheme(darkMode ? "dark" : "light");
-  }, [darkMode]);
+  }, [darkMode, setTheme]);
 
   return (
     <Switch

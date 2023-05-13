@@ -1,7 +1,6 @@
 'use client';
 
-import '@rainbow-me/rainbowkit/styles.css';
-
+import type { Wallet } from '@rainbow-me/rainbowkit';
 import { RainbowKitProvider, lightTheme, darkTheme, connectorsForWallets } from '@rainbow-me/rainbowkit';
 import {
   injectedWallet,
@@ -13,7 +12,6 @@ import {
   trustWallet,
   // imTokenWallet,
 } from '@rainbow-me/rainbowkit/wallets';
-import type { Wallet } from '@rainbow-me/rainbowkit';
 import { configureChains, createClient, WagmiConfig } from 'wagmi';
 import { mainnet, goerli, bsc } from 'wagmi/chains';
 import { alchemyProvider } from 'wagmi/providers/alchemy';
@@ -21,9 +19,13 @@ import { publicProvider } from 'wagmi/providers/public';
 // import { infuraProvider } from 'wagmi/providers/infura';
 // import { jsonRpcProvider } from 'wagmi/providers/jsonRpc';
 
-
 import { useAtom } from 'jotai';
 import { atomDarkMode } from '@/store/store';
+
+import { EvmStateProvider } from '@/providers/evm-state';
+
+import '@rainbow-me/rainbowkit/styles.css';
+
 
 // default chain: goerli
 const getInitialChainId = () => {
@@ -105,11 +107,7 @@ const wagmiClient = createClient({
 
 
 // export: Web3Providers
-export function Web3Providers({
-  children
-}: {
-  children: React.ReactNode
-}) {
+export function EvmProviders({ children }: { children: React.ReactNode }) {
   const [darmMode] = useAtom(atomDarkMode);
 
   return (
@@ -121,7 +119,9 @@ export function Web3Providers({
         initialChain={initialChainId}
         appInfo={{ appName: appName }}
       >
-        {children}
+        <EvmStateProvider>
+          {children}
+        </EvmStateProvider>
       </RainbowKitProvider>
     </WagmiConfig>
   )

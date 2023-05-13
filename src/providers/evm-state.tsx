@@ -10,36 +10,31 @@ import {
   useNetwork,
 } from "wagmi";
 import {
-  atomWeb3Address,
-  atomWeb3EnsName,
-  atomWeb3Connecting,
-  atomWeb3Connected,
-  atomWeb3Reconnecting,
-  atomWeb3Disconnected,
+  atomEvmAddress,
+  atomEvmEnsName,
+  atomEvmConnecting,
+  atomEvmConnected,
+  atomEvmReconnecting,
+  atomEvmDisconnected,
 
-  atomWeb3BlockNumber,
+  atomEvmBlockNumber,
 
-  atomWeb3Network,
+  atomEvmNetwork,
 } from '@/store/store';
 
-// export: state provider
-export function StateProvider({
-  children
-}: {
-  children: React.ReactNode
-}) {
-
-  const [network, setNetwork] = useAtom(atomWeb3Network);
-  const [, setAddress] = useAtom(atomWeb3Address);
-  const [, setConnecting] = useAtom(atomWeb3Connecting);
-  const [, setConnected] = useAtom(atomWeb3Connected);
-  const [, setReconnecting] = useAtom(atomWeb3Reconnecting);
-  const [, setDisconnected] = useAtom(atomWeb3Disconnected);
-  const [, setEnsName] = useAtom(atomWeb3EnsName);
+// export: EVM state provider
+export function EvmStateProvider({ children }: { children: React.ReactNode }) {
+  const [, setNetwork] = useAtom(atomEvmNetwork);
+  const [, setAddress] = useAtom(atomEvmAddress);
+  const [, setConnecting] = useAtom(atomEvmConnecting);
+  const [, setConnected] = useAtom(atomEvmConnected);
+  const [, setReconnecting] = useAtom(atomEvmReconnecting);
+  const [, setDisconnected] = useAtom(atomEvmDisconnected);
+  const [, setEnsName] = useAtom(atomEvmEnsName);
   // const [, setBlockNumber] = useAtom(atomWeb3BlockNumber);
 
   const { chain, chains } = useNetwork();
-  useEffect(() => setNetwork({ chain: chain, chains: chains }), [chain?.id, chains]);
+  useEffect(() => setNetwork({ chain: chain, chains: chains }), [chain, chain?.id, chains, setNetwork]);
 
   // address, connect
   const {
@@ -65,39 +60,48 @@ export function StateProvider({
       setEnsName(undefined);
     }
   }, [
-    address
+    address,
+    setAddress,
+    setEnsName,
   ]);
 
   // isConnecting
   useEffect(() => {
     setConnecting(isConnecting);
   }, [
-    isConnecting
+    isConnecting,
+    setConnecting,
   ]);
 
   // isConnected
   useEffect(() => {
     setConnected(isConnected);
   }, [
-    isConnected
+    isConnected,
+    setConnected,
   ]);
 
   // isReconnecting
   useEffect(() => {
     setReconnecting(isReconnecting);
   }, [
-    isReconnecting
+    isReconnecting,
+    setReconnecting,
   ]);
 
   // isDisconnected
   useEffect(() => {
     setDisconnected(isDisconnected);
   }, [
-    isDisconnected
+    isDisconnected,
+    setDisconnected,
   ]);
 
   // ENS
-  const { data: ensNameData, isLoading: ensNameIsLoading } = useEnsName({
+  const {
+    data: ensNameData,
+    // isLoading: ensNameIsLoading,
+  } = useEnsName({
     address: address,
     suspense: true,
     chainId: 1,
@@ -114,7 +118,8 @@ export function StateProvider({
       setEnsName(undefined);
     }
   }, [
-    ensNameData
+    ensNameData,
+    setEnsName,
   ]);
 
   // // block number

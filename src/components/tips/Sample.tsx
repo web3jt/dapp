@@ -52,12 +52,12 @@ export default function Tip() {
           <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
             <p className="text-sm leading-6 text-gray-900">
               <strong className="font-semibold">
-                GeneriCon 2333
+                Curabitur 2023
               </strong>
               <svg viewBox="0 0 2 2" className="mx-2 inline h-0.5 w-0.5 fill-current" aria-hidden="true">
                 <circle cx={1} cy={1} r={1} />
               </svg>
-              Join us in Denver from June 7 – 9 to see what’s coming next.
+              Donec scelerisque magna ut massa iaculis, quis blandit ipsum aliquam.
             </p>
             <Link
               href="/placeholder"
@@ -68,7 +68,7 @@ export default function Tip() {
                 'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900',
               )}
             >
-              Register now <span aria-hidden="true">&rarr;</span>
+              Vestibulum <span aria-hidden="true">&rarr;</span>
             </Link>
           </div>
           <div className="flex flex-1 justify-end">
