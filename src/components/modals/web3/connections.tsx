@@ -89,17 +89,20 @@ export function Web3ConnectionsModal() {
               leaveFrom="opacity-100 translate-y-0 sm:scale-100"
               leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
             >
-              <Dialog.Panel className="relative transform overflow-hidden w-full max-w-sm rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:p-6">
+              <Dialog.Panel className={clsx(
+                "relative transform overflow-hidden w-full max-w-sm rounded-lg bg-white dark:bg-gray-900",
+                "px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:p-6",
+              )}>
                 <div>
-                  <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-indigo-100">
-                    <WalletIcon className="h-6 w-6 text-indigo-600" aria-hidden="true" />
+                  <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-indigo-100 dark:bg-indigo-900">
+                    <WalletIcon className="h-6 w-6 text-indigo-600 dark:text-indigo-400" aria-hidden="true" />
                   </div>
                   <div className="mt-3 text-center sm:mt-5">
-                    <Dialog.Title as="h3" className="text-base font-semibold leading-6 text-gray-900">
+                    <Dialog.Title as="h3" className="text-base font-semibold leading-6 text-gray-900 dark:text-white">
                       Web3 Connections
                     </Dialog.Title>
                     <div className="mt-2">
-                      <p className="text-sm text-gray-500">
+                      <p className="text-sm text-gray-500 dark:text-gray-400">
                         {web3Connected} connection{web3Connected > 1 ? 's' : ''}
                       </p>
                     </div>
@@ -109,29 +112,49 @@ export function Web3ConnectionsModal() {
                 <div className="mt-5 sm:mt-6 space-y-3">
                   {evmConnected ? (
                     <div className={clsx(
-                      "group relative rounded-lg border border-gray-300 hover:border-gray-400 bg-white shadow-sm"
+                      "group relative rounded-lg border shadow-sm",
+                      "border-gray-300 dark:border-gray-700 hover:border-gray-400 dark:hover:border-gray-600",
+                      "bg-white dark:bg-gray-800",
                     )}>
                       <div className={clsx("flex items-center justify-between space-x-3 px-6 py-5")}>
                         <div className="flex-shrink-0">
-                          <EthereumIcon className="h-8 w-8 fill-gray-400 group-hover:fill-gray-500" />
+                          <EthereumIcon className={clsx(
+                            "h-8 w-8",
+                            "fill-gray-400 group-hover:fill-gray-500",
+                            "dark:fill-gray-500 dark:group-hover:fill-gray-400",
+                          )} />
                         </div>
                         <div className="min-w-0 flex-1">
-                          <p className="text-sm font-medium text-gray-900 font-mono">
+                          <p className="text-sm font-medium text-gray-900 dark:text-white font-mono">
                             {evmAddressMask}
                           </p>
-                          <p className="truncate text-sm text-gray-500">
+                          <p className="truncate text-sm text-gray-600 dark:text-gray-400">
                             {evmChainName} {evmChainTestnet ? 'Testnet' : 'Mainnet'}
                           </p>
                         </div>
                       </div>
                       <div className="grid grid-cols-2 gap-2 pb-3">
-                        <button type="button" className="space-y-1 text-center text-gray-400 hover:text-gray-600">
+                        <button
+                          type="button"
+                          className={clsx(
+                            "space-y-1 text-center",
+                            "text-gray-400 hover:text-gray-600",
+                            "dark:text-gray-500 dark:hover:text-gray-400",
+                          )}
+                        >
                           <DocumentDuplicateIcon className="mx-auto w-5 h-5" />
                           <div className="text-xs">
                             Copy Address
                           </div>
                         </button>
-                        <button type="button" className="space-y-1 text-center text-gray-400 hover:text-gray-600" onClick={handleEvmDisconnect}>
+                        <button
+                          type="button"
+                          className={clsx(
+                            "space-y-1 text-center text-gray-400 hover:text-gray-600",
+                            "dark:text-gray-500 dark:hover:text-gray-400",
+                          )}
+                          onClick={handleEvmDisconnect}
+                        >
                           <XMarkIcon className="mx-auto w-5 h-5" />
                           <div className="text-xs">
                             Disconnect
@@ -156,29 +179,48 @@ export function Web3ConnectionsModal() {
 
                   {suiConnected ? (
                     <div className={clsx(
-                      "group relative rounded-lg border border-gray-300 hover:border-gray-400 bg-white shadow-sm"
+                      "group relative rounded-lg border shadow-sm",
+                      "border-gray-300 dark:border-gray-700 hover:border-gray-400 dark:hover:border-gray-600",
+                      "bg-white dark:bg-gray-800",
                     )}>
                       <div className={clsx(" flex items-center justify-between space-x-3 px-6 py-5")}>
                         <div className="flex-shrink-0">
-                          <BeakerIcon className="h-8 w-8 text-gray-400 group-hover:text-gray-500" />
+                          <BeakerIcon className={clsx(
+                            "h-8 w-8 text-gray-400 group-hover:text-gray-500",
+                            "dark:text-gray-500 dark:group-hover:text-gray-400",
+                          )} />
                         </div>
                         <div className="min-w-0 flex-1">
-                          <p className="text-sm font-medium text-gray-900 font-mono">
+                          <p className="text-sm font-medium text-gray-900 dark:text-white font-mono">
                             {suiAddressMask}
                           </p>
-                          <p className="truncate text-sm text-gray-500">
+                          <p className="truncate text-sm text-gray-600 dark:text-gray-400">
                             {suiChainName}
                           </p>
                         </div>
                       </div>
                       <div className="grid grid-cols-2 gap-2 pb-3">
-                        <button type="button" className="space-y-1 text-center text-gray-400 hover:text-gray-600">
+                        <button
+                          type="button"
+                          className={clsx(
+                            "space-y-1 text-center",
+                            "text-gray-400 hover:text-gray-600",
+                            "dark:text-gray-500 dark:hover:text-gray-400",
+                          )}
+                        >
                           <DocumentDuplicateIcon className="mx-auto w-5 h-5" />
                           <div className="text-xs">
                             Copy Address
                           </div>
                         </button>
-                        <button type="button" className="space-y-1 text-center text-gray-400 hover:text-gray-600" onClick={handleSuiDisconnect}>
+                        <button
+                          type="button"
+                          className={clsx(
+                            "space-y-1 text-center text-gray-400 hover:text-gray-600",
+                            "dark:text-gray-500 dark:hover:text-gray-400",
+                          )}
+                          onClick={handleSuiDisconnect}
+                        >
                           <XMarkIcon className="mx-auto w-5 h-5" />
                           <div className="text-xs">
                             Disconnect
