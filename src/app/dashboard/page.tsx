@@ -1,5 +1,3 @@
-import Account from '../account';
-
 import { Web3Connected } from '@/components/web3/connected';
 import { EvmConnection } from './evm';
 import { SuiConnection } from './sui';
