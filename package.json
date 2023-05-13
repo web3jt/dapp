@@ -23,7 +23,7 @@
     "clsx": "^1.2.1",
     "encoding": "^0.1.13",
     "eslint": "8.40.0",
-    "eslint-config-next": "13.4.1",
+    "eslint-config-next": "13.4.2",
     "ethers": "^5",
     "immer": "^10.0.2",
     "jotai": "^2.1.0",
