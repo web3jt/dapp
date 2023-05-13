@@ -49,6 +49,17 @@ export const atomEvmChainId: Atom<number | undefined> = atom((get) => {
   return undefined;
 });
 
+export const atomEvmChainTestnet: Atom<boolean | undefined> = atom((get) => {
+  const network = get(atomEvmNetwork);
+
+  if (network) {
+    return network.chain?.testnet;
+  }
+
+  return undefined;
+});
+
+
 
 export const atomEvmNativeSymbol: Atom<string | undefined> = atom((get) => {
   const network = get(atomEvmNetwork);
@@ -214,6 +225,8 @@ export const atomSuiAvailableWalletCount = atom((get) => {
  * Web3
  */
 export const atomShowWeb3ConnectModal = atomWithImmer<boolean>(false);
+export const atomShowWeb3ConnectionsModal = atomWithImmer<boolean>(false);
+
 export const atomWeb3Connected = atom((get) => {
   let connected: number = 0;
 

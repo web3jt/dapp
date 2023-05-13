@@ -1,9 +1,9 @@
 'use client';
 
 import clsx from 'clsx';
-import { SignalSlashIcon } from '@heroicons/react/24/outline';
+import { SignalSlashIcon, BeakerIcon } from '@heroicons/react/24/outline';
 import { useAtom } from 'jotai';
-import { atomSuiConnected } from '@/store/store';
+import { atomSuiConnected, atomEvmConnecting, } from '@/store/store';
 import { SuiConnect } from '@/components/web3/sui/connect';
 
 
@@ -13,6 +13,7 @@ export function SuiConnected({
   children: React.ReactNode
 }) {
   const [connected] = useAtom(atomSuiConnected);
+  const [connecting] = useAtom(atomEvmConnecting);
 
   // not connected
   if (!connected) return (
@@ -32,7 +33,18 @@ export function SuiConnected({
       </p>
 
       <div className="mt-6">
-        <SuiConnect buttonText="Connect to SUI" />
+        <SuiConnect >
+          <BeakerIcon
+            className={clsx(
+              "-ml-0.5 h-5 w-5",
+              connecting ? 'animate-bounce' : '',
+            )}
+            aria-hidden="true"
+          />
+          <span>
+            Connect to SUI
+          </span>
+        </SuiConnect>
       </div>
     </div>
   )

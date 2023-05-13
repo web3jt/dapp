@@ -8,5 +8,5 @@ interface UserNavItem {
 export const userNavigations: UserNavItem[] = [
   { name: 'Dashboard', href: '/dashboard' },
   { name: 'Preferences', href: '/dashboard/preferences' },
-  { name: 'Connections', href: '/dashboard/connections' },
+  // { name: 'Connections', href: '/dashboard/connections' },
 ];

@@ -4,9 +4,9 @@ import clsx from 'clsx';
 import { SignalSlashIcon, CircleStackIcon } from '@heroicons/react/24/outline';
 import { ArrowsRightLeftIcon } from '@heroicons/react/20/solid';
 import { useAtom } from 'jotai';
-import { atomEvmConnected, atomEvmNetwork } from '@/store/store';
+import { atomEvmConnected, atomEvmConnecting, atomEvmNetwork } from '@/store/store';
 import { EvmConnect } from '@/components/web3/evm/connect';
-
+import EthereumIcon from '@/images/svg/ethereum.svg';
 
 export function EvmConnected({
   children,
@@ -14,6 +14,7 @@ export function EvmConnected({
   children: React.ReactNode
 }) {
   const [connected] = useAtom(atomEvmConnected);
+  const [connecting] = useAtom(atomEvmConnecting);
   const [web3Network] = useAtom(atomEvmNetwork);
 
   const switch2Chain = (chainId: number) => {
@@ -38,7 +39,18 @@ export function EvmConnected({
       </p>
 
       <div className="mt-6">
-        <EvmConnect buttonText="Connect to ETH/EVM" />
+        <EvmConnect>
+          <EthereumIcon
+            className={clsx(
+              "-ml-0.5 h-5 w-5 fill-gray-200 dark:fill-white group-hover:fill-white",
+              connecting ? 'animate-bounce' : '',
+            )}
+            aria-hidden="true"
+          />
+          <span>
+            Connect to ETH/EVM
+          </span>
+        </EvmConnect>
       </div>
     </div>
   )

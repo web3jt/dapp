@@ -22,6 +22,8 @@ import {
 
   atomSuiConnected,
   atomSuiAddressMask,
+
+  atomShowWeb3ConnectionsModal,
 } from '@/store/store';
 import { Web3Connect } from '@/components/web3/connect';
 import { userNavigations } from '@/constants/nav';
@@ -97,6 +99,8 @@ export default function Nav() {
   const [suiConnected] = useAtom(atomSuiConnected);
   const [suiAddressMask] = useAtom(atomSuiAddressMask);
 
+  const [, setShowWeb3ConnectionsModal] = useAtom(atomShowWeb3ConnectionsModal);
+  const handleShowWeb3ConnectionsModal = () => setShowWeb3ConnectionsModal(true);
 
   return (
     <div className="bg-white dark:bg-black">
@@ -307,7 +311,7 @@ export default function Nav() {
                         <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                           <Menu.Item key="profile">
                             <div className="pb-1 mb-1 border-b border-gray-200">
-                              <div className="group block px-4 py-2 space-y-1 hover:bg-gray-100" onClick={openAccountModal}>
+                              <div className="group block px-4 py-2 space-y-1 hover:bg-gray-100" onClick={handleShowWeb3ConnectionsModal}>
                                 {web3Name && (
                                   <p className="text-sm font-medium text-gray-700 group-hover:text-gray-900">
                                     {web3Name}
@@ -316,11 +320,7 @@ export default function Nav() {
 
                                 {evmConnected && (
                                   <p className="text-xs font-mono text-gray-500 group-hover:text-gray-700">
-                                    {1 === web3Connected ? (
-                                      <>
-                                        {evmAddressMask}
-                                      </>
-                                    ) : (
+                                    {1 === web3Connected ? evmAddressMask : (
                                       <>
                                         {evmSymbol}: {evmAddressMask}
                                       </>
@@ -330,11 +330,7 @@ export default function Nav() {
 
                                 {suiConnected && (
                                   <p className="text-xs font-mono text-gray-500 group-hover:text-gray-700">
-                                    {1 === web3Connected ? (
-                                      <>
-                                        {suiAddressMask}
-                                      </>
-                                    ) : (
+                                    {1 === web3Connected ? suiAddressMask : (
                                       <>
                                         SUI: {suiAddressMask}
                                       </>

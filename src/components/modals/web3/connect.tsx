@@ -1,16 +1,14 @@
 'use client';
 
 import clsx from 'clsx';
-
-import { Fragment } from 'react';
+import { Fragment, useRef } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
-import { WalletIcon } from '@heroicons/react/24/outline';
+import { WalletIcon, BeakerIcon } from '@heroicons/react/24/outline';
 import { useAtom } from 'jotai';
-
+import { atomShowWeb3ConnectModal } from '@/store/store';
 import { EvmConnect } from '@/components/web3/evm/connect';
 import { SuiConnect } from '@/components/web3/sui/connect';
-import { atomShowWeb3ConnectModal, atomSuiAvailableWalletCount } from '@/store/store';
-
+import EthereumIcon from '@/images/svg/ethereum.svg';
 
 const defaultClassName = clsx(
   'relative inline-flex w-full items-center justify-start gap-x-3',
@@ -24,11 +22,11 @@ const defaultClassName = clsx(
 
 export function Web3ConnectModal() {
   const [open, setOpen] = useAtom(atomShowWeb3ConnectModal);
-  const [suiAvailableWalletCount] = useAtom(atomSuiAvailableWalletCount);
+  const initialNull = useRef(null);
 
   return (
     <Transition.Root show={open} as={Fragment}>
-      <Dialog as="div" className="relative z-10" onClose={setOpen}>
+      <Dialog as="div" className="relative z-10" onClose={setOpen} initialFocus={initialNull}>
         <Transition.Child
           as={Fragment}
           enter="ease-out duration-300"
@@ -83,13 +81,29 @@ export function Web3ConnectModal() {
                       'focus-visible:outline-offset-2 focus-visible:outline-rose-500',
                     ])}
                   >
-                    Connect to ETH/EVM
+                    <EthereumIcon
+                      className={clsx(
+                        "-ml-0.5 h-5 w-5 fill-gray-200 dark:fill-white group-hover:fill-white",
+                      )}
+                      aria-hidden="true"
+                    />
+                    <span>
+                      Connect to ETH/EVM
+                    </span>
                   </EvmConnect>
                   <SuiConnect
                     buttonText='Connect to SUI'
                     className={defaultClassName}
                   >
-                    Connect to SUI
+                    <BeakerIcon
+                      className={clsx(
+                        "-ml-0.5 h-5 w-5",
+                      )}
+                      aria-hidden="true"
+                    />
+                    <span>
+                      Connect to SUI
+                    </span>
                   </SuiConnect>
                 </div>
               </Dialog.Panel>

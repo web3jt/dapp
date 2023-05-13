@@ -1,10 +1,12 @@
-import { Web3ConnectModal } from '@/components/web3/connectModal';
+import { Web3ConnectModal } from '@/components/modals/web3/connect';
+import { Web3ConnectionsModal } from '@/components/modals/web3/connections';
 
-// export: ModalProviders
-export function ModalProviders({ children }: { children: React.ReactNode }) {
+// export: ModalsProvider
+export function ModalsProvider({ children }: { children: React.ReactNode }) {
   return (
     <>
       <Web3ConnectModal />
+      <Web3ConnectionsModal />
       {children}
     </>
   )
