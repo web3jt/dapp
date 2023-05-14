@@ -5,7 +5,6 @@ import Link from 'next/link';
 import { Fragment } from 'react';
 import { usePathname } from 'next/navigation';
 import { atom, useAtom } from 'jotai';
-import { useAccountModal } from "@rainbow-me/rainbowkit";
 import { Popover, Menu, Transition } from '@headlessui/react';
 import {
   PhotoIcon,
@@ -49,7 +48,7 @@ const atomNavigations = atom((get) => {
           cols: [
             [
               { name: 'Gas', href: '#' },
-              { name: '#Aliquet', href: '#' },
+              { name: 'Time Slots', href: '/tools/time-slots' },
               { name: '#Tempor', href: '#' },
               { name: '#Odio', href: '#' },
               { name: '#Facilisis', href: '#' },
@@ -90,7 +89,7 @@ const atomNavigations = atom((get) => {
           name: 'Vulputate',
           cols: [
             [
-              { name: '#Finibus', href: '#' },
+              { name: 'Mnemonic', href: '/demos/mnemonic' },
               { name: '#Aliquet', href: '#' },
               { name: '#Tempor', href: '#' },
               { name: '#Odio', href: '#' },
