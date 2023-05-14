@@ -1,18 +1,14 @@
 'use client';
 
 import clsx from 'clsx';
-
 import {
   mnemonicToAccount,
   generateMnemonic,
   english,
 } from 'viem/accounts'
-
 import { atom, useAtom } from 'jotai';
 
-
 const atomMnemonicText = atom<string>('');
-
 
 
 export default function Component() {

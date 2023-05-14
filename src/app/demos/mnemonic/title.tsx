@@ -55,7 +55,7 @@ export default function Component() {
           </h2>
           <p className="mt-6 text-lg leading-8 text-gray-700 dark:text-gray-300">
             Show how a Mnemonic phrase turns into a private key, public key, and address,
-            by using <Link href="https://viem.sh/docs/accounts/mnemonic.html">viem.</Link>
+            by using <Link href="https://viem.sh/docs/accounts/mnemonic.html" className="text-blue-600 dark:text-blue-400 hover:underline">viem</Link>
           </p>
         </div>
         <div className="mx-auto mt-10 max-w-2xl lg:mx-0 lg:max-w-none">
@@ -72,20 +72,6 @@ export default function Component() {
               </Link>
             ))}
           </div>
-          {/* <dl className={clsx(
-            "mt-16 grid grid-cols-1 gap-8 sm:mt-20 sm:grid-cols-2 lg:grid-cols-4",
-          )}>
-            {stats.map((stat) => (
-              <div key={stat.name} className="flex flex-col-reverse">
-                <dt className="text-base leading-7 text-gray-700 dark:text-gray-300">
-                  {stat.name}
-                </dt>
-                <dd className="text-2xl font-bold leading-9 tracking-tight text-gray-900 dark:text-white">
-                  {stat.value}
-                </dd>
-              </div>
-            ))}
-          </dl> */}
         </div>
       </div>
     </div>
