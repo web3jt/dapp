@@ -8,7 +8,6 @@ import { useImmer } from 'use-immer';
 import { XMarkIcon } from '@heroicons/react/20/solid';
 
 
-
 export default function Tip() {
   // const [unread, updateUnread] = useLocalStorage('tipA202304231', true);
   const [unread, updateUnread] = useImmer<boolean>(true);
