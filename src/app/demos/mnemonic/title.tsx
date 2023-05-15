@@ -55,7 +55,25 @@ export default function Component() {
           </h2>
           <p className="mt-6 text-lg leading-8 text-gray-700 dark:text-gray-300">
             Show how a Mnemonic phrase turns into a private key, public key, and address,
-            by using <Link href="https://viem.sh/docs/accounts/mnemonic.html" className="text-blue-600 dark:text-blue-400 hover:underline">viem</Link>
+            by using <Link
+              target="_blank"
+              href="https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki"
+              className="text-blue-600 dark:text-blue-400 hover:underline"
+            >
+              BIP39
+            </Link>, <Link
+              target="_blank"
+              href="https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki"
+              className="text-blue-600 dark:text-blue-400 hover:underline"
+            >
+              BIP32
+            </Link> and <Link
+              target="_blank"
+              href="https://viem.sh/docs/accounts/mnemonic.html"
+              className="text-blue-600 dark:text-blue-400 hover:underline"
+            >
+              viem
+            </Link>
           </p>
         </div>
         <div className="mx-auto mt-10 max-w-2xl lg:mx-0 lg:max-w-none">
