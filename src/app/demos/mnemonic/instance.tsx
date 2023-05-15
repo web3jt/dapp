@@ -174,6 +174,7 @@ export default function Component() {
               defaultValue={mnemonicIsValid ? seed : ''}
               aria-invalid={Boolean(seed)}
               aria-describedby="seed-hint"
+              disabled
             />
             <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
               <DocumentDuplicateIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
