@@ -25,7 +25,7 @@ const atomMnemonicError = atom((get) => {
 
   if (0 === _length) return 'Please enter mnemonic or generate words';
   if (12 > _length) return 'Please enter at least 12 words';
-  if (24 > _length) return 'Please enter at most 24 words';
+  if (24 < _length) return 'Please enter at most 24 words';
   if (
     _length !== 12
     &&
