@@ -2169,7 +2169,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mysten/sui.js@npm:0.34.0":
+"@mysten/sui.js@npm:0.34.0, @mysten/sui.js@npm:^0.34.0":
   version: 0.34.0
   resolution: "@mysten/sui.js@npm:0.34.0"
   dependencies:
@@ -2184,24 +2184,6 @@ __metadata:
     superstruct: ^1.0.3
     tweetnacl: ^1.0.3
   checksum: e368fd225f0e0e7e133b6a15868432fa8ad3faede67947fa44574fab8926995a82450e7b8df721f4092967e279616f34200bf5466c1258e81a572a79a16255e9
-  languageName: node
-  linkType: hard
-
-"@mysten/sui.js@npm:^0.33.0":
-  version: 0.33.0
-  resolution: "@mysten/sui.js@npm:0.33.0"
-  dependencies:
-    "@mysten/bcs": 0.7.1
-    "@noble/curves": ^1.0.0
-    "@noble/hashes": ^1.3.0
-    "@scure/bip32": ^1.3.0
-    "@scure/bip39": ^1.2.0
-    "@suchipi/femver": ^1.0.0
-    jayson: ^4.0.0
-    rpc-websockets: ^7.5.1
-    superstruct: ^1.0.3
-    tweetnacl: ^1.0.3
-  checksum: 1ad4de39dedbd203ad55f571ca48201302e719412d7a77d320cf3a7ef29b4a918d19dd5f1aaaf04829825a12964460bae58c8ab26eee4f07d794565f3ede453f
   languageName: node
   linkType: hard
 
@@ -5296,7 +5278,7 @@ __metadata:
     "@headlessui/react": ^1.7.14
     "@heroicons/react": ^2.0.18
     "@metamask/detect-provider": ^2.0.0
-    "@mysten/sui.js": ^0.33.0
+    "@mysten/sui.js": ^0.34.0
     "@rainbow-me/rainbowkit": ^1
     "@suiet/wallet-kit": ^0.2.11
     "@svgr/webpack": ^8.0.1
