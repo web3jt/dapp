@@ -2,24 +2,26 @@ import clsx from 'clsx';
 import Link from 'next/link';
 
 import { ArrowLongRightIcon } from '@heroicons/react/20/solid';
+import Container from '@/components/root/container';
 
 const links = [
-  { name: 'Imperdiet', href: '#' },
-  { name: 'Laoreet diam', href: '#' },
+  { name: 'Generate', href: '/demos/mnemonic#generate-mnemonic' },
+  { name: 'Seed', href: '/demos/mnemonic#derived-seed' },
   { name: 'Pulvinar', href: '#' },
   { name: 'Nisi ac vehicula', href: '#' },
 ]
 
 export default function Component() {
   return (
-    <div className="relative isolate overflow-hidden pt-24 sm:pt-32 pb-8">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+    <div className="relative isolate overflow-hidden">
+
+      <Container className="py-10 sm:py-20">
         <div className="mx-auto max-w-2xl lg:mx-0">
           <h2 className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-6xl">
-            Mnemonic
+            Mnemonic Demo
           </h2>
           <p className="mt-6 text-lg leading-8 text-gray-700 dark:text-gray-300">
-            Show how a Mnemonic phrase turns into a private key, public key, and address,
+            Show how a Mnemonic phrase turns into a private key, public key, and wallet address,
             by using <Link
               target="_blank"
               href="https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki"
@@ -62,7 +64,8 @@ export default function Component() {
             ))}
           </div>
         </div>
-      </div>
+
+      </Container>
     </div>
   )
 }
