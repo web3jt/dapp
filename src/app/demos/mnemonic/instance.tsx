@@ -16,16 +16,16 @@ import Container, { Grid6 } from '@/components/root/container';
 
 
 interface StrengthOption {
-  name: string;
-  value: number;
+  wordAmount: number;
+  strengthValue: number;
 }
 
 const strengthOptions: StrengthOption[] = [
-  { name: '12', value: 128 },
-  { name: '15', value: 160 },
-  { name: '18', value: 192 },
-  { name: '21', value: 224 },
-  { name: '24', value: 256 },
+  { wordAmount: 12, strengthValue: 128 },
+  { wordAmount: 15, strengthValue: 160 },
+  { wordAmount: 18, strengthValue: 192 },
+  { wordAmount: 21, strengthValue: 224 },
+  { wordAmount: 24, strengthValue: 256 },
 ];
 const atomStrengthSelected = atom<StrengthOption>(strengthOptions[0]);
 
@@ -104,7 +104,7 @@ export default function Component() {
   const [privateExtendedKey] = useAtom(atomPrivateExtendedKey);
   const [publicExtendedKey] = useAtom(atomPublicExtendedKey);
 
-  const handleGenerateMnemonic = () => setMnemonicText(BIP39.generateMnemonic(wordlist, strengthSelected.value));
+  const handleGenerateMnemonic = () => setMnemonicText(BIP39.generateMnemonic(wordlist, strengthSelected.strengthValue));
 
   return (
     <>
@@ -147,7 +147,7 @@ export default function Component() {
                           "focus:ring-indigo-600 dark:focus:ring-indigo-500",
                         )}>
                           <span className="block truncate">
-                            {strengthSelected.name} words ({strengthSelected.value} bits)
+                            {strengthSelected.wordAmount} words ({strengthSelected.strengthValue} bits)
                           </span>
                           <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
                             <ChevronUpDownIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
@@ -169,7 +169,7 @@ export default function Component() {
                           )}>
                             {strengthOptions.map((option) => (
                               <Listbox.Option
-                                key={option.value}
+                                key={option.strengthValue}
                                 className={({ active }) =>
                                   clsx(
                                     active ? 'bg-indigo-600 text-white' : 'text-gray-900 dark:text-white',
@@ -181,7 +181,7 @@ export default function Component() {
                                 {({ selected, active }) => (
                                   <>
                                     <span className={clsx(selected ? 'font-semibold' : 'font-normal', 'block truncate')}>
-                                      {option.name} words ({option.value} bits)
+                                      {option.wordAmount} words ({option.strengthValue} bits)
                                     </span>
 
                                     {selected ? (
