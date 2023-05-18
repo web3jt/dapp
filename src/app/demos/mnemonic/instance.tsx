@@ -18,14 +18,18 @@ const strengthOptions = [
   { name: '24', value: 256 },
 ];
 const atomMnemonicText = atom<string>('');
+
 const atomMnemonicPhrases = atom((get) => get(atomMnemonicText).trim());
-const atomMnemonicArray = atom((get) => get(atomMnemonicPhrases).split(/\s+/));
 const atomMnemonicValid = atom((get) => BIP39.validateMnemonic(get(atomMnemonicPhrases), wordlist));
 const atomMnemonicError = atom((get) => {
-  const _array = get(atomMnemonicArray);
-  const _length = _array.length;
+  const _valid = get(atomMnemonicValid);
+  if (_valid) return undefined;
 
-  if (0 === _length || (1 === _length && `` === _array[0])) return 'Please enter or generate mnemonic words';
+  const _phrases = get(atomMnemonicPhrases);
+  if (!_phrases) return 'Please enter or generate mnemonic words';
+
+  const _array = _phrases.split(/\s+/);
+  const _length = _array.length;
   if (12 > _length) return 'Please enter at least 12 words';
   if (24 < _length) return 'Please enter at most 24 words';
   if (
@@ -40,8 +44,7 @@ const atomMnemonicError = atom((get) => {
     _length !== 24
   ) return 'Please enter 12, 15, 18, 21 or 24 words';
 
-  const _valid = get(atomMnemonicValid);
-  return _valid ? undefined : 'Invalid mnemonic words';
+  return 'Invalid mnemonic words';
 });
 
 const atomSeed = atom((get) => {
