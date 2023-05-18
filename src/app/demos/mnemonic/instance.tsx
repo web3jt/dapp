@@ -74,8 +74,6 @@ const atomPublicExtendedKey = atom((get) => {
 });
 
 
-
-
 export default function Component() {
   const [strength, setStrength] = useAtom(atomStrength);
   const [mnemonicText, setMnemonicText] = useAtom(atomMnemonicText);
@@ -84,7 +82,7 @@ export default function Component() {
   const [seed] = useAtom(atomSeed);
   const [seedHex] = useAtom(atomSeedHex);
 
-  const [hdKey] = useAtom(atomHDKey);
+  // const [hdKey] = useAtom(atomHDKey);
 
   const [privateExtendedKey] = useAtom(atomPrivateExtendedKey);
   const [publicExtendedKey] = useAtom(atomPublicExtendedKey);
@@ -96,6 +94,7 @@ export default function Component() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 sm:py-32 space-y-12">
 
+      {/* Mnemonic */}
       <div className="">
         <h2 className="text-base font-semibold leading-7 text-gray-900 dark:text-white">
           Step #1 - Mnemonic
@@ -179,13 +178,13 @@ export default function Component() {
                 onChange={(e) => setMnemonicText(e.target.value.replace(/[^a-z\s+]/g, '').replace(/^\s+/g, ''))}
               />
             </div>
-            {mnemonicError ? (
-              <p className="mt-1 text-sm leading-6 text-rose-600 dark:text-rose-400" id="mnemonic-hint">
-                {mnemonicError}
-              </p>
-            ) : (
+            {mnemonicValid ? (
               <p className="mt-1 text-sm leading-6 text-emerald-600 dark:text-emerald-400" id="mnemonic-hint">
                 Mnemonic is valid.
+              </p>
+            ) : (
+              <p className="mt-1 text-sm leading-6 text-rose-600 dark:text-rose-400" id="mnemonic-hint">
+                {mnemonicError}
               </p>
             )}
           </div>
@@ -196,124 +195,122 @@ export default function Component() {
       </div>
 
 
-      {seed && (
-        <div className="border-t border-gray-900/10 dark:border-white/10 pt-12">
-          <h2 className="text-base font-semibold leading-7 text-gray-900 dark:text-white">
-            Step #2 - HDKey
-          </h2>
-          <p className="mt-1 text-sm leading-6 text-gray-600 dark:text-gray-400">
-            Derived from mnemonic, ref: <Link
-              className="text-blue-600 dark:text-blue-400 hover:underline"
-              target="_blank"
-              href="https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki"
-            >
-              BIP32
-            </Link>
-          </p>
+      {/* HDKey */}
+      <div className="border-t border-gray-900/10 dark:border-white/10 pt-12">
+        <h2 className="text-base font-semibold leading-7 text-gray-900 dark:text-white">
+          Step #2 - HDKey
+        </h2>
+        <p className="mt-1 text-sm leading-6 text-gray-600 dark:text-gray-400">
+          Derived from mnemonic, ref: <Link
+            className="text-blue-600 dark:text-blue-400 hover:underline"
+            target="_blank"
+            href="https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki"
+          >
+            BIP32
+          </Link>
+        </p>
 
-          <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-
-
-            <div className="col-span-full">
-              <label htmlFor="seed" className="block text-sm font-medium leading-6 text-gray-900 dark:text-white select-none">
-                Seed
-              </label>
-              <div className="relative mt-1 rounded-md shadow-sm">
-                <input
-                  type="text"
-                  name="seed"
-                  id="seed"
-                  className={clsx(
-                    "block w-full rounded-md border-0 py-1.5 shadow-sm font-mono",
-                    "ring-1 ring-inset focus:ring-2 focus:ring-inset",
-                    "sm:text-sm sm:leading-6",
-                    "text-gray-900 dark:text-white",
-                    "ring-gray-300 dark:ring-white/10",
-                    "placeholder:text-gray-400 dark:placeholder:text-gray-600",
-                    "focus:ring-indigo-600 dark:focus:ring-indigo-500",
-                    "dark:bg-white/10",
-                  )}
-                  placeholder="Seed derived from mnemonic phrases"
-                  defaultValue={seedHex}
-                  aria-invalid={Boolean(seed)}
-                  disabled
-                />
-                {seedHex && (
-                  <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
-                    <DocumentDuplicateIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
-                  </div>
+        <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+          <div className="col-span-full">
+            <label htmlFor="seed" className="block text-sm font-medium leading-6 text-gray-900 dark:text-white select-none">
+              Seed
+            </label>
+            <div className="relative mt-1 rounded-md shadow-sm">
+              <input
+                type="text"
+                name="seed"
+                id="seed"
+                className={clsx(
+                  "block w-full rounded-md border-0 py-1.5 shadow-sm font-mono",
+                  "ring-1 ring-inset focus:ring-2 focus:ring-inset",
+                  "sm:text-sm sm:leading-6",
+                  "text-gray-900 dark:text-white",
+                  "ring-gray-300 dark:ring-white/10",
+                  "placeholder:text-gray-400 dark:placeholder:text-gray-600",
+                  "focus:ring-indigo-600 dark:focus:ring-indigo-500",
+                  "dark:bg-white/10",
                 )}
-              </div>
-
+                placeholder="Seed derived from mnemonic phrases"
+                defaultValue={seedHex}
+                aria-invalid={Boolean(seed)}
+                disabled
+              />
+              {seedHex && (
+                <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
+                  <DocumentDuplicateIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
+                </div>
+              )}
             </div>
 
-            <div className="col-span-full">
-              <label htmlFor="private-extended-key" className="block text-sm font-medium leading-6 text-gray-900 dark:text-white select-none">
-                BIP32 Private Extended Key
-              </label>
-              <div className="relative mt-1 rounded-md shadow-sm">
-                <input
-                  type="text"
-                  name="private-extended-key"
-                  id="private-extended-key"
-                  className={clsx(
-                    "block w-full rounded-md border-0 py-1.5 shadow-sm font-mono",
-                    "ring-1 ring-inset focus:ring-2 focus:ring-inset",
-                    "sm:text-sm sm:leading-6",
-                    "text-gray-900 dark:text-white",
-                    "ring-gray-300 dark:ring-white/10",
-                    "placeholder:text-gray-400 dark:placeholder:text-gray-600",
-                    "focus:ring-indigo-600 dark:focus:ring-indigo-500",
-                    "dark:bg-white/10",
-                  )}
-                  placeholder="Seed derived from mnemonic phrases"
-                  defaultValue={privateExtendedKey}
-                  aria-invalid={Boolean(seed)}
-                  disabled
-                />
-                {privateExtendedKey && (
-                  <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
-                    <DocumentDuplicateIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
-                  </div>
-                )}
-              </div>
+          </div>
 
+          <div className="col-span-full">
+            <label htmlFor="private-extended-key" className="block text-sm font-medium leading-6 text-gray-900 dark:text-white select-none">
+              BIP32 Private Extended Key
+            </label>
+            <div className="relative mt-1 rounded-md shadow-sm">
+              <input
+                type="text"
+                name="private-extended-key"
+                id="private-extended-key"
+                className={clsx(
+                  "block w-full rounded-md border-0 py-1.5 shadow-sm font-mono",
+                  "ring-1 ring-inset focus:ring-2 focus:ring-inset",
+                  "sm:text-sm sm:leading-6",
+                  "text-gray-900 dark:text-white",
+                  "ring-gray-300 dark:ring-white/10",
+                  "placeholder:text-gray-400 dark:placeholder:text-gray-600",
+                  "focus:ring-indigo-600 dark:focus:ring-indigo-500",
+                  "dark:bg-white/10",
+                )}
+                placeholder="Seed derived from mnemonic phrases"
+                defaultValue={privateExtendedKey}
+                aria-invalid={Boolean(seed)}
+                disabled
+              />
+              {privateExtendedKey && (
+                <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
+                  <DocumentDuplicateIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
+                </div>
+              )}
             </div>
 
-            <div className="col-span-full">
-              <label htmlFor="public-extended-key" className="block text-sm font-medium leading-6 text-gray-900 dark:text-white select-none">
-                BIP32 Public Extended Key
-              </label>
-              <div className="relative mt-1 rounded-md shadow-sm">
-                <input
-                  type="text"
-                  name="public-extended-key"
-                  id="public-extended-key"
-                  className={clsx(
-                    "block w-full rounded-md border-0 py-1.5 shadow-sm font-mono",
-                    "ring-1 ring-inset focus:ring-2 focus:ring-inset",
-                    "sm:text-sm sm:leading-6",
-                    "text-gray-900 dark:text-white",
-                    "ring-gray-300 dark:ring-white/10",
-                    "placeholder:text-gray-400 dark:placeholder:text-gray-600",
-                    "focus:ring-indigo-600 dark:focus:ring-indigo-500",
-                    "dark:bg-white/10",
-                  )}
-                  placeholder="Seed derived from mnemonic phrases"
-                  defaultValue={publicExtendedKey}
-                  aria-invalid={Boolean(seed)}
-                  disabled
-                />
-                {publicExtendedKey && (
-                  <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
-                    <DocumentDuplicateIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
-                  </div>
-                )}
-              </div>
+          </div>
 
+          <div className="col-span-full">
+            <label htmlFor="public-extended-key" className="block text-sm font-medium leading-6 text-gray-900 dark:text-white select-none">
+              BIP32 Public Extended Key
+            </label>
+            <div className="relative mt-1 rounded-md shadow-sm">
+              <input
+                type="text"
+                name="public-extended-key"
+                id="public-extended-key"
+                className={clsx(
+                  "block w-full rounded-md border-0 py-1.5 shadow-sm font-mono",
+                  "ring-1 ring-inset focus:ring-2 focus:ring-inset",
+                  "sm:text-sm sm:leading-6",
+                  "text-gray-900 dark:text-white",
+                  "ring-gray-300 dark:ring-white/10",
+                  "placeholder:text-gray-400 dark:placeholder:text-gray-600",
+                  "focus:ring-indigo-600 dark:focus:ring-indigo-500",
+                  "dark:bg-white/10",
+                )}
+                placeholder="Seed derived from mnemonic phrases"
+                defaultValue={publicExtendedKey}
+                aria-invalid={Boolean(seed)}
+                disabled
+              />
+              {publicExtendedKey && (
+                <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
+                  <DocumentDuplicateIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
+                </div>
+              )}
             </div>
 
-            {/* <div>
+          </div>
+
+          {/* <div>
             Seed: {seedHex ? 'Valid' : 'Invalid'}
           </div>
 
@@ -321,10 +318,9 @@ export default function Component() {
             mnemonicIsValid: {mnemonicValid ? 'Valid' : 'Invalid'}
           </div> */}
 
-            {/* <div className="sm:col-span-3"></div> */}
-          </div>
+          {/* <div className="sm:col-span-3"></div> */}
         </div>
-      )}
+      </div>
 
     </div>
   )
