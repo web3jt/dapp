@@ -269,7 +269,7 @@ export default function Component() {
                     "focus:ring-indigo-600 dark:focus:ring-indigo-500",
                     "dark:bg-white/10",
                   )}
-                  placeholder="Seed derived from mnemonic phrases"
+                  placeholder="Private Extended Key from Seed"
                   defaultValue={privateExtendedKey}
                   aria-invalid={Boolean(seed)}
                   disabled
@@ -302,7 +302,7 @@ export default function Component() {
                     "focus:ring-indigo-600 dark:focus:ring-indigo-500",
                     "dark:bg-white/10",
                   )}
-                  placeholder="Seed derived from mnemonic phrases"
+                  placeholder="Public Extended Key from Seed"
                   defaultValue={publicExtendedKey}
                   aria-invalid={Boolean(seed)}
                   disabled
