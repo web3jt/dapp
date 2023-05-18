@@ -7,6 +7,7 @@ import { Fragment } from 'react';
 import { Listbox, Transition } from '@headlessui/react';
 import copy from 'copy-text-to-clipboard';
 import * as BIP39 from '@scure/bip39';
+import BIP44_CONSTANTS from 'bip44-constants';
 import { wordlist } from '@scure/bip39/wordlists/english';
 import { HDKey, hdKeyToAccount } from 'viem/accounts'
 import { atom, useAtom } from 'jotai';
@@ -87,6 +88,8 @@ const atomPublicExtendedKey = atom((get) => {
 });
 
 
+const COIN_BTC = BIP44_CONSTANTS.filter(item => item[1] === 'BTC');
+const COIN_ETH = BIP44_CONSTANTS.filter(item => item[1] === 'ETH');
 
 
 export default function Component() {
