@@ -2169,9 +2169,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mysten/sui.js@npm:0.33.0, @mysten/sui.js@npm:^0.33.0":
-  version: 0.33.0
-  resolution: "@mysten/sui.js@npm:0.33.0"
+"@mysten/sui.js@npm:0.34.0, @mysten/sui.js@npm:^0.34.0":
+  version: 0.34.0
+  resolution: "@mysten/sui.js@npm:0.34.0"
   dependencies:
     "@mysten/bcs": 0.7.1
     "@noble/curves": ^1.0.0
@@ -2183,17 +2183,17 @@ __metadata:
     rpc-websockets: ^7.5.1
     superstruct: ^1.0.3
     tweetnacl: ^1.0.3
-  checksum: 1ad4de39dedbd203ad55f571ca48201302e719412d7a77d320cf3a7ef29b4a918d19dd5f1aaaf04829825a12964460bae58c8ab26eee4f07d794565f3ede453f
+  checksum: e368fd225f0e0e7e133b6a15868432fa8ad3faede67947fa44574fab8926995a82450e7b8df721f4092967e279616f34200bf5466c1258e81a572a79a16255e9
   languageName: node
   linkType: hard
 
-"@mysten/wallet-standard@npm:0.5.5":
-  version: 0.5.5
-  resolution: "@mysten/wallet-standard@npm:0.5.5"
+"@mysten/wallet-standard@npm:0.5.6":
+  version: 0.5.6
+  resolution: "@mysten/wallet-standard@npm:0.5.6"
   dependencies:
-    "@mysten/sui.js": 0.33.0
+    "@mysten/sui.js": 0.34.0
     "@wallet-standard/core": 1.0.3
-  checksum: 6f8904296e401957b48a84de43c9e17fe45aa60adae17916abe544609ba71f1224e7c518cee2a31f3d0730ac08e56fe4f4fea60af4b80213d6b811710b0433a2
+  checksum: b01069f85ae04eb15933d2cfe614ddfe4db8ca2dadeda31106a1537ba3a5e8dd4cda5e9c1a324469d3fc4136ae64e4fa043eb8abcae2aa9753e5a5d0e0fffc65
   languageName: node
   linkType: hard
 
@@ -2913,14 +2913,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@suiet/wallet-kit@npm:^0.2.10":
-  version: 0.2.10
-  resolution: "@suiet/wallet-kit@npm:0.2.10"
+"@suiet/wallet-kit@npm:^0.2.11":
+  version: 0.2.11
+  resolution: "@suiet/wallet-kit@npm:0.2.11"
   dependencies:
-    "@mysten/sui.js": 0.33.0
-    "@mysten/wallet-standard": 0.5.5
+    "@mysten/sui.js": 0.34.0
+    "@mysten/wallet-standard": 0.5.6
     "@radix-ui/react-dialog": ^1.0.2
-    "@suiet/wallet-sdk": 0.2.8
+    "@suiet/wallet-sdk": 0.2.9
     "@svgr/rollup": ^6.5.1
     "@wallet-standard/core": 1.0.3
     buffer: ^6.0.3
@@ -2931,22 +2931,22 @@ __metadata:
     tweetnacl: ^1.0.3
     type-fest: ^3.2.0
   peerDependencies:
-    "@mysten/sui.js": 0.33.0
-  checksum: 8e38a270fb4c7aa99abe562d1ae78d72d5222b0eaf45d40e274a54a562d9c659c50b36cc97ce59a762db1b3907dcc8dd701d2e08bb42a8b408fff915ad4b6284
+    "@mysten/sui.js": 0.34.0
+  checksum: 2b921f8f841592d17c9f054827d45234552f0cc9427e9733e66c610f88724228bb19c7d9065f669e04454313a87f446443f89b49bfac9521a94021705002ce4f
   languageName: node
   linkType: hard
 
-"@suiet/wallet-sdk@npm:0.2.8":
-  version: 0.2.8
-  resolution: "@suiet/wallet-sdk@npm:0.2.8"
+"@suiet/wallet-sdk@npm:0.2.9":
+  version: 0.2.9
+  resolution: "@suiet/wallet-sdk@npm:0.2.9"
   dependencies:
-    "@mysten/sui.js": 0.33.0
-    "@mysten/wallet-standard": 0.5.5
+    "@mysten/sui.js": 0.34.0
+    "@mysten/wallet-standard": 0.5.6
     "@noble/hashes": ^1.3.0
     tweetnacl: ^1.0.3
   peerDependencies:
-    "@mysten/sui.js": 0.32.2
-  checksum: 6c750eef3e7a46acd51810b01f0529599ce0a42addc924ef0f6df54c632657bcca43ce83581b9fb5e4cbaa6fc15009b023ff44721b198800cf6b0773a7c7a3e3
+    "@mysten/sui.js": 0.34.0
+  checksum: 23c5d9952855a217a45a304391ae2b8476506e397a379bc37d5a22990ad135096d9e926fe4e471e960766dd21a01b845e7929c30092003a2b7cd382b6900564f
   languageName: node
   linkType: hard
 
@@ -3263,6 +3263,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@swc-jotai/react-refresh@npm:^0.0.8":
+  version: 0.0.8
+  resolution: "@swc-jotai/react-refresh@npm:0.0.8"
+  checksum: 7684a7b84f6e0f86984f02a1976dd2a77fc6e572fc7d5d09b97aab76216a9c533492d929a8624ac066c14402ed173a037a4a7b78453b513a5b1f01f8bdd622a1
+  languageName: node
+  linkType: hard
+
 "@swc/helpers@npm:0.5.1":
   version: 0.5.1
   resolution: "@swc/helpers@npm:0.5.1"
@@ -3421,10 +3428,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:^20.1.3":
-  version: 20.1.3
-  resolution: "@types/node@npm:20.1.3"
-  checksum: abdb593f662a079715b4e9df0c706822e49814dd641fa5a6226ab73fb931cbfc9cfd5df92e09c13dbc90dbc8fce680d29cb735b88899d661481d93e09a8df2be
+"@types/node@npm:^20.1.4":
+  version: 20.1.4
+  resolution: "@types/node@npm:20.1.4"
+  checksum: bffa6a6e92831cc805b13658c55be8e04abe3202d5e57ddd7fee4cfbe269656a1f475909a9f9514e1aff50310d0d90c516ac2c649cb6f1c77d4b1079c2fd1e88
   languageName: node
   linkType: hard
 
@@ -3675,9 +3682,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@wagmi/core@npm:1.0.2":
-  version: 1.0.2
-  resolution: "@wagmi/core@npm:1.0.2"
+"@wagmi/core@npm:1.0.4":
+  version: 1.0.4
+  resolution: "@wagmi/core@npm:1.0.4"
   dependencies:
     "@wagmi/chains": 0.2.22
     "@wagmi/connectors": 1.0.2
@@ -3690,7 +3697,7 @@ __metadata:
   peerDependenciesMeta:
     typescript:
       optional: true
-  checksum: 1adcbbb09437a72ed64a3ce5ea0a326c2a435f284e6d66f3f656fa96b65ed62d052723d47a847db75ed2efaba6c4264769c5d46a0c1c054ab03f410f4e4e2ebd
+  checksum: 2f960e1812324f9e597eb316cb8758aac0a380f4c61852322731f60d7d8fa298d799fa62ec45d05865560911574acee0bf1c9137856ad6e374bb882d9d3ca45c
   languageName: node
   linkType: hard
 
@@ -5269,14 +5276,15 @@ __metadata:
     "@headlessui/react": ^1.7.14
     "@heroicons/react": ^2.0.18
     "@metamask/detect-provider": ^2.0.0
-    "@mysten/sui.js": ^0.33.0
+    "@mysten/sui.js": ^0.34.0
     "@rainbow-me/rainbowkit": ^1
-    "@suiet/wallet-kit": ^0.2.10
+    "@suiet/wallet-kit": ^0.2.11
     "@svgr/webpack": ^8.0.1
+    "@swc-jotai/react-refresh": ^0.0.8
     "@tailwindcss/aspect-ratio": ^0.4.2
     "@tailwindcss/forms": ^0.5.3
     "@tailwindcss/typography": ^0.5.9
-    "@types/node": ^20.1.3
+    "@types/node": ^20.1.4
     "@types/react": 18.2.6
     "@types/react-dom": 18.2.4
     "@vercel/postgres": ^0.3.0
@@ -5301,7 +5309,7 @@ __metadata:
     use-immer: ^0.9.0
     usehooks-ts: ^2.9.1
     viem: ^0.3.24
-    wagmi: ^1
+    wagmi: ^1.0.3
   languageName: unknown
   linkType: soft
 
@@ -10479,14 +10487,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"wagmi@npm:^1":
-  version: 1.0.2
-  resolution: "wagmi@npm:1.0.2"
+"wagmi@npm:^1.0.3":
+  version: 1.0.4
+  resolution: "wagmi@npm:1.0.4"
   dependencies:
     "@tanstack/query-sync-storage-persister": ^4.27.1
     "@tanstack/react-query": ^4.28.0
     "@tanstack/react-query-persist-client": ^4.28.0
-    "@wagmi/core": 1.0.2
+    "@wagmi/core": 1.0.4
     abitype: 0.8.1
     use-sync-external-store: ^1.2.0
   peerDependencies:
@@ -10496,7 +10504,7 @@ __metadata:
   peerDependenciesMeta:
     typescript:
       optional: true
-  checksum: b8933afb2caf05c1a3ff8e00355040e2bff008eb609a2d9c3c784aa3207b505342415ce784f6ec283b1a5fad9e87be312d0ef0ef86fa5e40b399b145d94e0e99
+  checksum: 8d983a562097a6bbe711609c946fad64e0c2b3c4db3ec4ab383c516aca4f557c777cec8af8eb192cb3508f871b7ce497d3537af6f44de947c6a2457466b6d134
   languageName: node
   linkType: hard
 

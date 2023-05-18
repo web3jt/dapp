@@ -5,7 +5,6 @@ import Link from 'next/link';
 import { Fragment } from 'react';
 import { usePathname } from 'next/navigation';
 import { atom, useAtom } from 'jotai';
-import { useAccountModal } from "@rainbow-me/rainbowkit";
 import { Popover, Menu, Transition } from '@headlessui/react';
 import {
   PhotoIcon,
@@ -44,36 +43,87 @@ const atomNavigations = atom((get) => {
     categories: [
       {
         name: 'Tools',
-        col0: [
-          [
-            { name: 'Gas', href: '#' },
-            { name: '#Aliquet', href: '#' },
-            { name: '#Tempor', href: '#' },
-            { name: '#Odio', href: '#' },
-            { name: '#Facilisis', href: '#' },
-            { name: '#Luctus', href: '#' },
+        col0: {
+          name: 'Lorem ipsum dolor',
+          cols: [
+            [
+              { name: 'Gas', href: '#' },
+              { name: 'Time Slots', href: '/tools/time-slots' },
+              { name: '#Tempor', href: '#' },
+              { name: '#Odio', href: '#' },
+              { name: '#Facilisis', href: '#' },
+              { name: '#Luctus', href: '#' },
+            ],
+            [
+              { name: '#Vitae', href: '#' },
+              { name: '#Nulla', href: '#' },
+              { name: '#Condimentum', href: '#' },
+              { name: '#Justo', href: '#' },
+              { name: '#Diam sit', href: '#' },
+            ],
           ],
-          [
-            { name: '#Vitae', href: '#' },
-            { name: '#Nulla', href: '#' },
+        },
+        col2: {
+          name: 'Batch Transfer',
+          cols: [
+            { name: symbol || 'Native', href: '/tools/batch/native' },
+            { name: 'ERC20', href: '/tools/batch/erc20' },
+            { name: 'ERC721', href: '/tools/batch/erc721' },
+            { name: 'ERC1155', href: '/tools/batch/erc1155' },
+          ]
+        },
+        col3: {
+          name: 'Lobortis',
+          cols: [
+            { name: '#Scelerisque', href: '#' },
+            { name: '#Faucibus', href: '#' },
+            { name: '#Ornare', href: '#' },
+            { name: '#Egestas', href: '#' },
+            { name: '#Bibendum', href: '#' },
+          ],
+        },
+      },
+      {
+        name: 'Demos',
+        col0: {
+          name: 'Vulputate',
+          cols: [
+            [
+              { name: 'Mnemonic', href: '/demos/mnemonic' },
+              { name: '#Aliquet', href: '#' },
+              { name: '#Tempor', href: '#' },
+              { name: '#Odio', href: '#' },
+              { name: '#Facilisis', href: '#' },
+              { name: '#Luctus', href: '#' },
+            ],
+            [
+              { name: '#Vitae', href: '#' },
+              { name: '#Nulla', href: '#' },
+              { name: '#Condimentum', href: '#' },
+              { name: '#Justo', href: '#' },
+              { name: '#Diam sit', href: '#' },
+            ],
+          ],
+        },
+        col2: {
+          name: 'Finibus',
+          cols: [
             { name: '#Condimentum', href: '#' },
-            { name: '#Justo', href: '#' },
-            { name: '#Diam sit', href: '#' },
+            { name: '#Cursus', href: '#' },
+            { name: '#Curabitur', href: '#' },
+            { name: '#Fermentum', href: '#' },
+          ]
+        },
+        col3: {
+          name: 'Rhoncus',
+          cols: [
+            { name: '#Scelerisque', href: '#' },
+            { name: '#Faucibus', href: '#' },
+            { name: '#Ornare', href: '#' },
+            { name: '#Egestas', href: '#' },
+            { name: '#Bibendum', href: '#' },
           ],
-        ],
-        col2: [
-          { name: symbol || 'Native', href: '/tools/batch/native' },
-          { name: 'ERC20', href: '/tools/batch/erc20' },
-          { name: 'ERC721', href: '/tools/batch/erc721' },
-          { name: 'ERC1155', href: '/tools/batch/erc1155' },
-        ],
-        col3: [
-          { name: '#Scelerisque', href: '#' },
-          { name: '#Faucibus', href: '#' },
-          { name: '#Ornare', href: '#' },
-          { name: '#Egestas', href: '#' },
-          { name: '#Bibendum', href: '#' },
-        ],
+        },
       },
     ],
     other: [
@@ -86,7 +136,6 @@ const atomNavigations = atom((get) => {
 
 export default function Nav() {
   const pathname = usePathname();
-  const { openAccountModal } = useAccountModal();
   const [navigations] = useAtom(atomNavigations);
 
   const [web3Connected] = useAtom(atomWeb3Connected);
@@ -163,7 +212,7 @@ export default function Nav() {
                                     <div className="grid grid-cols-1 gap-x-6 gap-y-10 lg:gap-x-8">
                                       <div>
                                         <p id="tools-heading" className="font-medium text-gray-900 dark:text-white">
-                                          Lorem ipsum dolor
+                                          {category.col0.name}
                                         </p>
                                         <div className="mt-4 border-t border-gray-200 dark:border-gray-700 pt-6 sm:grid sm:grid-cols-2 sm:gap-x-6">
                                           <ul
@@ -171,7 +220,7 @@ export default function Nav() {
                                             aria-labelledby="tools-heading"
                                             className="space-y-6 sm:space-y-4"
                                           >
-                                            {category.col0[0].map((item) => (
+                                            {category.col0.cols[0].map((item) => (
                                               <li key={item.name} className="flex">
                                                 <Link href={item.href} className={clsx(
                                                   item.name.startsWith('#') && 'text-gray-400 dark:text-gray-700 line-through',
@@ -187,7 +236,7 @@ export default function Nav() {
                                             aria-label="More tools"
                                             className="mt-6 space-y-6 sm:mt-0 sm:space-y-4"
                                           >
-                                            {category.col0[1].map((item) => (
+                                            {category.col0.cols[1].map((item) => (
                                               <li key={item.name} className="flex">
                                                 <Link href={item.href} className={clsx(
                                                   item.name.startsWith('#') && 'text-gray-400 dark:text-gray-700 line-through',
@@ -204,14 +253,14 @@ export default function Nav() {
                                     <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:gap-x-8">
                                       <div>
                                         <p id="batch-heading" className="font-medium text-gray-900 dark:text-white">
-                                          Batch Transfer
+                                          {category.col2.name}
                                         </p>
                                         <ul
                                           role="list"
                                           aria-labelledby="batch-heading"
                                           className="mt-4 space-y-6 border-t border-gray-200 dark:border-gray-700 pt-6 sm:space-y-4"
                                         >
-                                          {category.col2.map((item) => (
+                                          {category.col2.cols.map((item) => (
                                             <li key={item.name} className="flex">
                                               <Link href={item.href} className={clsx(
                                                 item.name?.startsWith('#') && 'text-gray-400 dark:text-gray-700 line-through',
@@ -225,14 +274,14 @@ export default function Nav() {
                                       </div>
                                       <div>
                                         <p id="categories-heading" className="font-medium text-gray-900 dark:text-white">
-                                          Debug
+                                          {category.col3.name}
                                         </p>
                                         <ul
                                           role="list"
                                           aria-labelledby="categories-heading"
                                           className="mt-4 space-y-6 border-t border-gray-200 dark:border-gray-700 pt-6 sm:space-y-4"
                                         >
-                                          {category.col3.map((item) => (
+                                          {category.col3.cols.map((item) => (
                                             <li key={item.name} className="flex">
                                               <Link href={item.href} className={clsx(
                                                 item.name.startsWith('#') && 'text-gray-400 dark:text-gray-700 line-through',
