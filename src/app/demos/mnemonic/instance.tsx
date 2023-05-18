@@ -88,29 +88,6 @@ const atomPublicExtendedKey = atom((get) => {
 
 
 
-const people = [
-  { id: 1, name: 'Wade Cooper' },
-  { id: 2, name: 'Arlene Mccoy' },
-  { id: 3, name: 'Devon Webb' },
-  { id: 4, name: 'Tom Cook' },
-  { id: 5, name: 'Tanya Fox' },
-  { id: 6, name: 'Hellen Schmidt' },
-  { id: 7, name: 'Caroline Schultz' },
-  { id: 8, name: 'Mason Heaney' },
-  { id: 9, name: 'Claudie Smitham' },
-  { id: 10, name: 'Emil Schaefer' },
-]
-
-
-
-
-
-
-
-
-
-
-
 export default function Component() {
   const [strengthSelected, setStrengthSelected] = useAtom(atomStrengthSelected);
 
@@ -120,27 +97,10 @@ export default function Component() {
   const [seed] = useAtom(atomSeed);
   const [seedHex] = useAtom(atomSeedHex);
 
-  // const [hdKey] = useAtom(atomHDKey);
-
   const [privateExtendedKey] = useAtom(atomPrivateExtendedKey);
   const [publicExtendedKey] = useAtom(atomPublicExtendedKey);
 
-
-
   const handleGenerateMnemonic = () => setMnemonicText(BIP39.generateMnemonic(wordlist, strengthSelected.value));
-
-
-
-
-
-
-
-
-
-
-
-
-
 
   return (
     <>
