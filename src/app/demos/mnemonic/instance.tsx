@@ -6,19 +6,27 @@ import * as BIP39 from '@scure/bip39';
 import { wordlist } from '@scure/bip39/wordlists/english';
 import { HDKey, hdKeyToAccount } from 'viem/accounts'
 import { atom, useAtom } from 'jotai';
-import { DocumentDuplicateIcon } from '@heroicons/react/20/solid';
+import { CheckIcon, ChevronUpDownIcon, DocumentDuplicateIcon } from '@heroicons/react/20/solid';
 import Container, { Grid6 } from '@/components/root/container';
 
+import { Fragment } from 'react'
+import { Listbox, Transition } from '@headlessui/react'
 
 
-const atomStrength = atom<number>(128);
-const strengthOptions = [
+interface StrengthOption {
+  name: string;
+  value: number;
+}
+
+const strengthOptions: StrengthOption[] = [
   { name: '12', value: 128 },
   { name: '15', value: 160 },
   { name: '18', value: 192 },
   { name: '21', value: 224 },
   { name: '24', value: 256 },
 ];
+const atomStrengthSelected = atom<StrengthOption>(strengthOptions[0]);
+
 const atomMnemonicText = atom<string>('');
 
 const atomMnemonicPhrases = atom((get) => get(atomMnemonicText).trim());
@@ -78,8 +86,34 @@ const atomPublicExtendedKey = atom((get) => {
 });
 
 
+
+
+const people = [
+  { id: 1, name: 'Wade Cooper' },
+  { id: 2, name: 'Arlene Mccoy' },
+  { id: 3, name: 'Devon Webb' },
+  { id: 4, name: 'Tom Cook' },
+  { id: 5, name: 'Tanya Fox' },
+  { id: 6, name: 'Hellen Schmidt' },
+  { id: 7, name: 'Caroline Schultz' },
+  { id: 8, name: 'Mason Heaney' },
+  { id: 9, name: 'Claudie Smitham' },
+  { id: 10, name: 'Emil Schaefer' },
+]
+
+
+
+
+
+
+
+
+
+
+
 export default function Component() {
-  const [strength, setStrength] = useAtom(atomStrength);
+  const [strengthSelected, setStrengthSelected] = useAtom(atomStrengthSelected);
+
   const [mnemonicText, setMnemonicText] = useAtom(atomMnemonicText);
   const [mnemonicError] = useAtom(atomMnemonicError);
   const [mnemonicValid] = useAtom(atomMnemonicValid);
@@ -91,8 +125,21 @@ export default function Component() {
   const [privateExtendedKey] = useAtom(atomPrivateExtendedKey);
   const [publicExtendedKey] = useAtom(atomPublicExtendedKey);
 
-  const handleStrengthOnchange = (e: React.ChangeEvent<HTMLSelectElement>) => setStrength(parseInt(e.target.value));
-  const handleGenerateMnemonic = () => setMnemonicText(BIP39.generateMnemonic(wordlist, strength));
+
+
+  const handleGenerateMnemonic = () => setMnemonicText(BIP39.generateMnemonic(wordlist, strengthSelected.value));
+
+
+
+
+
+
+
+
+
+
+
+
 
 
   return (
@@ -116,22 +163,83 @@ export default function Component() {
           <Grid6 className="mt-10">
             <div className="col-span-full sm:col-span-5 md:col-span-4 lg:col-span-3 flex space-x-2">
               <div className="flex-grow">
-                <label htmlFor="tabs" className="block text-sm font-medium leading-6 text-gray-900 dark:text-white">
-                  Words and Strength
-                </label>
-                <select
-                  id="tabs"
-                  name="tabs"
-                  className="mt-1 block w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                  defaultValue={strength}
-                  onChange={handleStrengthOnchange}
-                >
-                  {strengthOptions.map((option) => (
-                    <option key={option.value} value={option.value}>
-                      {option.name} words ({option.value} bits)
-                    </option>
-                  ))}
-                </select>
+                {/**
+                  * Select Menus: `Simple custom`
+                  * https://tailwindui.com/components/application-ui/forms/select-menus#component-8298198b136afab3bb19391ae716077f
+                  */}
+                <Listbox value={strengthSelected} onChange={setStrengthSelected}>
+                  {({ open }) => (
+                    <>
+                      <Listbox.Label className="block text-sm font-medium leading-6 text-gray-900 dark:text-white">
+                        Words and Strength
+                      </Listbox.Label>
+                      <div className="relative mt-1">
+                        <Listbox.Button className={clsx(
+                          "relative w-full cursor-default rounded-md py-1.5 pl-3 pr-10 shadow-sm",
+                          "ring-1 ring-inset focus:outline-none focus:ring-2 text-left sm:text-sm sm:leading-6",
+                          "bg-white dark:bg-white/10",
+                          "text-gray-900 dark:text-white",
+                          "ring-gray-300 dark:ring-white/10",
+                          "focus:ring-indigo-600 dark:focus:ring-indigo-500",
+                        )}>
+                          <span className="block truncate">
+                            {strengthSelected.name} words ({strengthSelected.value} bits)
+                          </span>
+                          <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
+                            <ChevronUpDownIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
+                          </span>
+                        </Listbox.Button>
+
+                        <Transition
+                          show={open}
+                          as={Fragment}
+                          leave="transition ease-in duration-100"
+                          leaveFrom="opacity-100"
+                          leaveTo="opacity-0"
+                        >
+                          <Listbox.Options className={clsx(
+                            "absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md py-1 shadow-lg",
+                            "ring-1 ring-opacity-5 focus:outline-none text-base sm:text-sm",
+                            "bg-white ring-black",
+                            "dark:bg-gray-900 dark:ring-white/30",
+                          )}>
+                            {strengthOptions.map((option) => (
+                              <Listbox.Option
+                                key={option.value}
+                                className={({ active }) =>
+                                  clsx(
+                                    active ? 'bg-indigo-600 text-white' : 'text-gray-900 dark:text-white',
+                                    'relative cursor-default select-none py-2 pl-3 pr-9'
+                                  )
+                                }
+                                value={option}
+                              >
+                                {({ selected, active }) => (
+                                  <>
+                                    <span className={clsx(selected ? 'font-semibold' : 'font-normal', 'block truncate')}>
+                                      {option.name} words ({option.value} bits)
+                                    </span>
+
+                                    {selected ? (
+                                      <span
+                                        className={clsx(
+                                          active ? 'text-white' : 'text-indigo-600 dark:text-indigo-400',
+                                          'absolute inset-y-0 right-0 flex items-center pr-4'
+                                        )}
+                                      >
+                                        <CheckIcon className="h-5 w-5" aria-hidden="true" />
+                                      </span>
+                                    ) : null}
+                                  </>
+                                )}
+                              </Listbox.Option>
+                            ))}
+                          </Listbox.Options>
+                        </Transition>
+                      </div>
+                    </>
+                  )}
+                </Listbox>
               </div>
 
               <div>
