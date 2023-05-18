@@ -8,6 +8,7 @@ import { HDKey, hdKeyToAccount } from 'viem/accounts'
 import { atom, useAtom } from 'jotai';
 import { DocumentDuplicateIcon } from '@heroicons/react/20/solid';
 
+
 const atomStrength = atom<number>(128);
 const strengthOptions = [
   { name: '12', value: 128 },
@@ -21,9 +22,10 @@ const atomMnemonicPhrases = atom((get) => get(atomMnemonicText).trim());
 const atomMnemonicArray = atom((get) => get(atomMnemonicPhrases).split(/\s+/));
 const atomMnemonicValid = atom((get) => BIP39.validateMnemonic(get(atomMnemonicPhrases), wordlist));
 const atomMnemonicError = atom((get) => {
-  const _length = get(atomMnemonicArray).length;
+  const _array = get(atomMnemonicArray);
+  const _length = _array.length;
 
-  if (0 === _length) return 'Please enter mnemonic or generate words';
+  if (0 === _length || (1 === _length && `` === _array[0])) return 'Please enter or generate mnemonic words';
   if (12 > _length) return 'Please enter at least 12 words';
   if (24 < _length) return 'Please enter at most 24 words';
   if (
@@ -44,7 +46,8 @@ const atomMnemonicError = atom((get) => {
 
 const atomSeed = atom((get) => {
   const _valid = get(atomMnemonicValid);
-  return _valid ? BIP39.mnemonicToSeedSync(get(atomMnemonicPhrases)) : undefined;
+  const _phrases = get(atomMnemonicPhrases);
+  return _valid ? BIP39.mnemonicToSeedSync(_phrases) : undefined;
 });
 
 const atomSeedHex = atom((get) => {
@@ -69,13 +72,16 @@ const atomPublicExtendedKey = atom((get) => {
 
 
 
+
 export default function Component() {
   const [strength, setStrength] = useAtom(atomStrength);
   const [mnemonicText, setMnemonicText] = useAtom(atomMnemonicText);
   const [mnemonicError] = useAtom(atomMnemonicError);
-  const [mnemonicIsValid] = useAtom(atomMnemonicValid);
+  const [mnemonicValid] = useAtom(atomMnemonicValid);
   const [seed] = useAtom(atomSeed);
   const [seedHex] = useAtom(atomSeedHex);
+
+  const [hdKey] = useAtom(atomHDKey);
 
   const [privateExtendedKey] = useAtom(atomPrivateExtendedKey);
   const [publicExtendedKey] = useAtom(atomPublicExtendedKey);
@@ -87,7 +93,7 @@ export default function Component() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 sm:py-32 space-y-12">
 
-      <div className="border-b border-gray-900/10 dark:border-white/10 pb-12">
+      <div className="">
         <h2 className="text-base font-semibold leading-7 text-gray-900 dark:text-white">
           Step #1 - Mnemonic
         </h2>
@@ -166,7 +172,7 @@ export default function Component() {
                 )}
                 rows={4}
                 value={mnemonicText}
-                aria-invalid={!mnemonicIsValid}
+                aria-invalid={!mnemonicValid}
                 onChange={(e) => setMnemonicText(e.target.value.replace(/[^a-z\s+]/g, '').replace(/^\s+/g, ''))}
               />
             </div>
@@ -188,7 +194,7 @@ export default function Component() {
 
 
       {seed && (
-        <div className="border-b border-gray-900/10 dark:border-white/10 pb-12">
+        <div className="border-t border-gray-900/10 dark:border-white/10 pt-12">
           <h2 className="text-base font-semibold leading-7 text-gray-900 dark:text-white">
             Step #2 - HDKey
           </h2>
@@ -304,12 +310,17 @@ export default function Component() {
 
             </div>
 
+            {/* <div>
+            Seed: {seedHex ? 'Valid' : 'Invalid'}
+          </div>
 
+          <div>
+            mnemonicIsValid: {mnemonicValid ? 'Valid' : 'Invalid'}
+          </div> */}
 
             {/* <div className="sm:col-span-3"></div> */}
           </div>
         </div>
-
       )}
 
     </div>

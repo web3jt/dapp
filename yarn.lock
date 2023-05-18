@@ -3263,6 +3263,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@swc-jotai/react-refresh@npm:^0.0.8":
+  version: 0.0.8
+  resolution: "@swc-jotai/react-refresh@npm:0.0.8"
+  checksum: 7684a7b84f6e0f86984f02a1976dd2a77fc6e572fc7d5d09b97aab76216a9c533492d929a8624ac066c14402ed173a037a4a7b78453b513a5b1f01f8bdd622a1
+  languageName: node
+  linkType: hard
+
 "@swc/helpers@npm:0.5.1":
   version: 0.5.1
   resolution: "@swc/helpers@npm:0.5.1"
@@ -5273,6 +5280,7 @@ __metadata:
     "@rainbow-me/rainbowkit": ^1
     "@suiet/wallet-kit": ^0.2.11
     "@svgr/webpack": ^8.0.1
+    "@swc-jotai/react-refresh": ^0.0.8
     "@tailwindcss/aspect-ratio": ^0.4.2
     "@tailwindcss/forms": ^0.5.3
     "@tailwindcss/typography": ^0.5.9
