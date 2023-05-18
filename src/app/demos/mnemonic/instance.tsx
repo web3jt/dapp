@@ -2,15 +2,16 @@
 
 import clsx from 'clsx';
 import Link from 'next/link';
+
+import { Fragment } from 'react';
+import { Listbox, Transition } from '@headlessui/react';
+import copy from 'copy-text-to-clipboard';
 import * as BIP39 from '@scure/bip39';
 import { wordlist } from '@scure/bip39/wordlists/english';
 import { HDKey, hdKeyToAccount } from 'viem/accounts'
 import { atom, useAtom } from 'jotai';
 import { CheckIcon, ChevronUpDownIcon, DocumentDuplicateIcon } from '@heroicons/react/20/solid';
 import Container, { Grid6 } from '@/components/root/container';
-
-import { Fragment } from 'react'
-import { Listbox, Transition } from '@headlessui/react'
 
 
 interface StrengthOption {
@@ -307,7 +308,7 @@ export default function Component() {
                   placeholder="Seed derived from mnemonic phrases"
                   defaultValue={seedHex}
                   aria-invalid={Boolean(seed)}
-                  disabled
+                  readOnly
                 />
                 {seedHex && (
                   <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
@@ -340,7 +341,7 @@ export default function Component() {
                   placeholder="Private Extended Key from Seed"
                   defaultValue={privateExtendedKey}
                   aria-invalid={Boolean(seed)}
-                  disabled
+                  readOnly
                 />
                 {privateExtendedKey && (
                   <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
@@ -373,7 +374,7 @@ export default function Component() {
                   placeholder="Public Extended Key from Seed"
                   defaultValue={publicExtendedKey}
                   aria-invalid={Boolean(seed)}
-                  disabled
+                  readOnly
                 />
                 {publicExtendedKey && (
                   <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">

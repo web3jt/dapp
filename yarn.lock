@@ -5095,6 +5095,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"copy-text-to-clipboard@npm:^3.1.0":
+  version: 3.1.0
+  resolution: "copy-text-to-clipboard@npm:3.1.0"
+  checksum: d06b1d5ae5a5f60bc27714c5bcb9837ed187a338741130e6b6a156399aa1a15aff5913c8abacbfcbe2132c87b5e8262a705e614a34aa39a151d047bd39b1f307
+  languageName: node
+  linkType: hard
+
 "copy-to-clipboard@npm:^3.3.3":
   version: 3.3.3
   resolution: "copy-to-clipboard@npm:3.3.3"
@@ -5290,6 +5297,7 @@ __metadata:
     "@vercel/postgres": ^0.3.0
     autoprefixer: 10.4.14
     clsx: ^1.2.1
+    copy-text-to-clipboard: ^3.1.0
     encoding: ^0.1.13
     eslint: 8.40.0
     eslint-config-next: 13.4.2
