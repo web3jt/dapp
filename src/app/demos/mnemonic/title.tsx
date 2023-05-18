@@ -36,6 +36,12 @@ export default function Component() {
               BIP32
             </Link>, <Link
               target="_blank"
+              href="https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki"
+              className="text-blue-600 dark:text-blue-400 hover:underline"
+            >
+              BIP44
+            </Link>, <Link
+              target="_blank"
               href="https://github.com/paulmillr/scure-bip39"
               className="text-blue-600 dark:text-blue-400 hover:underline"
             >

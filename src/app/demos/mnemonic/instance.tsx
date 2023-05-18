@@ -321,6 +321,28 @@ export default function Component() {
         </Container>
 
       </div>
+
+
+      {/* Path */}
+      <div id="path" className="bg-gray-50 dark:bg-gray-900">
+        <Container className="py-12 sm:py-20">
+          <h2 className="text-base font-semibold leading-7 text-gray-900 dark:text-white">
+            Step #3 - Derive Private/Public Key
+          </h2>
+          <p className="mt-1 text-sm leading-6 text-gray-600 dark:text-gray-400">
+            Derive path, ref: <Link
+              className="text-blue-600 dark:text-blue-400 hover:underline"
+              target="_blank"
+              href="https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki"
+            >
+              BIP44
+            </Link>
+          </p>
+
+          <Grid6 className="mt-10">
+          </Grid6>
+        </Container>
+      </div>
     </>
   )
 }
