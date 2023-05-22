@@ -17,7 +17,6 @@ export default function Page() {
   const [horizontal, setHorizontal] = useAtom(atomHorizontal);
 
   const handleHorizontalOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(e);
     setHorizontal(e.target.checked);
   }
 
