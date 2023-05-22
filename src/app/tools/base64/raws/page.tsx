@@ -84,7 +84,11 @@ export default function Page() {
 
         {decodedRawsArray && (
           <div className="mt-10">
-            {decodedRawsArray}
+            {decodedRawsArray.map((raw, idx) => (
+              <div key={idx} className="flex items-center justify-between py-1.5">
+                {raw}
+              </div>
+            ))}
           </div>
         )}
 
