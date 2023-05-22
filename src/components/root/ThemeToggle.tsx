@@ -27,7 +27,7 @@ export default function ThemeToggle() {
         "focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2",
       )}
     >
-      <span className="sr-only">Use setting</span>
+      <span className="sr-only">Dark Mode</span>
       <span
         className={clsx(
           darkMode ? "translate-x-5" : "translate-x-0",
