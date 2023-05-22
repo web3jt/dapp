@@ -2,11 +2,8 @@
 
 import clsx from 'clsx';
 import Link from 'next/link';
-import { Switch } from '@headlessui/react';
 import { atom, useAtom } from 'jotai';
 import Container, { Grid6 } from '@/components/root/container';
-import { atomDarkMode } from '@/store/store';
-import { SunIcon, MoonIcon } from '@heroicons/react/20/solid';
 
 const atomEncoded = atom<string>('');
 const atomDecoded = atom<string>('');
@@ -17,7 +14,6 @@ const atomHorizontal = atom<boolean>(false);
 
 
 export default function Page() {
-  const [darkMode] = useAtom(atomDarkMode);
   const [horizontal, setHorizontal] = useAtom(atomHorizontal);
 
   const handleHorizontalOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
