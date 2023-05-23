@@ -5322,6 +5322,7 @@ __metadata:
     "@vercel/postgres": ^0.3.0
     autoprefixer: 10.4.14
     bip44-constants: ^218.0.0
+    bs58: ^5.0.0
     clsx: ^1.2.1
     copy-text-to-clipboard: ^3.1.0
     encoding: ^0.1.13

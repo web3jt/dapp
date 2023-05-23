@@ -4,6 +4,7 @@ import clsx from 'clsx';
 import Link from 'next/link';
 import { atom, useAtom } from 'jotai';
 import Container, { Grid6 } from '@/components/root/container';
+import bs58 from 'bs58';
 
 const atomHorizontal = atom<boolean>(true);
 const atomEncoded = atom<string>('');
@@ -28,7 +29,8 @@ export default function Page() {
     setEncoded(value);
     setEncodedError('');
     try {
-      const decoded = atob(value);
+      const bytes = bs58.decode(value);
+      const decoded = Buffer.from(bytes).toString();
       setDecoded(decoded);
     } catch (err: any) {
       setEncodedError(err.message);
@@ -40,7 +42,8 @@ export default function Page() {
     setDecoded(value);
     setDecodedError('');
     try {
-      const encoded = btoa(value);
+
+      const encoded = bs58.encode(Buffer.from(value));
       setEncoded(encoded);
     } catch (err: any) {
       setDecodedError(err.message);
@@ -52,7 +55,7 @@ export default function Page() {
     <>
       <Container className="py-12 sm:py-20">
         <h2 className="text-base font-semibold leading-7 text-gray-900 dark:text-white">
-          Base64 Decoder/Encoder
+          Base58 Decoder/Encoder
         </h2>
         <div className="mt-1 sm:col-span-4">
           <div className="mt-2 relative flex gap-x-3">
@@ -116,7 +119,7 @@ export default function Page() {
             horizontal ? "col-span-3" : "col-span-full"
           )}>
             <label htmlFor="raws" className="block text-sm font-medium leading-6 text-gray-900 dark:text-white select-none">
-              Decoded
+              Decoded (string)
             </label>
             <div className="mt-1">
               <textarea
