@@ -41,7 +41,7 @@
     "typescript": "5.0.4",
     "use-immer": "^0.9.0",
     "usehooks-ts": "^2.9.1",
-    "viem": "^0.3.31",
+    "viem": "^0.3.34",
     "wagmi": "^1.0.5"
   },
   "devDependencies": {
