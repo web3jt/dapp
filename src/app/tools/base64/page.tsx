@@ -5,26 +5,23 @@ import Link from 'next/link';
 import { atom, useAtom } from 'jotai';
 import Container, { Grid6 } from '@/components/root/container';
 
+const atomHorizontal = atom<boolean>(true);
 const atomEncoded = atom<string>('');
 const atomDecoded = atom<string>('');
 const atomEncodedError = atom<string>('');
 const atomDecodedError = atom<string>('');
 
-const atomHorizontal = atom<boolean>(false);
-
 
 export default function Page() {
   const [horizontal, setHorizontal] = useAtom(atomHorizontal);
+  const [encoded, setEncoded] = useAtom(atomEncoded);
+  const [decoded, setDecoded] = useAtom(atomDecoded);
+  const [encodedError, setEncodedError] = useAtom(atomEncodedError);
+  const [decodedError, setDecodedError] = useAtom(atomDecodedError);
 
   const handleHorizontalOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setHorizontal(e.target.checked);
   }
-
-  const [encoded, setEncoded] = useAtom(atomEncoded);
-  const [decoded, setDecoded] = useAtom(atomDecoded);
-
-  const [encodedError, setEncodedError] = useAtom(atomEncodedError);
-  const [decodedError, setDecodedError] = useAtom(atomDecodedError);
 
   const handleEncodedChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const value = e.target.value;
@@ -57,11 +54,7 @@ export default function Page() {
         <h2 className="text-base font-semibold leading-7 text-gray-900 dark:text-white">
           Base64 Decoder/Encoder
         </h2>
-        <p className="mt-1 text-sm leading-6 text-gray-600 dark:text-gray-400">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit.
-        </p>
-
-        <div className="mt-4 sm:col-span-4">
+        <div className="mt-1 sm:col-span-4">
           <div className="mt-2 relative flex gap-x-3">
             <div className="flex h-6 items-center">
               <input
