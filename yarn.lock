@@ -2619,8 +2619,8 @@ __metadata:
   linkType: hard
 
 "@rainbow-me/rainbowkit@npm:^1":
-  version: 1.0.0
-  resolution: "@rainbow-me/rainbowkit@npm:1.0.0"
+  version: 1.0.1
+  resolution: "@rainbow-me/rainbowkit@npm:1.0.1"
   dependencies:
     "@vanilla-extract/css": 1.9.1
     "@vanilla-extract/dynamic": 2.0.2
@@ -2632,8 +2632,8 @@ __metadata:
     react: ">=17"
     react-dom: ">=17"
     viem: ~0.3.19
-    wagmi: ^1.0.1
-  checksum: d9a73027ad5b6cd659fef8dd2e8bdcf14fd78bc6f00f0b3fb77f167622dca90f8acff5a727f71d2e031caed84f18e08880b021e9b4f22263ffa8d5dcb550da5b
+    wagmi: ~1.0.1
+  checksum: 66fb62327731f0555f9418551eabb37af8b81e6977808294f2d3e3a2235f3506498516e98425155662de79bbac454eb86ab7984556cfd09f9082b205aa6638c8
   languageName: node
   linkType: hard
 
