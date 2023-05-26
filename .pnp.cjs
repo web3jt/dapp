@@ -39,7 +39,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@tailwindcss/aspect-ratio", "virtual:b998f4480f3ee8078b265d64ce49f6871304eae4e25dc15ccf7336329aa0e31f4ee17c7e4cf03b04306f0cc23b48966f7d8b6c350890e5467c779279ec172ee9#npm:0.4.2"],\
             ["@tailwindcss/forms", "virtual:b998f4480f3ee8078b265d64ce49f6871304eae4e25dc15ccf7336329aa0e31f4ee17c7e4cf03b04306f0cc23b48966f7d8b6c350890e5467c779279ec172ee9#npm:0.5.3"],\
             ["@tailwindcss/typography", "virtual:b998f4480f3ee8078b265d64ce49f6871304eae4e25dc15ccf7336329aa0e31f4ee17c7e4cf03b04306f0cc23b48966f7d8b6c350890e5467c779279ec172ee9#npm:0.5.9"],\
-            ["@types/node", "npm:20.2.3"],\
+            ["@types/node", "npm:20.2.4"],\
             ["@types/react", "npm:18.2.7"],\
             ["@types/react-dom", "npm:18.2.4"],\
             ["@vercel/postgres", "npm:0.3.0"],\
@@ -5315,10 +5315,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           ],\
           "linkType": "HARD"\
         }],\
-        ["npm:20.2.3", {\
-          "packageLocation": "./.yarn/cache/@types-node-npm-20.2.3-0289426dd1-576065e8fc.zip/node_modules/@types/node/",\
+        ["npm:20.2.4", {\
+          "packageLocation": "./.yarn/cache/@types-node-npm-20.2.4-e04513a79f-6bc45fdc1c.zip/node_modules/@types/node/",\
           "packageDependencies": [\
-            ["@types/node", "npm:20.2.3"]\
+            ["@types/node", "npm:20.2.4"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -7539,7 +7539,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@tailwindcss/aspect-ratio", "virtual:b998f4480f3ee8078b265d64ce49f6871304eae4e25dc15ccf7336329aa0e31f4ee17c7e4cf03b04306f0cc23b48966f7d8b6c350890e5467c779279ec172ee9#npm:0.4.2"],\
             ["@tailwindcss/forms", "virtual:b998f4480f3ee8078b265d64ce49f6871304eae4e25dc15ccf7336329aa0e31f4ee17c7e4cf03b04306f0cc23b48966f7d8b6c350890e5467c779279ec172ee9#npm:0.5.3"],\
             ["@tailwindcss/typography", "virtual:b998f4480f3ee8078b265d64ce49f6871304eae4e25dc15ccf7336329aa0e31f4ee17c7e4cf03b04306f0cc23b48966f7d8b6c350890e5467c779279ec172ee9#npm:0.5.9"],\
-            ["@types/node", "npm:20.2.3"],\
+            ["@types/node", "npm:20.2.4"],\
             ["@types/react", "npm:18.2.7"],\
             ["@types/react-dom", "npm:18.2.4"],\
             ["@vercel/postgres", "npm:0.3.0"],\
