@@ -44,7 +44,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/react-dom", "npm:18.2.4"],\
             ["@vercel/postgres", "npm:0.3.0"],\
             ["autoprefixer", "virtual:b998f4480f3ee8078b265d64ce49f6871304eae4e25dc15ccf7336329aa0e31f4ee17c7e4cf03b04306f0cc23b48966f7d8b6c350890e5467c779279ec172ee9#npm:10.4.14"],\
-            ["bip44-constants", "npm:218.0.0"],\
+            ["bip44-constants", "npm:219.0.0"],\
             ["bs58", "npm:5.0.0"],\
             ["clsx", "npm:1.2.1"],\
             ["copy-text-to-clipboard", "npm:3.1.0"],\
@@ -6833,10 +6833,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["bip44-constants", [\
-        ["npm:218.0.0", {\
-          "packageLocation": "./.yarn/cache/bip44-constants-npm-218.0.0-2294eb1b23-30a8eef398.zip/node_modules/bip44-constants/",\
+        ["npm:219.0.0", {\
+          "packageLocation": "./.yarn/cache/bip44-constants-npm-219.0.0-9365d40edb-ba48388e7c.zip/node_modules/bip44-constants/",\
           "packageDependencies": [\
-            ["bip44-constants", "npm:218.0.0"]\
+            ["bip44-constants", "npm:219.0.0"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -7544,7 +7544,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/react-dom", "npm:18.2.4"],\
             ["@vercel/postgres", "npm:0.3.0"],\
             ["autoprefixer", "virtual:b998f4480f3ee8078b265d64ce49f6871304eae4e25dc15ccf7336329aa0e31f4ee17c7e4cf03b04306f0cc23b48966f7d8b6c350890e5467c779279ec172ee9#npm:10.4.14"],\
-            ["bip44-constants", "npm:218.0.0"],\
+            ["bip44-constants", "npm:219.0.0"],\
             ["bs58", "npm:5.0.0"],\
             ["clsx", "npm:1.2.1"],\
             ["copy-text-to-clipboard", "npm:3.1.0"],\
