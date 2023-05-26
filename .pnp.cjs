@@ -66,7 +66,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["typescript", "patch:typescript@npm%3A5.0.4#~builtin<compat/typescript>::version=5.0.4&hash=b5f058"],\
             ["use-immer", "virtual:b998f4480f3ee8078b265d64ce49f6871304eae4e25dc15ccf7336329aa0e31f4ee17c7e4cf03b04306f0cc23b48966f7d8b6c350890e5467c779279ec172ee9#npm:0.9.0"],\
             ["usehooks-ts", "virtual:b998f4480f3ee8078b265d64ce49f6871304eae4e25dc15ccf7336329aa0e31f4ee17c7e4cf03b04306f0cc23b48966f7d8b6c350890e5467c779279ec172ee9#npm:2.9.1"],\
-            ["viem", "npm:0.3.36"],\
+            ["viem", "npm:0.3.37"],\
             ["wagmi", "virtual:b998f4480f3ee8078b265d64ce49f6871304eae4e25dc15ccf7336329aa0e31f4ee17c7e4cf03b04306f0cc23b48966f7d8b6c350890e5467c779279ec172ee9#npm:1.0.6"]\
           ],\
           "linkType": "SOFT"\
@@ -4091,7 +4091,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["react", "npm:18.2.0"],\
             ["react-dom", "virtual:b998f4480f3ee8078b265d64ce49f6871304eae4e25dc15ccf7336329aa0e31f4ee17c7e4cf03b04306f0cc23b48966f7d8b6c350890e5467c779279ec172ee9#npm:18.2.0"],\
             ["react-remove-scroll", "virtual:75c3ca3c95eee19ae4b54da30b4b3bc2197a9dd39a855c3e8f538b43be43841a876d202bd614bc7afcfc50d1842cb6f220ca9dc210c7bb28e5823980cc263245#npm:2.5.4"],\
-            ["viem", "npm:0.3.36"],\
+            ["viem", "npm:0.3.37"],\
             ["wagmi", "virtual:b998f4480f3ee8078b265d64ce49f6871304eae4e25dc15ccf7336329aa0e31f4ee17c7e4cf03b04306f0cc23b48966f7d8b6c350890e5467c779279ec172ee9#npm:1.0.6"]\
           ],\
           "packagePeers": [\
@@ -5578,13 +5578,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["@wagmi/chains", [\
-        ["npm:0.2.16", {\
-          "packageLocation": "./.yarn/cache/@wagmi-chains-npm-0.2.16-d2db3b94dc-3c106b98c5.zip/node_modules/@wagmi/chains/",\
-          "packageDependencies": [\
-            ["@wagmi/chains", "npm:0.2.16"]\
-          ],\
-          "linkType": "SOFT"\
-        }],\
         ["npm:0.2.25", {\
           "packageLocation": "./.yarn/cache/@wagmi-chains-npm-0.2.25-8fa7b7dd96-342870d13b.zip/node_modules/@wagmi/chains/",\
           "packageDependencies": [\
@@ -5592,12 +5585,19 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           ],\
           "linkType": "SOFT"\
         }],\
-        ["virtual:4af9e83a7dd1f571ebdd2e672230cca4d60e89eadbe1560cc815d71c26293532eb43029b6b93aab1485692a954c1e0404e5a9eee222332e0dcd4d887f557c6cd#npm:0.2.25", {\
-          "packageLocation": "./.yarn/__virtual__/@wagmi-chains-virtual-8aa8e8ab64/0/cache/@wagmi-chains-npm-0.2.25-8fa7b7dd96-342870d13b.zip/node_modules/@wagmi/chains/",\
+        ["npm:0.3.1", {\
+          "packageLocation": "./.yarn/cache/@wagmi-chains-npm-0.3.1-de50a0732e-1669bd7fa6.zip/node_modules/@wagmi/chains/",\
           "packageDependencies": [\
-            ["@wagmi/chains", "virtual:4af9e83a7dd1f571ebdd2e672230cca4d60e89eadbe1560cc815d71c26293532eb43029b6b93aab1485692a954c1e0404e5a9eee222332e0dcd4d887f557c6cd#npm:0.2.25"],\
+            ["@wagmi/chains", "npm:0.3.1"]\
+          ],\
+          "linkType": "SOFT"\
+        }],\
+        ["virtual:2152253c93d31e4d8417a5f39edf8af4ab51a58834c1b721bb29d556c24631bb11757365f7bf39abdf23c1a91db236760f786a0a97dec99ad102076ad835a4db#npm:0.3.1", {\
+          "packageLocation": "./.yarn/__virtual__/@wagmi-chains-virtual-81f40c381d/0/cache/@wagmi-chains-npm-0.3.1-de50a0732e-1669bd7fa6.zip/node_modules/@wagmi/chains/",\
+          "packageDependencies": [\
+            ["@wagmi/chains", "virtual:2152253c93d31e4d8417a5f39edf8af4ab51a58834c1b721bb29d556c24631bb11757365f7bf39abdf23c1a91db236760f786a0a97dec99ad102076ad835a4db#npm:0.3.1"],\
             ["@types/typescript", null],\
-            ["typescript", "patch:typescript@npm%3A5.0.4#~builtin<compat/typescript>::version=5.0.4&hash=b5f058"]\
+            ["typescript", null]\
           ],\
           "packagePeers": [\
             "@types/typescript",\
@@ -5605,12 +5605,12 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           ],\
           "linkType": "HARD"\
         }],\
-        ["virtual:64578cdf81e6abcc37d870eda7c229e9cd731e1fc238fa37eb90954ff12581c91f973d82003c173878e05d9efa417e321574c24f221c38f1fff2f856269c8db3#npm:0.2.16", {\
-          "packageLocation": "./.yarn/__virtual__/@wagmi-chains-virtual-33e6b68f96/0/cache/@wagmi-chains-npm-0.2.16-d2db3b94dc-3c106b98c5.zip/node_modules/@wagmi/chains/",\
+        ["virtual:4af9e83a7dd1f571ebdd2e672230cca4d60e89eadbe1560cc815d71c26293532eb43029b6b93aab1485692a954c1e0404e5a9eee222332e0dcd4d887f557c6cd#npm:0.2.25", {\
+          "packageLocation": "./.yarn/__virtual__/@wagmi-chains-virtual-8aa8e8ab64/0/cache/@wagmi-chains-npm-0.2.25-8fa7b7dd96-342870d13b.zip/node_modules/@wagmi/chains/",\
           "packageDependencies": [\
-            ["@wagmi/chains", "virtual:64578cdf81e6abcc37d870eda7c229e9cd731e1fc238fa37eb90954ff12581c91f973d82003c173878e05d9efa417e321574c24f221c38f1fff2f856269c8db3#npm:0.2.16"],\
+            ["@wagmi/chains", "virtual:4af9e83a7dd1f571ebdd2e672230cca4d60e89eadbe1560cc815d71c26293532eb43029b6b93aab1485692a954c1e0404e5a9eee222332e0dcd4d887f557c6cd#npm:0.2.25"],\
             ["@types/typescript", null],\
-            ["typescript", null]\
+            ["typescript", "patch:typescript@npm%3A5.0.4#~builtin<compat/typescript>::version=5.0.4&hash=b5f058"]\
           ],\
           "packagePeers": [\
             "@types/typescript",\
@@ -5645,7 +5645,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["abitype", "virtual:0b2af76c9034d5ef7b2496ec3cafc005071aa2583a2467ccd333aa8b70a3062125ccf29df244ab3a1d198bc16bde29c69fccde3c9a56368e1d1b358363872eb5#npm:0.8.1"],\
             ["eventemitter3", "npm:4.0.7"],\
             ["typescript", "patch:typescript@npm%3A5.0.4#~builtin<compat/typescript>::version=5.0.4&hash=b5f058"],\
-            ["viem", "npm:0.3.36"]\
+            ["viem", "npm:0.3.37"]\
           ],\
           "packagePeers": [\
             "@types/typescript",\
@@ -5677,7 +5677,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["abitype", "virtual:0b2af76c9034d5ef7b2496ec3cafc005071aa2583a2467ccd333aa8b70a3062125ccf29df244ab3a1d198bc16bde29c69fccde3c9a56368e1d1b358363872eb5#npm:0.8.1"],\
             ["eventemitter3", "npm:4.0.7"],\
             ["typescript", "patch:typescript@npm%3A5.0.4#~builtin<compat/typescript>::version=5.0.4&hash=b5f058"],\
-            ["viem", "npm:0.3.36"],\
+            ["viem", "npm:0.3.37"],\
             ["zustand", "virtual:4af9e83a7dd1f571ebdd2e672230cca4d60e89eadbe1560cc815d71c26293532eb43029b6b93aab1485692a954c1e0404e5a9eee222332e0dcd4d887f557c6cd#npm:4.3.7"]\
           ],\
           "packagePeers": [\
@@ -6275,10 +6275,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           ],\
           "linkType": "HARD"\
         }],\
-        ["virtual:64578cdf81e6abcc37d870eda7c229e9cd731e1fc238fa37eb90954ff12581c91f973d82003c173878e05d9efa417e321574c24f221c38f1fff2f856269c8db3#npm:0.8.2", {\
-          "packageLocation": "./.yarn/__virtual__/abitype-virtual-9dd5162f37/0/cache/abitype-npm-0.8.2-7e4eb32a46-ec9ade7e2b.zip/node_modules/abitype/",\
+        ["virtual:2152253c93d31e4d8417a5f39edf8af4ab51a58834c1b721bb29d556c24631bb11757365f7bf39abdf23c1a91db236760f786a0a97dec99ad102076ad835a4db#npm:0.8.2", {\
+          "packageLocation": "./.yarn/__virtual__/abitype-virtual-adc37fd6b7/0/cache/abitype-npm-0.8.2-7e4eb32a46-ec9ade7e2b.zip/node_modules/abitype/",\
           "packageDependencies": [\
-            ["abitype", "virtual:64578cdf81e6abcc37d870eda7c229e9cd731e1fc238fa37eb90954ff12581c91f973d82003c173878e05d9efa417e321574c24f221c38f1fff2f856269c8db3#npm:0.8.2"],\
+            ["abitype", "virtual:2152253c93d31e4d8417a5f39edf8af4ab51a58834c1b721bb29d556c24631bb11757365f7bf39abdf23c1a91db236760f786a0a97dec99ad102076ad835a4db#npm:0.8.2"],\
             ["@types/typescript", null],\
             ["@types/zod", null],\
             ["typescript", null],\
@@ -7566,7 +7566,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["typescript", "patch:typescript@npm%3A5.0.4#~builtin<compat/typescript>::version=5.0.4&hash=b5f058"],\
             ["use-immer", "virtual:b998f4480f3ee8078b265d64ce49f6871304eae4e25dc15ccf7336329aa0e31f4ee17c7e4cf03b04306f0cc23b48966f7d8b6c350890e5467c779279ec172ee9#npm:0.9.0"],\
             ["usehooks-ts", "virtual:b998f4480f3ee8078b265d64ce49f6871304eae4e25dc15ccf7336329aa0e31f4ee17c7e4cf03b04306f0cc23b48966f7d8b6c350890e5467c779279ec172ee9#npm:2.9.1"],\
-            ["viem", "npm:0.3.36"],\
+            ["viem", "npm:0.3.37"],\
             ["wagmi", "virtual:b998f4480f3ee8078b265d64ce49f6871304eae4e25dc15ccf7336329aa0e31f4ee17c7e4cf03b04306f0cc23b48966f7d8b6c350890e5467c779279ec172ee9#npm:1.0.6"]\
           ],\
           "linkType": "SOFT"\
@@ -9926,12 +9926,12 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           ],\
           "linkType": "SOFT"\
         }],\
-        ["virtual:64578cdf81e6abcc37d870eda7c229e9cd731e1fc238fa37eb90954ff12581c91f973d82003c173878e05d9efa417e321574c24f221c38f1fff2f856269c8db3#npm:5.0.0", {\
-          "packageLocation": "./.yarn/__virtual__/isomorphic-ws-virtual-1cc5bf0d76/0/cache/isomorphic-ws-npm-5.0.0-9c72251c2d-e20eb2aee0.zip/node_modules/isomorphic-ws/",\
+        ["virtual:2152253c93d31e4d8417a5f39edf8af4ab51a58834c1b721bb29d556c24631bb11757365f7bf39abdf23c1a91db236760f786a0a97dec99ad102076ad835a4db#npm:5.0.0", {\
+          "packageLocation": "./.yarn/__virtual__/isomorphic-ws-virtual-da220c9a6d/0/cache/isomorphic-ws-npm-5.0.0-9c72251c2d-e20eb2aee0.zip/node_modules/isomorphic-ws/",\
           "packageDependencies": [\
-            ["isomorphic-ws", "virtual:64578cdf81e6abcc37d870eda7c229e9cd731e1fc238fa37eb90954ff12581c91f973d82003c173878e05d9efa417e321574c24f221c38f1fff2f856269c8db3#npm:5.0.0"],\
+            ["isomorphic-ws", "virtual:2152253c93d31e4d8417a5f39edf8af4ab51a58834c1b721bb29d556c24631bb11757365f7bf39abdf23c1a91db236760f786a0a97dec99ad102076ad835a4db#npm:5.0.0"],\
             ["@types/ws", null],\
-            ["ws", "virtual:64578cdf81e6abcc37d870eda7c229e9cd731e1fc238fa37eb90954ff12581c91f973d82003c173878e05d9efa417e321574c24f221c38f1fff2f856269c8db3#npm:8.12.0"]\
+            ["ws", "virtual:2152253c93d31e4d8417a5f39edf8af4ab51a58834c1b721bb29d556c24631bb11757365f7bf39abdf23c1a91db236760f786a0a97dec99ad102076ad835a4db#npm:8.12.0"]\
           ],\
           "packagePeers": [\
             "@types/ws",\
@@ -13796,19 +13796,19 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["viem", [\
-        ["npm:0.3.36", {\
-          "packageLocation": "./.yarn/cache/viem-npm-0.3.36-64578cdf81-16a75b50dc.zip/node_modules/viem/",\
+        ["npm:0.3.37", {\
+          "packageLocation": "./.yarn/cache/viem-npm-0.3.37-2152253c93-2972763025.zip/node_modules/viem/",\
           "packageDependencies": [\
-            ["viem", "npm:0.3.36"],\
+            ["viem", "npm:0.3.37"],\
             ["@adraffy/ens-normalize", "npm:1.9.0"],\
             ["@noble/curves", "npm:1.0.0"],\
             ["@noble/hashes", "npm:1.3.0"],\
             ["@scure/bip32", "npm:1.3.0"],\
             ["@scure/bip39", "npm:1.2.0"],\
-            ["@wagmi/chains", "virtual:64578cdf81e6abcc37d870eda7c229e9cd731e1fc238fa37eb90954ff12581c91f973d82003c173878e05d9efa417e321574c24f221c38f1fff2f856269c8db3#npm:0.2.16"],\
-            ["abitype", "virtual:64578cdf81e6abcc37d870eda7c229e9cd731e1fc238fa37eb90954ff12581c91f973d82003c173878e05d9efa417e321574c24f221c38f1fff2f856269c8db3#npm:0.8.2"],\
-            ["isomorphic-ws", "virtual:64578cdf81e6abcc37d870eda7c229e9cd731e1fc238fa37eb90954ff12581c91f973d82003c173878e05d9efa417e321574c24f221c38f1fff2f856269c8db3#npm:5.0.0"],\
-            ["ws", "virtual:64578cdf81e6abcc37d870eda7c229e9cd731e1fc238fa37eb90954ff12581c91f973d82003c173878e05d9efa417e321574c24f221c38f1fff2f856269c8db3#npm:8.12.0"]\
+            ["@wagmi/chains", "virtual:2152253c93d31e4d8417a5f39edf8af4ab51a58834c1b721bb29d556c24631bb11757365f7bf39abdf23c1a91db236760f786a0a97dec99ad102076ad835a4db#npm:0.3.1"],\
+            ["abitype", "virtual:2152253c93d31e4d8417a5f39edf8af4ab51a58834c1b721bb29d556c24631bb11757365f7bf39abdf23c1a91db236760f786a0a97dec99ad102076ad835a4db#npm:0.8.2"],\
+            ["isomorphic-ws", "virtual:2152253c93d31e4d8417a5f39edf8af4ab51a58834c1b721bb29d556c24631bb11757365f7bf39abdf23c1a91db236760f786a0a97dec99ad102076ad835a4db#npm:5.0.0"],\
+            ["ws", "virtual:2152253c93d31e4d8417a5f39edf8af4ab51a58834c1b721bb29d556c24631bb11757365f7bf39abdf23c1a91db236760f786a0a97dec99ad102076ad835a4db#npm:8.12.0"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -13836,7 +13836,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["react", "npm:18.2.0"],\
             ["typescript", "patch:typescript@npm%3A5.0.4#~builtin<compat/typescript>::version=5.0.4&hash=b5f058"],\
             ["use-sync-external-store", "virtual:0b2af76c9034d5ef7b2496ec3cafc005071aa2583a2467ccd333aa8b70a3062125ccf29df244ab3a1d198bc16bde29c69fccde3c9a56368e1d1b358363872eb5#npm:1.2.0"],\
-            ["viem", "npm:0.3.36"]\
+            ["viem", "npm:0.3.37"]\
           ],\
           "packagePeers": [\
             "@types/react",\
@@ -14016,10 +14016,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           ],\
           "linkType": "HARD"\
         }],\
-        ["virtual:64578cdf81e6abcc37d870eda7c229e9cd731e1fc238fa37eb90954ff12581c91f973d82003c173878e05d9efa417e321574c24f221c38f1fff2f856269c8db3#npm:8.12.0", {\
-          "packageLocation": "./.yarn/__virtual__/ws-virtual-723e1c7ed0/0/cache/ws-npm-8.12.0-4e21348613-818ff3f874.zip/node_modules/ws/",\
+        ["virtual:2152253c93d31e4d8417a5f39edf8af4ab51a58834c1b721bb29d556c24631bb11757365f7bf39abdf23c1a91db236760f786a0a97dec99ad102076ad835a4db#npm:8.12.0", {\
+          "packageLocation": "./.yarn/__virtual__/ws-virtual-c7287490ec/0/cache/ws-npm-8.12.0-4e21348613-818ff3f874.zip/node_modules/ws/",\
           "packageDependencies": [\
-            ["ws", "virtual:64578cdf81e6abcc37d870eda7c229e9cd731e1fc238fa37eb90954ff12581c91f973d82003c173878e05d9efa417e321574c24f221c38f1fff2f856269c8db3#npm:8.12.0"],\
+            ["ws", "virtual:2152253c93d31e4d8417a5f39edf8af4ab51a58834c1b721bb29d556c24631bb11757365f7bf39abdf23c1a91db236760f786a0a97dec99ad102076ad835a4db#npm:8.12.0"],\
             ["@types/bufferutil", null],\
             ["@types/utf-8-validate", null],\
             ["bufferutil", null],\
