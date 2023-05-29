@@ -4667,10 +4667,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"bip44-constants@npm:^219.0.0":
-  version: 219.0.0
-  resolution: "bip44-constants@npm:219.0.0"
-  checksum: ba48388e7c6b97e2343d591f0f2513e774641f7f7c6dd303a9ef7d48eead38bd0510384b1315c4696cb0469bdcc5bfa532712914d3de4940d3e5d27a7008f1e9
+"bip44-constants@npm:^220.0.0":
+  version: 220.0.0
+  resolution: "bip44-constants@npm:220.0.0"
+  checksum: 102b855042320ef6645468e53f69bc32cc13fc44512ed76e3ec048fa2eb9830c7c65462b6a41cb6a347f6f1730584e668b733bc583d78bf0dcb57b47c8ece8fe
   languageName: node
   linkType: hard
 
@@ -5321,7 +5321,7 @@ __metadata:
     "@types/react-dom": 18.2.4
     "@vercel/postgres": ^0.3.0
     autoprefixer: 10.4.14
-    bip44-constants: ^219.0.0
+    bip44-constants: ^220.0.0
     bs58: ^5.0.0
     clsx: ^1.2.1
     copy-text-to-clipboard: ^3.1.0
