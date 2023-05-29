@@ -3650,18 +3650,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@wagmi/chains@npm:0.2.25":
-  version: 0.2.25
-  resolution: "@wagmi/chains@npm:0.2.25"
-  peerDependencies:
-    typescript: ">=4.9.4"
-  peerDependenciesMeta:
-    typescript:
-      optional: true
-  checksum: 342870d13b974359de016a7a7e5231cd4cc0dac29020eb3fc4e5947b0460f4d0f3387ff0e7bac7dd0abfea539580d7ea39297705cad83dede3ace040fdc3e230
-  languageName: node
-  linkType: hard
-
 "@wagmi/chains@npm:0.3.1":
   version: 0.3.1
   resolution: "@wagmi/chains@npm:0.3.1"
@@ -3674,9 +3662,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@wagmi/connectors@npm:1.0.5":
-  version: 1.0.5
-  resolution: "@wagmi/connectors@npm:1.0.5"
+"@wagmi/connectors@npm:2.0.0":
+  version: 2.0.0
+  resolution: "@wagmi/connectors@npm:2.0.0"
   dependencies:
     "@coinbase/wallet-sdk": ^3.6.6
     "@ledgerhq/connect-kit-loader": ^1.0.1
@@ -3688,7 +3676,7 @@ __metadata:
     abitype: 0.8.1
     eventemitter3: ^4.0.7
   peerDependencies:
-    "@wagmi/chains": ">=0.2.25"
+    "@wagmi/chains": ">=0.3.0"
     typescript: ">=4.9.4"
     viem: ~0.3.35
   peerDependenciesMeta:
@@ -3696,26 +3684,26 @@ __metadata:
       optional: true
     typescript:
       optional: true
-  checksum: a82697cfb90092e2c8ff3062593c7c2b0aebae4a9550ef2fba17c823e465cbdf95be12cd7f954254b2d2bb3b2e53aab16e6b8206363bff6d49b029b0376141a3
+  checksum: 3f7bb27cba2cef8660aef600c832688bbb4c083bf1666d9a6bbcf7b4b6aa1ca073f59125b6013aacbba8c4334f9ab6cea75288a99431baeeeb041935eb17940c
   languageName: node
   linkType: hard
 
-"@wagmi/core@npm:1.0.6":
-  version: 1.0.6
-  resolution: "@wagmi/core@npm:1.0.6"
+"@wagmi/core@npm:1.0.8":
+  version: 1.0.8
+  resolution: "@wagmi/core@npm:1.0.8"
   dependencies:
-    "@wagmi/chains": 0.2.25
-    "@wagmi/connectors": 1.0.5
-    abitype: 0.8.1
+    "@wagmi/chains": 0.3.1
+    "@wagmi/connectors": 2.0.0
+    abitype: 0.8.2
     eventemitter3: ^4.0.7
     zustand: ^4.3.1
   peerDependencies:
-    typescript: ">=4.9.4"
+    typescript: ^5.0.4
     viem: ~0.3.35
   peerDependenciesMeta:
     typescript:
       optional: true
-  checksum: 1800b844192329f0f2bce216ea82a231650650f7b380f6ee21ee9fdc4dfe5c5b005fd9014238cb71217d2878d2578f58838ff8aa40c8a90c299e04ad7a8bce8e
+  checksum: c32b311884997bc5832ff0d673e1a426dd92efd39fe243e8a330e4f002ce3c9b2f74782b92488146f252adfde31cc283f99338e9fa0205676cd656bb09fb968b
   languageName: node
   linkType: hard
 
@@ -5344,7 +5332,7 @@ __metadata:
     use-immer: ^0.9.0
     usehooks-ts: ^2.9.1
     viem: ^0.3.37
-    wagmi: ^1.0.6
+    wagmi: ^1.0.8
   languageName: unknown
   linkType: soft
 
@@ -10511,24 +10499,24 @@ __metadata:
   languageName: node
   linkType: hard
 
-"wagmi@npm:^1.0.6":
-  version: 1.0.6
-  resolution: "wagmi@npm:1.0.6"
+"wagmi@npm:^1.0.8":
+  version: 1.0.8
+  resolution: "wagmi@npm:1.0.8"
   dependencies:
     "@tanstack/query-sync-storage-persister": ^4.27.1
     "@tanstack/react-query": ^4.28.0
     "@tanstack/react-query-persist-client": ^4.28.0
-    "@wagmi/core": 1.0.6
-    abitype: 0.8.1
+    "@wagmi/core": 1.0.8
+    abitype: 0.8.2
     use-sync-external-store: ^1.2.0
   peerDependencies:
     react: ">=17.0.0"
-    typescript: ">=4.9.4"
+    typescript: ^5.0.4
     viem: ~0.3.35
   peerDependenciesMeta:
     typescript:
       optional: true
-  checksum: 5bec358f3411839f68457a67cd250aad83d6eb859796ce7b110b3b273b062e6813557461f8f2457aab8b247767e3411cf91d460285a3d748305241a670f84186
+  checksum: 02c82ef44df676aee150cf7e2660246b2af9b916388652eab73528efc04400f76790ef145632668638d562edcbd69bea619f5102179b5b8234a0a2e519b0a8cd
   languageName: node
   linkType: hard
 
