@@ -2169,25 +2169,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mysten/sui.js@npm:0.34.0":
-  version: 0.34.0
-  resolution: "@mysten/sui.js@npm:0.34.0"
-  dependencies:
-    "@mysten/bcs": 0.7.1
-    "@noble/curves": ^1.0.0
-    "@noble/hashes": ^1.3.0
-    "@scure/bip32": ^1.3.0
-    "@scure/bip39": ^1.2.0
-    "@suchipi/femver": ^1.0.0
-    jayson: ^4.0.0
-    rpc-websockets: ^7.5.1
-    superstruct: ^1.0.3
-    tweetnacl: ^1.0.3
-  checksum: e368fd225f0e0e7e133b6a15868432fa8ad3faede67947fa44574fab8926995a82450e7b8df721f4092967e279616f34200bf5466c1258e81a572a79a16255e9
-  languageName: node
-  linkType: hard
-
-"@mysten/sui.js@npm:^0.34.1":
+"@mysten/sui.js@npm:0.34.1, @mysten/sui.js@npm:^0.34.1":
   version: 0.34.1
   resolution: "@mysten/sui.js@npm:0.34.1"
   dependencies:
@@ -2205,13 +2187,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mysten/wallet-standard@npm:0.5.6":
-  version: 0.5.6
-  resolution: "@mysten/wallet-standard@npm:0.5.6"
+"@mysten/wallet-standard@npm:0.5.7":
+  version: 0.5.7
+  resolution: "@mysten/wallet-standard@npm:0.5.7"
   dependencies:
-    "@mysten/sui.js": 0.34.0
+    "@mysten/sui.js": 0.34.1
     "@wallet-standard/core": 1.0.3
-  checksum: b01069f85ae04eb15933d2cfe614ddfe4db8ca2dadeda31106a1537ba3a5e8dd4cda5e9c1a324469d3fc4136ae64e4fa043eb8abcae2aa9753e5a5d0e0fffc65
+  checksum: 34d2811e6fbb8cb2422b50133c947bb5ebc9a9c67e6dcbcbc7b796ab693bbc013e8a34c37d69be7a1679095e387c0467cedb0756f7eb5730b73ef3013202627d
   languageName: node
   linkType: hard
 
@@ -2931,14 +2913,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@suiet/wallet-kit@npm:^0.2.11":
-  version: 0.2.11
-  resolution: "@suiet/wallet-kit@npm:0.2.11"
+"@suiet/wallet-kit@npm:^0.2.12":
+  version: 0.2.12
+  resolution: "@suiet/wallet-kit@npm:0.2.12"
   dependencies:
-    "@mysten/sui.js": 0.34.0
-    "@mysten/wallet-standard": 0.5.6
+    "@mysten/sui.js": 0.34.1
+    "@mysten/wallet-standard": 0.5.7
     "@radix-ui/react-dialog": ^1.0.2
-    "@suiet/wallet-sdk": 0.2.9
+    "@suiet/wallet-sdk": 0.2.10
     "@svgr/rollup": ^6.5.1
     "@wallet-standard/core": 1.0.3
     buffer: ^6.0.3
@@ -2949,22 +2931,22 @@ __metadata:
     tweetnacl: ^1.0.3
     type-fest: ^3.2.0
   peerDependencies:
-    "@mysten/sui.js": 0.34.0
-  checksum: 2b921f8f841592d17c9f054827d45234552f0cc9427e9733e66c610f88724228bb19c7d9065f669e04454313a87f446443f89b49bfac9521a94021705002ce4f
+    "@mysten/sui.js": 0.34.1
+  checksum: ce74c5efd0c778d60cc1cf0a7b2d0e26f2f6715c54d13cd79a3f10329f207cd552c4da4211e04b927e0373de3fc5e98b18f5a00cc50b6d72f8919f789f07ad38
   languageName: node
   linkType: hard
 
-"@suiet/wallet-sdk@npm:0.2.9":
-  version: 0.2.9
-  resolution: "@suiet/wallet-sdk@npm:0.2.9"
+"@suiet/wallet-sdk@npm:0.2.10":
+  version: 0.2.10
+  resolution: "@suiet/wallet-sdk@npm:0.2.10"
   dependencies:
-    "@mysten/sui.js": 0.34.0
-    "@mysten/wallet-standard": 0.5.6
+    "@mysten/sui.js": 0.34.1
+    "@mysten/wallet-standard": 0.5.7
     "@noble/hashes": ^1.3.0
     tweetnacl: ^1.0.3
   peerDependencies:
-    "@mysten/sui.js": 0.34.0
-  checksum: 23c5d9952855a217a45a304391ae2b8476506e397a379bc37d5a22990ad135096d9e926fe4e471e960766dd21a01b845e7929c30092003a2b7cd382b6900564f
+    "@mysten/sui.js": 0.34.1
+  checksum: c5b67942ccd61a5052d6e1cc20854852ebb934e9d64989d03b999ee9f99b387fef33ed2d4cc687723a78fb917e300f2e4a1d269899d324731136901dd3bbd1a6
   languageName: node
   linkType: hard
 
@@ -5310,7 +5292,7 @@ __metadata:
     "@metamask/detect-provider": ^2.0.0
     "@mysten/sui.js": ^0.34.1
     "@rainbow-me/rainbowkit": ^1
-    "@suiet/wallet-kit": ^0.2.11
+    "@suiet/wallet-kit": ^0.2.12
     "@svgr/webpack": ^8.0.1
     "@swc-jotai/react-refresh": ^0.0.8
     "@tailwindcss/aspect-ratio": ^0.4.2
