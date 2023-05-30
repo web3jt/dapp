@@ -87,6 +87,7 @@ const atomRandGrids = atom<number[][]>((get) => {
   return grids;
 });
 
+
 const atomShapeCounter = atom((get) => {
   const randGrids = get(atomRandGrids);
   const egg = get(atomEgg);
@@ -460,6 +461,8 @@ export default function Page() {
   return (
     <div className="px-6 py-8 sm:py-12 lg:px-8">
       <div className="mx-auto max-w-2xl space-y-6">
+        <img src={svgEncoded} alt="xx" className="mx-auto" />
+
         {/* Seed */}
         <div>
           <label htmlFor="seed" className="block text-sm font-medium leading-6 text-gray-900 dark:text-white">
@@ -533,22 +536,62 @@ export default function Page() {
         <div className="space-y-3 font-mono text-black dark:text-white">
           {randGrids.map((row, y) => (
             <div key={y} className={clsx("grid grid-cols-16 text-center")}>
-              {row.map((v, x) => (
-                <div key={x} className={clsx(
-                  (x === 2 || y === 13) && "opacity-20",
-                  (y > 13 && x > 3 && x < 12) && "text-rose-500",
-                  (x < 2 && y < 2) && "text-yellow-500",
-                  (egg && x > 3 && 7 > x && y > 8 && 12 > y) && "text-rose-500",
-                  (x > 3 && 15 > x && y > 0 && 12 > y) && "text-blue-500",
-                )}>
-                  {v}
-                </div>
-              ))}
+              {row.map((v, x) => {
+                if (x === 2 || y === 13) return (
+                  <div key={x} className="opacity-20">
+                    .
+                  </div>
+                );
+
+                // title
+                if (y > 13 && x > 3 && x < 12) return (
+                  <div key={x} className="text-rose-500">
+                    P
+                  </div>
+                );
+
+                // highlight
+                if (x < 2 && y < 2) return (
+                  <div key={x} className="text-yellow-500">
+                    {shapeHighlightIdx}
+                  </div>
+                );
+
+                // egg
+                if (egg && x > 3 && 7 > x && y > 8 && 12 > y) return (
+                  <div key={x} className="text-rose-500">
+                    E
+                  </div>
+                );
+
+                // field
+                if (x > 3 && 15 > x && y > 0 && 12 > y) {
+                  if (v === shapeHighlightIdx) {
+                    return (
+                      <div key={x} className="text-green-500">
+                        {v}
+                      </div>
+                    );
+                  } else {
+                    return (
+                      <div key={x} className="text-blue-500">
+                        {v}
+                      </div>
+                    );
+                  }
+                }
+
+                return (
+                  <div key={x}>
+                    {v}
+                  </div>
+                )
+              })}
             </div>
           ))}
         </div>
 
-        <img src={svgEncoded} alt="xx" className="mx-auto" />
+
       </div>
 
       {/* <div className="mt-12 font-mono text-black dark:text-white font-xs">
