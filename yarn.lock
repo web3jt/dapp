@@ -5314,7 +5314,7 @@ __metadata:
     use-immer: ^0.9.0
     usehooks-ts: ^2.9.1
     viem: ^0.3.39
-    wagmi: ^1.0.8
+    wagmi: ^1.0.9
   languageName: unknown
   linkType: soft
 
@@ -10492,9 +10492,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"wagmi@npm:^1.0.8":
-  version: 1.0.8
-  resolution: "wagmi@npm:1.0.8"
+"wagmi@npm:^1.0.9":
+  version: 1.0.9
+  resolution: "wagmi@npm:1.0.9"
   dependencies:
     "@tanstack/query-sync-storage-persister": ^4.27.1
     "@tanstack/react-query": ^4.28.0
@@ -10509,7 +10509,7 @@ __metadata:
   peerDependenciesMeta:
     typescript:
       optional: true
-  checksum: 02c82ef44df676aee150cf7e2660246b2af9b916388652eab73528efc04400f76790ef145632668638d562edcbd69bea619f5102179b5b8234a0a2e519b0a8cd
+  checksum: 1777e6aadd033844beba753833ad7cb07d43410ec9463172a49cc83671521870d73efc31c930e77a10ea96fdb7d00f63f46b687754992d5e1bb7205ff06ebb6e
   languageName: node
   linkType: hard
 
