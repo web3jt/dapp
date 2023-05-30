@@ -126,6 +126,19 @@ const atomShapeCounter = atom((get) => {
   return counter;
 });
 
+const atomShapeMax = atom((get) => {
+  const shapeCounter = get(atomShapeCounter);
+
+  const _max = Math.max(shapeCounter.circle, shapeCounter.cross, shapeCounter.square, shapeCounter.triangle);
+
+  if (_max === shapeCounter.circle) return SHAPE_CIRCLE;
+  if (_max === shapeCounter.cross) return SHAPE_CROSS;
+  if (_max === shapeCounter.square) return SHAPE_SQUARE;
+  if (_max === shapeCounter.triangle) return SHAPE_TRIANGLE;
+
+  return SHAPE_CIRCLE;
+});
+
 
 const atomCssRows = atom<string[]>((get) => {
   const hue = get(atomHUE);
@@ -205,10 +218,10 @@ const atomCssRows = atom<string[]>((get) => {
   }`);
 
   _rows.push(`.gene:hover {
-      fill: var(--fr);
-      stroke: var(--fr);
-      stroke-width: 888;
-      opacity: 39%;
+    fill: var(--fr);
+    stroke: var(--fr);
+    stroke-width: 888;
+    opacity: 39%;
   }`);
 
   _rows.push(`.rand {
@@ -385,9 +398,90 @@ const atomDefsRows = atom<string[]>((get) => {
 
 
 const atomSvgRows = atom<string[]>((get) => {
+  const randGrids = get(atomRandGrids);
+
+  const egg = get(atomEgg);
+  const shapeHighlightIdx = get(atomShapeHighlightIdx);
+  const shapeHighlight = get(atomShapeHighlight);
+  const trayEggsAmount = get(atomTrayEggsAmount);
+  const shapeMax = get(atomShapeMax);
+
   const _rows: string[] = [];
   _rows.push(`<rect width="${CANVAS}" height="${CANVAS}" class="bg" filter="url(#paper)"/>`);
   _rows.push(`<g class="mCORNER"><rect width="${CANVAS}" height="${CANVAS}" fill="url(#corner)" class="x${CORNER_SCALE}" /></g>`);
+
+
+
+  randGrids.map((row, y) => {
+    row.map((v, x) => {
+
+      const _xy = `X${x}Y${y}`;
+      const _shape = _idx2shape(v);
+
+      // belt
+      if (x === 2) {
+        _rows.push(`<use href="#${shapeMax}" class="mX${x}Y${y} belt belt${15 - y}" />`);
+        return;
+      }
+      if (y === 13) {
+        _rows.push(`<use href="#${shapeMax}" class="mX${x}Y${y} belt belt${x}" />`);
+        return;
+      }
+
+      // title
+      if (y > 13 && x > 3 && x < 12) {
+        return;
+      }
+
+      // highlight
+      if (x < 2 && y < 2) {
+        return;
+      }
+
+      // egg
+      if (egg && x > 3 && 7 > x && y > 8 && 12 > y) {
+        return;
+      }
+
+      // field
+      if (x > 3 && 15 > x && y > 0 && 12 > y) {
+        if (v === shapeHighlightIdx) {
+          _rows.push(`<use href="#${_shape}" class="m${_xy} h${_xy} rand" />`);
+        } else {
+          _rows.push(`<use href="#${_shape}" class="m${_xy} gene" />`);
+        }
+        return;
+      }
+
+      // others
+      _rows.push(`<use href="#${_shape}" class="m${_xy} gene" />`);
+      return;
+    })
+  });
+
+  // highlight
+  _rows.push(`<g class="mX0Y0"><use href="#${shapeHighlight}" class="x2" /></g>`);
+
+
+
+
+
+
+
+
+  // egg
+  if (egg) {
+    _rows.push(`<g class="mX4Y9"><use href="#EGG" class="egg0 belt5 x3" /></g>`);
+  } else if (trayEggsAmount) {
+    for (let i = 0; i < trayEggsAmount; i++) {
+      _rows.push(`<g class="e${i}"><use href="#EGG" class="egg ex" /></g>`);
+    }
+    _rows.push(`<path d="M${PAD + 101500} ${PAD - 1000} h57000" class="tray" />`);
+  }
+
+  _rows.push(`<text x="${PAD + 42300}" y="${PAD + 147700}" class="t0">PROBABLY</text>`);
+
+
   return _rows;
 });
 
@@ -425,10 +519,6 @@ export default function Page() {
 
   const [egg] = useAtom(atomEgg);
 
-  const [cssRows] = useAtom(atomCssRows);
-  const [defsRows] = useAtom(atomDefsRows);
-  const [svgRows] = useAtom(atomSvgRows);
-
   const [trayEggsAmount] = useAtom(atomTrayEggsAmount);
 
   const [randGrids] = useAtom(atomRandGrids);
@@ -436,6 +526,10 @@ export default function Page() {
   const [shapeCounter] = useAtom(atomShapeCounter);
 
   const [svgEncoded] = useAtom(atomSvgEncoded);
+
+  const [cssRows] = useAtom(atomCssRows);
+  const [defsRows] = useAtom(atomDefsRows);
+  const [svgRows] = useAtom(atomSvgRows);
 
   const increase = () => {
     setId(id + BigInt(1));
@@ -461,7 +555,7 @@ export default function Page() {
   return (
     <div className="px-6 py-8 sm:py-12 lg:px-8">
       <div className="mx-auto max-w-2xl space-y-6">
-        <img src={svgEncoded} alt="xx" className="mx-auto" />
+        <img src={svgEncoded} alt="base64 encoded svg" />
 
         {/* Seed */}
         <div>
@@ -600,15 +694,15 @@ export default function Page() {
             {row}
           </div>
         ))}
-      </div>
+      </div> */}
 
-      <div className="mt-12 font-mono text-black dark:text-white font-xs">
+      {/* <div className="mt-12 font-mono text-black dark:text-white font-xs">
         {svgRows.map((row, idx) => (
           <div key={idx}>
             {row}
           </div>
         ))}
-      </div>
+      </div> */}
 
       <div className="mt-12 font-mono text-black dark:text-white font-xs">
         {cssRows.map((row, idx) => (
@@ -616,7 +710,7 @@ export default function Page() {
             {row}
           </div>
         ))}
-      </div> */}
+      </div>
     </div >
   )
 }
