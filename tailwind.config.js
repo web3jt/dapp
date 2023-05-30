@@ -17,6 +17,10 @@ module.exports = {
       fontFamily: {
         sans: ['Inter var', ...defaultTheme.fontFamily.sans],
       },
+
+      gridTemplateColumns: {
+        '16': 'repeat(16, minmax(0, 1fr))',
+      }
     },
   },
   plugins: [
@@ -24,4 +28,5 @@ module.exports = {
     require('@tailwindcss/typography'),
     require('@tailwindcss/aspect-ratio'),
   ],
+
 }
