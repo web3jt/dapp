@@ -129,7 +129,7 @@ const atomShapeCounter = atom((get) => {
 const atomCssRows = atom<string[]>((get) => {
   const hue = get(atomHUE);
 
-  const rows: string[] = [];
+  const _rows: string[] = [];
 
   let _rootRows: string[] = [];
 
@@ -154,19 +154,19 @@ const atomCssRows = atom<string[]>((get) => {
 
 
 
-  rows.push(`:root {${_rootRows.join('')}}`);
+  _rows.push(`:root {${_rootRows.join('')}}`);
 
   // opacity: 10 - 90
   for (let _p = 10; _p <= 100; _p += 10) {
-    rows.push(`.o${_p} { opacity: ${_p}%; }`);
+    _rows.push(`.o${_p} { opacity: ${_p}%; }`);
   }
 
   // bg
-  rows.push(`.bg {
+  _rows.push(`.bg {
     fill: var(--bg);
   }`);
 
-  rows.push(`.x2 {
+  _rows.push(`.x2 {
     fill: var(--fr);
     stroke: var(--fr);
     stroke-width: 1500;
@@ -176,17 +176,17 @@ const atomCssRows = atom<string[]>((get) => {
     transform: scale(2);
   }`);
 
-  rows.push(`.x2:hover {
+  _rows.push(`.x2:hover {
       fill: var(--fh);
       stroke: var(--fh);
       stroke-width: 1666;
   }`);
 
-  rows.push(`.x3 {
+  _rows.push(`.x3 {
       transform: scale(3);
   }`);
 
-  rows.push(`.belt {
+  _rows.push(`.belt {
     fill: transparent;
     stroke: var(--fr);
     stroke-width: 666;
@@ -194,7 +194,7 @@ const atomCssRows = atom<string[]>((get) => {
     stroke-linejoin: round;
   }`);
 
-  rows.push(`.gene {
+  _rows.push(`.gene {
     fill: transparent;
     stroke: var(--fr);
     stroke-width: 666;
@@ -203,14 +203,14 @@ const atomCssRows = atom<string[]>((get) => {
     opacity: 26%;
   }`);
 
-  rows.push(`.gene:hover {
+  _rows.push(`.gene:hover {
       fill: var(--fr);
       stroke: var(--fr);
       stroke-width: 888;
       opacity: 39%;
   }`);
 
-  rows.push(`.rand {
+  _rows.push(`.rand {
     fill: transparent;
     stroke: var(--fr);
     stroke-width: 666;
@@ -218,14 +218,14 @@ const atomCssRows = atom<string[]>((get) => {
     stroke-linejoin: round;
   }`);
 
-  rows.push(`.rand:hover {
+  _rows.push(`.rand:hover {
       fill: var(--fh);
       stroke: var(--fh);
       stroke-width: 888;
       animation: none;
   }`);
 
-  rows.push(`.egg {
+  _rows.push(`.egg {
     fill: var(--fr);
     stroke: var(--fr);
     stroke-width: 666;
@@ -233,7 +233,7 @@ const atomCssRows = atom<string[]>((get) => {
     stroke-linejoin: round;
   }`);
 
-  rows.push(`.tray {
+  _rows.push(`.tray {
       fill: var(--fr);
       stroke: var(--fr);
       stroke-width: 222;
@@ -242,7 +242,7 @@ const atomCssRows = atom<string[]>((get) => {
       opacity: 26%;
   }`);
 
-  rows.push(`.egg0 {
+  _rows.push(`.egg0 {
       fill: var(--b0);
       stroke: var(--b0);
       stroke-width: 666;
@@ -250,24 +250,24 @@ const atomCssRows = atom<string[]>((get) => {
       stroke-linejoin: round;
   }`);
 
-  rows.push(`.egg0:hover {
+  _rows.push(`.egg0:hover {
       stroke-width: 888;
   }`);
 
 
   // tray 11
   for (let i = 0; i < 11; i++) {
-    rows.push(`.e${i} {
+    _rows.push(`.e${i} {
       transform: translate(${PAD + 152000 - 5000 * i}px, ${PAD - 8000}px);
       opacity: ${20 + 3 * (i + 1)}%;
   }`);
-    rows.push(`.e${i}:hover {opacity: 100%;}`);
+    _rows.push(`.e${i}:hover {opacity: 100%;}`);
   }
 
-  rows.push(`.ex {transform: scale(0.6);}`);
+  _rows.push(`.ex {transform: scale(0.6);}`);
 
   // ?
-  rows.push(`
+  _rows.push(`
   .t {
     stroke-width: 666;
     stroke-linecap: round;
@@ -278,31 +278,31 @@ const atomCssRows = atom<string[]>((get) => {
     letter-spacing: 4607px;
   }`);
 
-  rows.push(`.t .t0 {
+  _rows.push(`.t .t0 {
     fill: var(--fr);
     opacity: 40%;
   }`);
 
-  rows.push(`.t .t1 {
+  _rows.push(`.t .t1 {
     fill: var(--fr);
     opacity: 60%;
   }`);
 
-  rows.push(`.t .tu {
+  _rows.push(`.t .tu {
     fill: transparent;
     stroke: var(--fr);
     opacity: 70%;
   }`);
 
-  rows.push(`.t:hover .t0 {
+  _rows.push(`.t:hover .t0 {
     opacity: 100%;
   }`);
 
-  rows.push(`.t:hover .t1 {
+  _rows.push(`.t:hover .t1 {
     opacity: 100%;
   }`);
 
-  rows.push(`.t:hover .tu {
+  _rows.push(`.t:hover .tu {
     opacity: 100%;
   }`);
 
@@ -310,7 +310,7 @@ const atomCssRows = atom<string[]>((get) => {
   // b0 ~ b15
   for (let i = 0; i < 16; i++) {
     const _dur = 0.06 * i;
-    rows.push(`.b${i} {animation: belt 3s ${_dur}s infinite cubic-bezier(0, 1, 1, 0);}`);
+    _rows.push(`.b${i} {animation: belt 3s ${_dur}s infinite cubic-bezier(0, 1, 1, 0);}`);
   }
 
   // belt keyframes
@@ -323,7 +323,7 @@ const atomCssRows = atom<string[]>((get) => {
   });
   _beltRows.push(`100% {fill: var(--b${BELT_V[0]});stroke: var(--b${BELT_V[0]});}`);
 
-  rows.push(`@keyframes belt {${_beltRows.join('')}}`);
+  _rows.push(`@keyframes belt {${_beltRows.join('')}}`);
 
 
   //     for (let [k, v] of BELT_V.entries()) {
@@ -332,7 +332,7 @@ const atomCssRows = atom<string[]>((get) => {
 
 
   // move to corner
-  rows.push(`.mCORNER {
+  _rows.push(`.mCORNER {
     -webkit-transform: translate(-${CORNER_OFFSET}px, -${CORNER_OFFSET}px);
     -moz-transform: translate(-${CORNER_OFFSET}px, -${CORNER_OFFSET}px);
     transform: translate(-${CORNER_OFFSET}px, -${CORNER_OFFSET}px);
@@ -348,12 +348,68 @@ const atomCssRows = atom<string[]>((get) => {
       _moveRows.push(`-moz-transform: translate(${xy.x}px, ${xy.y}px);`);
       _moveRows.push(`transform: translate(${xy.x}px, ${xy.y}px);`);
 
-      rows.push(`.mX${x}Y${y} {${_moveRows.join('')}}`);
+      _rows.push(`.mX${x}Y${y} {${_moveRows.join('')}}`);
     }
   }
 
 
-  return rows;
+  return _rows;
+});
+
+const atomDefsRows = atom<string[]>((get) => {
+  const _rows: string[] = [];
+
+  _rows.push(`<filter id="paper">`);
+  _rows.push(`<feTurbulence type="fractalNoise" baseFrequency="0.0005" result="noise" numOctaves="5" />`);
+  _rows.push(`<feDiffuseLighting in="noise" lighting-color="var(--bg)" surfaceScale="3">`);
+  _rows.push(`<feDistantLight azimuth="45" elevation="60" />`);
+  _rows.push(`</feDiffuseLighting>`);
+  _rows.push(`</filter>`);
+  _rows.push(`<radialGradient id="corner">`);
+  _rows.push(`<stop offset="0%" stop-color="transparent" />`);
+  _rows.push(`<stop offset="5%" stop-color="transparent" />`);
+  _rows.push(`<stop offset="100%" stop-color="black" />`);
+  _rows.push(`</radialGradient>`);
+  // _rows.push(``);
+
+  _rows.push(`<circle id="${SHAPE_CIRCLE}" cx="5000" cy="5000" r="3111" />`);
+  _rows.push(`<path id="${SHAPE_CROSS}" d="M2111 2111 L7889 7889 M2111 7889 L7889 2111" />`);
+  _rows.push(`<rect id="${SHAPE_SQUARE}" x="2000" y="2000" rx="100" ry="100" width="6000" height="6000" />`);
+  _rows.push(`<polygon id="${SHAPE_TRIANGLE}" points="5000 2111, 2111 7889, 7889 7889" />`);
+  _rows.push(`<path id="${SHAPE_UNDERLINE}" d="M2111 7889 L7889 7889" />`);
+  _rows.push(`<path id="EGG" d="M2111 5500 A2500 3000, 0, 0 0, 7889 5500 A2333 3700, 0, 0 0, 2111 5500" />`);
+
+  return _rows;
+});
+
+
+const atomSvgRows = atom<string[]>((get) => {
+  const _rows: string[] = [];
+  _rows.push(`<rect width="${CANVAS}" height="${CANVAS}" class="bg" filter="url(#paper)"/>`);
+  _rows.push(`<g class="mCORNER"><rect width="${CANVAS}" height="${CANVAS}" fill="url(#corner)" class="x${CORNER_SCALE}" /></g>`);
+  return _rows;
+});
+
+const atomSvgEncoded = atom((get) => {
+  const cssRows = get(atomCssRows);
+  const defsRows = get(atomDefsRows);
+  const svgRows = get(atomSvgRows);
+
+  const _rows: string[] = [];
+  _rows.push(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${CANVAS} ${CANVAS}">`);
+  _rows.push(`<style type="text/css">`);
+  _rows.push(cssRows.join(''));
+  _rows.push(`</style>`);
+  _rows.push(`<defs>`);
+  _rows.push(defsRows.join(''));
+  _rows.push(`</defs>`);
+  _rows.push(svgRows.join(''));
+  _rows.push(`</svg>`);
+
+  const rows = _rows.join('');
+
+  // return base64 encoded rows
+  return `data:image/svg+xml;base64,${btoa(rows)}`;
 });
 
 
@@ -368,13 +424,17 @@ export default function Page() {
 
   const [egg] = useAtom(atomEgg);
 
-  const [cssRaws] = useAtom(atomCssRows);
+  const [cssRows] = useAtom(atomCssRows);
+  const [defsRows] = useAtom(atomDefsRows);
+  const [svgRows] = useAtom(atomSvgRows);
 
   const [trayEggsAmount] = useAtom(atomTrayEggsAmount);
 
   const [randGrids] = useAtom(atomRandGrids);
 
   const [shapeCounter] = useAtom(atomShapeCounter);
+
+  const [svgEncoded] = useAtom(atomSvgEncoded);
 
   const increase = () => {
     setId(id + BigInt(1));
@@ -488,26 +548,32 @@ export default function Page() {
           ))}
         </div>
 
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox={`0 0 ${CANVAS} ${CANVAS} `}>
-          <style type="text/css">
-
-          </style>
-          <defs>
-
-          </defs>
-
-          <path d="M256 192H.1C2.7 117.9 41.3 52.9 99 14.1c13.3-8.9 30.8-4.3 39.9 8.8L256 192zm128-32c0-35.3 28.7-64 64-64h32c17.7 0 32 14.3 32 32s-14.3 32-32 32l-32 0v64c0 25.2-5.8 50.2-17 73.5s-27.8 44.5-48.6 62.3s-45.5 32-72.7 41.6S253.4 416 224 416s-58.5-5-85.7-14.6s-51.9-23.8-72.7-41.6s-37.3-39-48.6-62.3S0 249.2 0 224l224 0 160 0V160zM80 416a48 48 0 1 1 0 96 48 48 0 1 1 0-96zm240 48a48 48 0 1 1 96 0 48 48 0 1 1 -96 0z" />
-        </svg>
+        <img src={svgEncoded} alt="xx" className="mx-auto" />
       </div>
 
-
-      <div className="font-mono text-black dark:text-white font-xs">
-        {cssRaws.map((raw, idx) => (
+      {/* <div className="mt-12 font-mono text-black dark:text-white font-xs">
+        {defsRows.map((row, idx) => (
           <div key={idx}>
-            {raw}
+            {row}
           </div>
         ))}
       </div>
+
+      <div className="mt-12 font-mono text-black dark:text-white font-xs">
+        {svgRows.map((row, idx) => (
+          <div key={idx}>
+            {row}
+          </div>
+        ))}
+      </div>
+
+      <div className="mt-12 font-mono text-black dark:text-white font-xs">
+        {cssRows.map((row, idx) => (
+          <div key={idx}>
+            {row}
+          </div>
+        ))}
+      </div> */}
     </div >
   )
 }
