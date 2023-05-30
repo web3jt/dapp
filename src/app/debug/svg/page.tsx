@@ -704,13 +704,13 @@ export default function Page() {
         ))}
       </div> */}
 
-      <div className="mt-12 font-mono text-black dark:text-white font-xs">
+      {/* <div className="mt-12 font-mono text-black dark:text-white font-xs">
         {cssRows.map((row, idx) => (
           <div key={idx}>
             {row}
           </div>
         ))}
-      </div>
+      </div> */}
     </div >
   )
 }
