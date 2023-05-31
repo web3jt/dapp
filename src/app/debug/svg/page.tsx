@@ -59,16 +59,15 @@ const moveXY = (x: number, y: number) => {
 }
 
 const atomTrayEggsAmount = atom((get) => {
-  // const egg = get(atomEgg);
   const dna = get(atomDNA);
   const bnDNA = BigInt(dna);
-  const bn = bnDNA % BigInt(13);
-  return Number(bn);
+  return Number(bnDNA % BigInt(13));
 });
 
 const atomEgg = atom<boolean>((get) => {
-  const trayEggsAmount = get(atomTrayEggsAmount);
-  return 11 < trayEggsAmount;
+  const dna = get(atomDNA);
+  const bnDNA = BigInt(dna);
+  return bnDNA % BigInt(13) > BigInt(11);
 });
 
 const atomRandGrids = atom<number[][]>((get) => {
@@ -366,6 +365,7 @@ const atomCssRows = atom<string[]>((get) => {
     }
   }
 
+  _rows.push(`.layers {transform: translate(0px, 2678px);}`);
 
   return _rows;
 });
@@ -410,7 +410,10 @@ const atomSvgRows = atom<string[]>((get) => {
   _rows.push(`<rect width="${CANVAS}" height="${CANVAS}" class="bg" filter="url(#paper)"/>`);
   _rows.push(`<g class="mCORNER"><rect width="${CANVAS}" height="${CANVAS}" fill="url(#corner)" class="x${CORNER_SCALE}" /></g>`);
 
-
+  // layers?
+  if (!egg && trayEggsAmount > 0) {
+    _rows.push(`<g class="layers">`);
+  }
 
   randGrids.map((row, y) => {
     row.map((v, x) => {
@@ -455,19 +458,13 @@ const atomSvgRows = atom<string[]>((get) => {
 
       // others
       _rows.push(`<use href="#${_shape}" class="m${_xy} gene" />`);
+
       return;
     })
   });
 
   // highlight
   _rows.push(`<g class="mX0Y0"><use href="#${shapeHighlight}" class="x2" /></g>`);
-
-
-
-
-
-
-
 
   // egg
   if (egg) {
@@ -494,6 +491,10 @@ const atomSvgRows = atom<string[]>((get) => {
 
   _rows.push(`</g>`);
 
+  // layers?
+  if (!egg && trayEggsAmount > 0) {
+    _rows.push(`</g>`);
+  }
 
   return _rows;
 });
@@ -513,6 +514,8 @@ const atomSvgEncoded = atom((get) => {
   _rows.push(`</defs>`);
   _rows.push(svgRows.join(''));
   _rows.push(`</svg>`);
+
+
 
   const rows = _rows.join('');
 
