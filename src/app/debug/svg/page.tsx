@@ -479,7 +479,20 @@ const atomSvgRows = atom<string[]>((get) => {
     _rows.push(`<path d="M${PAD + 101500} ${PAD - 1000} h57000" class="tray" />`);
   }
 
+
+  _rows.push(`<g class="t">`);
   _rows.push(`<text x="${PAD + 42300}" y="${PAD + 147700}" class="t0">PROBABLY</text>`);
+
+  if (egg) {
+    _rows.push(`<text x="${PAD + 42300}" y="${PAD + 157700}" class="t1">.IS/PASS</text>`);
+  } else {
+    _rows.push(`<text x="${PAD + 42300}" y="${PAD + 157700}" class="t1">.IS/</text>`);
+    for (let x = 8; x < 12; x++) {
+      _rows.push(`<use href="#${SHAPE_UNDERLINE}" class="mX${x}Y15 tu" />`);
+    }
+  }
+
+  _rows.push(`</g>`);
 
 
   return _rows;
@@ -633,7 +646,7 @@ export default function Page() {
               {row.map((v, x) => {
                 if (x === 2 || y === 13) return (
                   <div key={x} className="opacity-20">
-                    .
+                    B
                   </div>
                 );
 
