@@ -5313,7 +5313,7 @@ __metadata:
     typescript: 5.0.4
     use-immer: ^0.9.0
     usehooks-ts: ^2.9.1
-    viem: ^0.3.40
+    viem: ^0.3.41
     wagmi: ^1.0.9
   languageName: unknown
   linkType: soft
@@ -10475,9 +10475,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"viem@npm:^0.3.40":
-  version: 0.3.40
-  resolution: "viem@npm:0.3.40"
+"viem@npm:^0.3.41":
+  version: 0.3.41
+  resolution: "viem@npm:0.3.41"
   dependencies:
     "@adraffy/ens-normalize": 1.9.0
     "@noble/curves": 1.0.0
@@ -10488,7 +10488,7 @@ __metadata:
     abitype: 0.8.2
     isomorphic-ws: 5.0.0
     ws: 8.12.0
-  checksum: ce824b05e6f2926eb6d65115963e85e59478a8433bcf6f759d3a115bdf281e4bc7ebef15780834429d5b6f513c1ce371b013d2a68d7e79b0065cdb684e029526
+  checksum: c2613b13b6275005ec21b502c39ae794219855ce3c5e333c471a724cc86d44a4513a347f1befa19b4fccd0ee453827ff2a3fd8243e9e1e2fb0fdd6799717dd2d
   languageName: node
   linkType: hard
 
