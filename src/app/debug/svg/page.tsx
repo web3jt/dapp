@@ -33,21 +33,25 @@ const atomSeed = atom(BigInt(1));
 
 const atomDNA = atom((get) => {
   const seed = get(atomSeed);
-  return keccak256(encodePacked(['uint256'], [seed]))
+  return keccak256(encodePacked(['uint256'], [seed]));
 });
 
 const atomHUE = atom((get) => {
-  const dna = get(atomDNA);
+  const seed = get(atomSeed);
+  const dna = keccak256(encodePacked(['uint256'], [seed]));
   return BigInt(dna) % BigInt(360);
 });
 
 const atomShapeHighlightIdx = atom((get) => {
-  const dna = get(atomDNA);
+  const seed = get(atomSeed);
+  const dna = keccak256(encodePacked(['uint256'], [seed]));
   return Number(BigInt(dna) % BigInt(4));
 });
 
 const atomShapeHighlight = atom((get) => {
-  const idx = get(atomShapeHighlightIdx);
+  const seed = get(atomSeed);
+  const dna = keccak256(encodePacked(['uint256'], [seed]));
+  const idx = Number(BigInt(dna) % BigInt(4));
   return _idx2shape(idx);
 });
 
@@ -59,19 +63,22 @@ const moveXY = (x: number, y: number) => {
 }
 
 const atomTrayEggsAmount = atom((get) => {
-  const dna = get(atomDNA);
+  const seed = get(atomSeed);
+  const dna = keccak256(encodePacked(['uint256'], [seed]));
   const bnDNA = BigInt(dna);
   return Number(bnDNA % BigInt(13));
 });
 
 const atomEgg = atom<boolean>((get) => {
-  const dna = get(atomDNA);
+  const seed = get(atomSeed);
+  const dna = keccak256(encodePacked(['uint256'], [seed]));
   const bnDNA = BigInt(dna);
   return bnDNA % BigInt(13) > BigInt(11);
 });
 
 const atomRandGrids = atom<number[][]>((get) => {
-  const dna = get(atomDNA);
+  const seed = get(atomSeed);
+  const dna = keccak256(encodePacked(['uint256'], [seed]));
 
   let grids: number[][] = [];
   for (let x = 0; x < GRIDS; x++) {
@@ -140,7 +147,14 @@ const atomShapeMax = atom((get) => {
 
 
 const atomCssRows = atom<string[]>((get) => {
+  const seed = get(atomSeed);
+  const dna = keccak256(encodePacked(['uint256'], [seed]));
+  const bnDNA = BigInt(dna);
+
+
   const hue = get(atomHUE);
+  const hightlightIdx = get(atomShapeHighlightIdx);
+  const randGrids = get(atomRandGrids);
 
   const _rows: string[] = [];
 
@@ -342,6 +356,43 @@ const atomCssRows = atom<string[]>((get) => {
   //     for (let [k, v] of BELT_V.entries()) {
   //         at4belt.push(`${BELT_STEP.mul(k).toString()}% {fill: var(--b${v});stroke: var(--b${v});}\n`);
   //     }
+
+  // hightlight
+  let _highlightCounter: number = 0;
+  randGrids.map((row, y) => {
+    row.map((v, x) => {
+      const _xy = `X${x}Y${y}`;
+
+      if (v === hightlightIdx) {
+        _highlightCounter++;
+
+        const _d = Number(BigInt(keccak256(encodePacked(['bytes32', 'uint256'], [dna, BigInt(_highlightCounter)]))) % BigInt(5) + BigInt(6));
+        const _a: number[] = [];
+
+        for (let i = 0; i < _d; i++) {
+          const _rN = Number(BigInt(keccak256(encodePacked(['bytes32', 'uint8', 'uint8', 'uint256'], [dna, x, y, BigInt(_highlightCounter)]))) % BigInt(3));
+
+          if (0 === _a.length) {
+            _a.push(_rN);
+            break;
+          } else if (_d === _a.length + 1) {
+            if (_rN !== _a[0] && _rN !== _a[_a.length - 1]) {
+              _a.push(_rN);
+              break;
+            }
+          } else {
+            if (_rN !== _a[_a.length - 1]) {
+              _a.push(_rN);
+              break;
+            }
+          }
+        }
+
+        let _highlightRows: string[] = [];
+      }
+    })
+  });
+
 
 
   // move to corner
