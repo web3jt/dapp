@@ -2169,25 +2169,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mysten/sui.js@npm:0.34.1":
-  version: 0.34.1
-  resolution: "@mysten/sui.js@npm:0.34.1"
-  dependencies:
-    "@mysten/bcs": 0.7.1
-    "@noble/curves": ^1.0.0
-    "@noble/hashes": ^1.3.0
-    "@scure/bip32": ^1.3.0
-    "@scure/bip39": ^1.2.0
-    "@suchipi/femver": ^1.0.0
-    jayson: ^4.0.0
-    rpc-websockets: ^7.5.1
-    superstruct: ^1.0.3
-    tweetnacl: ^1.0.3
-  checksum: 5bb5b69ae97ac9292f0ac29cb1eb48dfce73423c4479360764660b0df6eed7bdafd7ebd7f78bd91be9d72b18ba13fde715e0dac6b868e9122091be0e73349038
-  languageName: node
-  linkType: hard
-
-"@mysten/sui.js@npm:^0.35.1":
+"@mysten/sui.js@npm:0.35.1, @mysten/sui.js@npm:^0.35.1":
   version: 0.35.1
   resolution: "@mysten/sui.js@npm:0.35.1"
   dependencies:
@@ -2204,13 +2186,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mysten/wallet-standard@npm:0.5.7":
-  version: 0.5.7
-  resolution: "@mysten/wallet-standard@npm:0.5.7"
+"@mysten/wallet-standard@npm:0.5.9":
+  version: 0.5.9
+  resolution: "@mysten/wallet-standard@npm:0.5.9"
   dependencies:
-    "@mysten/sui.js": 0.34.1
+    "@mysten/sui.js": 0.35.1
     "@wallet-standard/core": 1.0.3
-  checksum: 34d2811e6fbb8cb2422b50133c947bb5ebc9a9c67e6dcbcbc7b796ab693bbc013e8a34c37d69be7a1679095e387c0467cedb0756f7eb5730b73ef3013202627d
+  checksum: 3e63d812d34c135c21125cdc8622dace78c581aa7b1bb87ac8e127edd9dcc85229336315e43c0f213b3eb9e4867f63369814da703de18047013d58b8e871df7c
   languageName: node
   linkType: hard
 
@@ -2942,14 +2924,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@suiet/wallet-kit@npm:^0.2.12":
-  version: 0.2.12
-  resolution: "@suiet/wallet-kit@npm:0.2.12"
+"@suiet/wallet-kit@npm:^0.2.13":
+  version: 0.2.13
+  resolution: "@suiet/wallet-kit@npm:0.2.13"
   dependencies:
-    "@mysten/sui.js": 0.34.1
-    "@mysten/wallet-standard": 0.5.7
+    "@mysten/sui.js": 0.35.1
+    "@mysten/wallet-standard": 0.5.9
     "@radix-ui/react-dialog": ^1.0.2
-    "@suiet/wallet-sdk": 0.2.10
+    "@suiet/wallet-sdk": 0.2.11
     "@svgr/rollup": ^6.5.1
     "@wallet-standard/core": 1.0.3
     buffer: ^6.0.3
@@ -2960,22 +2942,24 @@ __metadata:
     tweetnacl: ^1.0.3
     type-fest: ^3.2.0
   peerDependencies:
-    "@mysten/sui.js": 0.34.1
-  checksum: ce74c5efd0c778d60cc1cf0a7b2d0e26f2f6715c54d13cd79a3f10329f207cd552c4da4211e04b927e0373de3fc5e98b18f5a00cc50b6d72f8919f789f07ad38
+    "@mysten/sui.js": 0.35.1
+    "@mysten/wallet-standard": 0.5.9
+  checksum: c92ba6d556f781f01136f829ade2ab89f22acbf6682709cbf352742f32f80bf71c5bb04dffc2180c5f4026fa65c672ad8dfec7e4b5f723d1887f9d4833821c45
   languageName: node
   linkType: hard
 
-"@suiet/wallet-sdk@npm:0.2.10":
-  version: 0.2.10
-  resolution: "@suiet/wallet-sdk@npm:0.2.10"
+"@suiet/wallet-sdk@npm:0.2.11":
+  version: 0.2.11
+  resolution: "@suiet/wallet-sdk@npm:0.2.11"
   dependencies:
-    "@mysten/sui.js": 0.34.1
-    "@mysten/wallet-standard": 0.5.7
+    "@mysten/sui.js": 0.35.1
+    "@mysten/wallet-standard": 0.5.9
     "@noble/hashes": ^1.3.0
     tweetnacl: ^1.0.3
   peerDependencies:
-    "@mysten/sui.js": 0.34.1
-  checksum: c5b67942ccd61a5052d6e1cc20854852ebb934e9d64989d03b999ee9f99b387fef33ed2d4cc687723a78fb917e300f2e4a1d269899d324731136901dd3bbd1a6
+    "@mysten/sui.js": 0.35.1
+    "@mysten/wallet-standard": 0.5.9
+  checksum: 0080d1999ec8f75e67ad9d0072f709a6b94180b68653f1b2146c5bb26df79ad4ae3d6103b47b74dbc5bcbad796d8069ca6e7e067e7f2078584e6c676aa16d522
   languageName: node
   linkType: hard
 
@@ -5334,7 +5318,7 @@ __metadata:
     "@metamask/detect-provider": ^2.0.0
     "@mysten/sui.js": ^0.35.1
     "@rainbow-me/rainbowkit": ^1
-    "@suiet/wallet-kit": ^0.2.12
+    "@suiet/wallet-kit": ^0.2.13
     "@svgr/webpack": ^8.0.1
     "@swc-jotai/react-refresh": ^0.0.8
     "@tailwindcss/aspect-ratio": ^0.4.2
@@ -7351,28 +7335,6 @@ __metadata:
   bin:
     jayson: bin/jayson.js
   checksum: 4218a4829168a4927e657bde953ff9699f02af561ec72edcc7464446772b50a0c5c7e9f11d4ee5976e4794d0f1040c0f351a0fee51c542bf8492743d30b7a971
-  languageName: node
-  linkType: hard
-
-"jayson@npm:^4.0.0":
-  version: 4.1.0
-  resolution: "jayson@npm:4.1.0"
-  dependencies:
-    "@types/connect": ^3.4.33
-    "@types/node": ^12.12.54
-    "@types/ws": ^7.4.4
-    JSONStream: ^1.3.5
-    commander: ^2.20.3
-    delay: ^5.0.0
-    es6-promisify: ^5.0.0
-    eyes: ^0.1.8
-    isomorphic-ws: ^4.0.1
-    json-stringify-safe: ^5.0.1
-    uuid: ^8.3.2
-    ws: ^7.4.5
-  bin:
-    jayson: bin/jayson.js
-  checksum: 86464322fbdc6db65d2bb4fc278cb6c86fad5c2a506065490d39459f09ba0d30f2b4fb740b33828a1424791419b6c8bd295dc54d361a4ad959bf70cc62b1ca7e
   languageName: node
   linkType: hard
 
