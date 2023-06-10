@@ -3644,6 +3644,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@wagmi/chains@npm:1.0.0":
+  version: 1.0.0
+  resolution: "@wagmi/chains@npm:1.0.0"
+  peerDependencies:
+    typescript: ">=5.0.4"
+  peerDependenciesMeta:
+    typescript:
+      optional: true
+  checksum: b2e6b84946a276804948819b378ecf55b0cd3be762721f9b2cc5e82359d2053ab3b7b7edb6e32453c8fd001b4107a61a792c481f83f9edf04483666dfe910747
+  languageName: node
+  linkType: hard
+
 "@wagmi/connectors@npm:2.0.0":
   version: 2.0.0
   resolution: "@wagmi/connectors@npm:2.0.0"
@@ -4209,6 +4221,19 @@ __metadata:
     zod:
       optional: true
   checksum: ec9ade7e2b54f6d22b5dc1688b7fa71958361f595b94bbde0a3fa5e53742400e587bb99ba6df7d041ebc229c766df4263d9a15fe523941112fe111b07848a05d
+  languageName: node
+  linkType: hard
+
+"abitype@npm:0.8.7":
+  version: 0.8.7
+  resolution: "abitype@npm:0.8.7"
+  peerDependencies:
+    typescript: ">=5.0.4"
+    zod: ^3 >=3.19.1
+  peerDependenciesMeta:
+    zod:
+      optional: true
+  checksum: 4351466808969bcc73e5c535c3d96bb687ee2be0bccd48eba024c47e6cc248f0c8bd368f9e42dab35d39923e63b1349ade470f72812de27127968caf1a1426c9
   languageName: node
   linkType: hard
 
@@ -5313,7 +5338,7 @@ __metadata:
     typescript: 5.1.3
     use-immer: ^0.9.0
     usehooks-ts: ^2.9.1
-    viem: ^0.3.44
+    viem: ^0.3.50
     wagmi: ^1.0.9
   languageName: unknown
   linkType: soft
@@ -10475,20 +10500,20 @@ __metadata:
   languageName: node
   linkType: hard
 
-"viem@npm:^0.3.44":
-  version: 0.3.44
-  resolution: "viem@npm:0.3.44"
+"viem@npm:^0.3.50":
+  version: 0.3.50
+  resolution: "viem@npm:0.3.50"
   dependencies:
     "@adraffy/ens-normalize": 1.9.0
     "@noble/curves": 1.0.0
     "@noble/hashes": 1.3.0
     "@scure/bip32": 1.3.0
     "@scure/bip39": 1.2.0
-    "@wagmi/chains": 0.3.1
-    abitype: 0.8.2
+    "@wagmi/chains": 1.0.0
+    abitype: 0.8.7
     isomorphic-ws: 5.0.0
     ws: 8.12.0
-  checksum: 327a78860f65fb276d2f03f3406b73ae23857ae671356a2d8b17c8e16af07238dd90b59f2580342fecae5c78bdd5c5cd86a39852ede5e4eb9c97d61def3a7f48
+  checksum: b8bb1fe5fea4d503f722a30876b3811a205df3e7ae16443eb1ebd237a2a6b600ec3cf622143d79ef12a5f24fc9d4c77892d29728ef88643710f0a79a41abc470
   languageName: node
   linkType: hard
 
