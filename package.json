@@ -28,7 +28,7 @@
     "eslint": "8.41.0",
     "eslint-config-next": "13.4.4",
     "immer": "^10.0.2",
-    "jotai": "^2.1.0",
+    "jotai": "^2.1.1",
     "jotai-immer": "^0.2.0",
     "moment": "^2.29.4",
     "next": "^13.4.4",
