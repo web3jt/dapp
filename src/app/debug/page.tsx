@@ -8,6 +8,9 @@ import Features2 from '@/components/debug/Features2';
 import Subscribe from '@/components/debug/Subscribe';
 import FAQ from '@/components/debug/FAQ';
 
+
+
+
 export default function Page() {
   return (
     <>
