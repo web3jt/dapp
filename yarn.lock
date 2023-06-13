@@ -2298,12 +2298,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@neondatabase/serverless@npm:0.4.3":
-  version: 0.4.3
-  resolution: "@neondatabase/serverless@npm:0.4.3"
+"@neondatabase/serverless@npm:0.4.11":
+  version: 0.4.11
+  resolution: "@neondatabase/serverless@npm:0.4.11"
   dependencies:
-    "@types/pg": ^8.6.6
-  checksum: 9d7e2af678f829115c7b216efc5a561ed2373c4c829b9b88ffa7f913d7c627d2960f0ad1832187c9c22883696e4c309b647eb05d7dc9d5d74ebaf33026ff492c
+    "@types/pg": 8.6.6
+  checksum: a99519cc93e7f870401605690670a804252353bf0e05df4d188abdedc7e4b62c872157021d0487214feea2e05183fd39780cb640e1e3cf7b5be18afd1d1866c1
   languageName: node
   linkType: hard
 
@@ -5319,7 +5319,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/pg@npm:^8.6.6":
+"@types/pg@npm:8.6.6":
   version: 8.6.6
   resolution: "@types/pg@npm:8.6.6"
   dependencies:
@@ -5497,15 +5497,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vercel/postgres@npm:^0.3.0":
-  version: 0.3.0
-  resolution: "@vercel/postgres@npm:0.3.0"
+"@vercel/postgres@npm:^0.3.1":
+  version: 0.3.1
+  resolution: "@vercel/postgres@npm:0.3.1"
   dependencies:
-    "@neondatabase/serverless": 0.4.3
+    "@neondatabase/serverless": 0.4.11
     bufferutil: 4.0.7
     utf-8-validate: 6.0.3
     ws: 8.13.0
-  checksum: 5ad08710dcf2219eeefcaeab2163aad1ee94abd764fcde81970f375ed893991860c66ea1103dc1e8057bf05738bb98f66dbcbc7b253d30ab66c39af95a2c099e
+  checksum: 5e7e5c4dba75c1562a3694801b13c5fa8ce23d3831dc60ffa8a77b145279486e3f5d0ed3f6520c42033c478e4da2b3dff446f7b85dfd4c1b5fc6a30ae4c8eea6
   languageName: node
   linkType: hard
 
@@ -7199,7 +7199,7 @@ __metadata:
     "@types/node": ^20.3.0
     "@types/react": 18.2.12
     "@types/react-dom": 18.2.4
-    "@vercel/postgres": ^0.3.0
+    "@vercel/postgres": ^0.3.1
     autoprefixer: 10.4.14
     bip44-constants: ^223.0.0
     bs58: ^5.0.0
