@@ -30,7 +30,7 @@
     "eslint-config-next": "13.4.5",
     "framer-motion": "^10.12.16",
     "immer": "^10.0.2",
-    "jotai": "^2.1.1",
+    "jotai": "^2.2.0",
     "jotai-immer": "^0.2.0",
     "moment": "^2.29.4",
     "next": "^13.4.5",
