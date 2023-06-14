@@ -15,7 +15,7 @@
     "@mysten/sui.js": "^0.34.1",
     "@nextui-org/react": "dev-v2",
     "@rainbow-me/rainbowkit": "^1",
-    "@suiet/wallet-kit": "^0.2.12",
+    "@suiet/wallet-kit": "^0.2.13",
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "@tailwindcss/forms": "^0.5.3",
     "@tailwindcss/typography": "^0.5.9",
