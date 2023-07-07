@@ -1,7 +1,5 @@
 *.remark
 
-
-
 .firebase
 .yarn
 .yarnrc.yml
