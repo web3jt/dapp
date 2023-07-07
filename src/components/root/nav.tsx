@@ -77,7 +77,7 @@ const atomNavigations = atom((get) => {
           cols: [
             { name: 'Base64', href: '/tools/base64' },
             { name: 'Base58', href: '/tools/base58' },
-            { name: '#Ornare', href: '#' },
+            { name: 'Javascript Minify', href: '/tools/js-minify' },
             { name: '#Egestas', href: '#' },
             { name: '#Bibendum', href: '#' },
           ],

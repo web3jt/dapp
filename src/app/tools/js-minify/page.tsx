@@ -9,7 +9,6 @@ const atomHorizontal = atom<boolean>(true);
 const atomEncoded = atom<string>('');
 const atomDecoded = atom<string>('');
 const atomEncodedError = atom<string>('');
-const atomDecodedError = atom<string>('');
 
 
 export default function Page() {
@@ -17,7 +16,6 @@ export default function Page() {
   const [encoded, setEncoded] = useAtom(atomEncoded);
   const [decoded, setDecoded] = useAtom(atomDecoded);
   const [encodedError, setEncodedError] = useAtom(atomEncodedError);
-  const [decodedError, setDecodedError] = useAtom(atomDecodedError);
 
   const handleHorizontalOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setHorizontal(e.target.checked);
@@ -36,25 +34,11 @@ export default function Page() {
     }
   }
 
-  const handleDecodedChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    const value = e.target.value;
-    setDecoded(value);
-    setDecodedError('');
-    try {
-
-      const encoded = bs58.encode(Buffer.from(value));
-      setEncoded(encoded);
-    } catch (err: any) {
-      setDecodedError(err.message);
-    }
-  }
-
-
   return (
     <>
       <Container className="py-12 sm:py-20">
         <h2 className="text-base font-semibold leading-7 text-gray-900 dark:text-white">
-          Base58 Decoder/Encoder
+          Javascript Minify (under construction...)
         </h2>
         <div className="mt-1 sm:col-span-4">
           <div className="mt-2 relative flex gap-x-3">
@@ -85,7 +69,7 @@ export default function Page() {
             horizontal ? "col-span-3" : "col-span-full"
           )}>
             <label htmlFor="raws" className="block text-sm font-medium leading-6 text-gray-900 dark:text-white select-none">
-              Encoded
+              Javascript (string)
             </label>
             <div className="mt-1">
               <textarea
@@ -118,7 +102,7 @@ export default function Page() {
             horizontal ? "col-span-3" : "col-span-full"
           )}>
             <label htmlFor="raws" className="block text-sm font-medium leading-6 text-gray-900 dark:text-white select-none">
-              Decoded (string)
+              Minified (string)
             </label>
             <div className="mt-1">
               <textarea
@@ -136,15 +120,10 @@ export default function Page() {
                   "dark:bg-white/10",
                 )}
                 rows={horizontal ? 11 : 4}
-                value={decoded}
-                onChange={handleDecodedChange}
+                defaultValue={decoded}
+                readOnly
               />
             </div>
-            {decodedError && (
-              <p className="mt-1 text-sm leading-6 text-rose-600 dark:text-rose-400" id="decoded-hint">
-                {decodedError}
-              </p>
-            )}
           </div>
         </Grid6>
 
