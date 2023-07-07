@@ -20,7 +20,7 @@
     "@tailwindcss/typography": "^0.5.9",
     "@vercel/postgres": "^0.3.0",
     "autoprefixer": "10.4.14",
-    "bip44-constants": "^218.0.0",
+    "bip44-constants": "^228.0.0",
     "bs58": "^5.0.0",
     "clsx": "^1.2.1",
     "copy-text-to-clipboard": "^3.1.0",
@@ -41,7 +41,7 @@
     "react-dom": "18.2.0",
     "sharp": "^0.32.1",
     "tailwindcss": "3.3.2",
-    "typescript": "5.0.4",
+    "typescript": "^5.1.6",
     "use-immer": "^0.9.0",
     "usehooks-ts": "^2.9.1",
     "viem": "^0.3.31",
@@ -51,8 +51,8 @@
     "@svgr/webpack": "^8.0.1",
     "@swc-jotai/react-refresh": "^0.0.8",
     "@types/node": "^20.2.3",
-    "@types/react": "18.2.6",
-    "@types/react-dom": "18.2.4"
+    "@types/react": "^18.2.14",
+    "@types/react-dom": "^18.2.6"
   },
   "packageManager": "yarn@3.5.1"
 }
