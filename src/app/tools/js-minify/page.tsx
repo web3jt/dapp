@@ -3,7 +3,7 @@
 import clsx from 'clsx';
 import { atom, useAtom } from 'jotai';
 import Container, { Grid6 } from '@/components/root/container';
-import bs58 from 'bs58';
+import { minify } from 'terser';
 
 const atomHorizontal = atom<boolean>(true);
 const atomEncoded = atom<string>('');
@@ -21,14 +21,22 @@ export default function Page() {
     setHorizontal(e.target.checked);
   }
 
-  const handleEncodedChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+  const handleEncodedChange = async (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const value = e.target.value;
     setEncoded(value);
     setEncodedError('');
+
     try {
-      const bytes = bs58.decode(value);
-      const decoded = Buffer.from(bytes).toString();
-      setDecoded(decoded);
+      const minifiedJS = await minify(value, {
+        toplevel: true,
+        compress: {
+          passes: 5,
+          unsafe: true,
+          pure_getters: true
+        },
+      });
+
+      setDecoded(minifiedJS.code || '');
     } catch (err: any) {
       setEncodedError(err.message);
     }
