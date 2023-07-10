@@ -1348,10 +1348,10 @@
     "@mysten/sui.js" "0.36.0"
     "@wallet-standard/core" "1.0.3"
 
-"@neondatabase/serverless@0.4.15":
-  version "0.4.15"
-  resolved "https://registry.yarnpkg.com/@neondatabase/serverless/-/serverless-0.4.15.tgz#8feb185fb7cc3e3ea2325a7f64cac31515e0e09c"
-  integrity sha512-fTTcnfj6z4gpOREF3fbzPYltt5vJKB3G9OdfV4diiO45mBAi//0n/ViOirYm4bGxi0luzszf9jGe3BP6hsQ7Ig==
+"@neondatabase/serverless@0.4.19":
+  version "0.4.19"
+  resolved "https://registry.yarnpkg.com/@neondatabase/serverless/-/serverless-0.4.19.tgz#8df963048838560f9dca84a7af3e5b2efa4160ad"
+  integrity sha512-atzpP9uBLrWPokXZdVy2iNPmmxVx51HXhrEObDb4KXmsyGEkGhCcb6cs51LA/oyXwjJUeB4AreOoVgMcPAIv5g==
   dependencies:
     "@types/pg" "8.6.6"
 
@@ -2343,12 +2343,12 @@
   resolved "https://registry.yarnpkg.com/@vanilla-extract/sprinkles/-/sprinkles-1.5.0.tgz#c921183ae518bb484299c2dc81f2acefd91c3dbe"
   integrity sha512-W58f2Rzz5lLmk0jbhgStVlZl5wEiPB1Ur3fRvUaBM+MrifZ3qskmFq/CiH//fEYeG5Dh9vF1qRviMMH46cX9Nw==
 
-"@vercel/postgres@^0.3.0":
-  version "0.3.2"
-  resolved "https://registry.yarnpkg.com/@vercel/postgres/-/postgres-0.3.2.tgz#82735001f1620fab53b216b2dcdf0ffc918154dd"
-  integrity sha512-FZ/EWoxdALIh+N0wq3NWSA+YWm50MTBo75xOpVGSsv0zcgkt39kSSzO74H1graq+k/5dWyuadTVCnmlT5IbFYQ==
+"@vercel/postgres@^0.4.0":
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/@vercel/postgres/-/postgres-0.4.0.tgz#e5683f3a29e49f23569937751cb0749f15915bb5"
+  integrity sha512-GemRRKvLi90BC511WQzt5tfVLPNOQ9eNbbbaPquSgasm5ogfWLtjJSbNUD4jYEbs9IxbNovKqr0H0CAjJzOAyw==
   dependencies:
-    "@neondatabase/serverless" "0.4.15"
+    "@neondatabase/serverless" "0.4.19"
     bufferutil "4.0.7"
     utf-8-validate "6.0.3"
     ws "8.13.0"
