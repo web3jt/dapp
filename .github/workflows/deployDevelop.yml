@@ -2,12 +2,9 @@ name: Deploy To Preview
 
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - develop
-  pull_request:
-    branches:
-      - develop
+  # push:
+  #   branches:
+  #     - develop
 
 jobs:
   ci:

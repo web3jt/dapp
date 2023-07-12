@@ -26,12 +26,15 @@ For both EVM network and SUI network
       [viem](https://viem.sh)
   - [x] `EvmConnect` - Custom Connect Wallet Button
   - [x] `EvmConnected` - Layout
-  - [x] Nav Connect
   - [ ] Nav Avatar
 - [x] [Suiet Wallet Kit](https://kit.suiet.app)
   - [x] `SuiConnect` - Custom Connect Wallet Button
   - [x] `SuiConnected` - Layout
 - [x] `Web3Connect` Button to give 2 options for EVM & SUI
+  - [x] Nav Connect
+- [ ] `Web3Avatar`
+  - [ ] `EnsAvatar`
+  - [ ] `SuiAvatar`
 - [x] User Menu on Nav
   - [x] ENS Name
   - [x] EVM Address
@@ -39,3 +42,4 @@ For both EVM network and SUI network
 - [ ] [usehooks-ts](https://usehooks-ts.com)
 - [ ] [Firebase](https://firebase.google.com)
 - [ ] i18n
+

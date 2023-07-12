@@ -11,6 +11,7 @@ import {
   lightTheme,
   darkTheme,
   connectorsForWallets,
+  getDefaultWallets,
 } from '@rainbow-me/rainbowkit';
 import {
   injectedWallet,
@@ -71,7 +72,7 @@ const _getInitialChainId = () => {
 }
 
 // app info
-const appName = "dApp";
+const appName = process.env.NEXT_PUBLIC_DAPP_NAME || "dApp";
 const initialChainId = _getInitialChainId();
 
 // chains, provider
@@ -87,45 +88,51 @@ const { chains, publicClient, webSocketPublicClient } = configureChains(
   ]
 );
 
-// Wallet[]
-const _getConnectorsWallets = (): Wallet[] => {
-  let records: Wallet[] = [];
-  records.push(injectedWallet({ chains }));
-  records.push(metaMaskWallet({ chains }));
-  records.push(rainbowWallet({ chains }));
-  records.push(braveWallet({ chains }));
+// // Wallet[]
+// const _getConnectorsWallets = (): Wallet[] => {
+//   let records: Wallet[] = [];
+//   records.push(injectedWallet({ chains }));
+//   records.push(metaMaskWallet({ chains }));
+//   records.push(rainbowWallet({ chains }));
+//   records.push(braveWallet({ chains }));
 
-  const walletConnectProjectId = process.env.NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID;
-  if (walletConnectProjectId) {
-    records.push(walletConnectWallet({ chains, projectId: walletConnectProjectId }));
-  }
+//   const walletConnectProjectId = process.env.NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID;
+//   if (walletConnectProjectId) {
+//     records.push(walletConnectWallet({ chains, projectId: walletConnectProjectId }));
+//   }
 
-  // const needsInjectedWalletFallback =
-  //   typeof window !== "undefined" &&
-  //   window.ethereum &&
-  //   !window.ethereum.isMetaMask &&
-  //   !window.ethereum.isCoinbaseWallet;
-  // if (needsInjectedWalletFallback) records.push(injectedWallet({ chains }));
+//   // const needsInjectedWalletFallback =
+//   //   typeof window !== "undefined" &&
+//   //   window.ethereum &&
+//   //   !window.ethereum.isMetaMask &&
+//   //   !window.ethereum.isCoinbaseWallet;
+//   // if (needsInjectedWalletFallback) records.push(injectedWallet({ chains }));
 
-  return records;
-}
+//   return records;
+// }
 
-// connectors (wallet list)
-const connectors = connectorsForWallets([
-  {
-    groupName: "Popular",
-    wallets: _getConnectorsWallets(),
-  },
-  {
-    groupName: "Other",
-    wallets: [
-      coinbaseWallet({ appName: appName, chains }),
-      trustWallet({ chains }),
-      // imTokenWallet({ chains })
-    ],
-  },
-]);
+// // connectors (wallet list)
+// const connectors = connectorsForWallets([
+//   {
+//     groupName: "Popular",
+//     wallets: _getConnectorsWallets(),
+//   },
+//   {
+//     groupName: "Other",
+//     wallets: [
+//       coinbaseWallet({ appName: appName, chains }),
+//       trustWallet({ chains }),
+//       // imTokenWallet({ chains })
+//     ],
+//   },
+// ]);
 
+
+const { connectors } = getDefaultWallets({
+  appName: appName,
+  chains,
+  projectId: process.env.NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID || '',
+});
 
 // wagmi config
 const wagmiConfig = createConfig({

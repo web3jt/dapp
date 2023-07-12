@@ -2,23 +2,33 @@
 
 import clsx from 'clsx';
 import Link from 'next/link';
+
+import { Fragment } from 'react';
+import { Listbox, Transition } from '@headlessui/react';
+import copy from 'copy-text-to-clipboard';
 import * as BIP39 from '@scure/bip39';
+import BIP44_CONSTANTS from 'bip44-constants';
 import { wordlist } from '@scure/bip39/wordlists/english';
 import { HDKey, hdKeyToAccount } from 'viem/accounts'
 import { atom, useAtom } from 'jotai';
-import { DocumentDuplicateIcon } from '@heroicons/react/20/solid';
+import { CheckIcon, ChevronUpDownIcon, DocumentDuplicateIcon } from '@heroicons/react/20/solid';
 import Container, { Grid6 } from '@/components/root/container';
 
 
+interface StrengthOption {
+  wordAmount: number;
+  strengthValue: number;
+}
 
-const atomStrength = atom<number>(128);
-const strengthOptions = [
-  { name: '12', value: 128 },
-  { name: '15', value: 160 },
-  { name: '18', value: 192 },
-  { name: '21', value: 224 },
-  { name: '24', value: 256 },
+const strengthOptions: StrengthOption[] = [
+  { wordAmount: 12, strengthValue: 128 },
+  { wordAmount: 15, strengthValue: 160 },
+  { wordAmount: 18, strengthValue: 192 },
+  { wordAmount: 21, strengthValue: 224 },
+  { wordAmount: 24, strengthValue: 256 },
 ];
+const atomStrengthSelected = atom<StrengthOption>(strengthOptions[0]);
+
 const atomMnemonicText = atom<string>('');
 
 const atomMnemonicPhrases = atom((get) => get(atomMnemonicText).trim());
@@ -78,22 +88,23 @@ const atomPublicExtendedKey = atom((get) => {
 });
 
 
+const COIN_BTC = BIP44_CONSTANTS.filter(item => item[1] === 'BTC');
+const COIN_ETH = BIP44_CONSTANTS.filter(item => item[1] === 'ETH');
+
+
 export default function Component() {
-  const [strength, setStrength] = useAtom(atomStrength);
+  const [strengthSelected, setStrengthSelected] = useAtom(atomStrengthSelected);
+
   const [mnemonicText, setMnemonicText] = useAtom(atomMnemonicText);
   const [mnemonicError] = useAtom(atomMnemonicError);
   const [mnemonicValid] = useAtom(atomMnemonicValid);
   const [seed] = useAtom(atomSeed);
   const [seedHex] = useAtom(atomSeedHex);
 
-  // const [hdKey] = useAtom(atomHDKey);
-
   const [privateExtendedKey] = useAtom(atomPrivateExtendedKey);
   const [publicExtendedKey] = useAtom(atomPublicExtendedKey);
 
-  const handleStrengthOnchange = (e: React.ChangeEvent<HTMLSelectElement>) => setStrength(parseInt(e.target.value));
-  const handleGenerateMnemonic = () => setMnemonicText(BIP39.generateMnemonic(wordlist, strength));
-
+  const handleGenerateMnemonic = () => setMnemonicText(BIP39.generateMnemonic(wordlist, strengthSelected.strengthValue));
 
   return (
     <>
@@ -116,22 +127,83 @@ export default function Component() {
           <Grid6 className="mt-10">
             <div className="col-span-full sm:col-span-5 md:col-span-4 lg:col-span-3 flex space-x-2">
               <div className="flex-grow">
-                <label htmlFor="tabs" className="block text-sm font-medium leading-6 text-gray-900 dark:text-white">
-                  Words and Strength
-                </label>
-                <select
-                  id="tabs"
-                  name="tabs"
-                  className="mt-1 block w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                  defaultValue={strength}
-                  onChange={handleStrengthOnchange}
-                >
-                  {strengthOptions.map((option) => (
-                    <option key={option.value} value={option.value}>
-                      {option.name} words ({option.value} bits)
-                    </option>
-                  ))}
-                </select>
+                {/**
+                  * Select Menus: `Simple custom`
+                  * https://tailwindui.com/components/application-ui/forms/select-menus#component-8298198b136afab3bb19391ae716077f
+                  */}
+                <Listbox value={strengthSelected} onChange={setStrengthSelected}>
+                  {({ open }) => (
+                    <>
+                      <Listbox.Label className="block text-sm font-medium leading-6 text-gray-900 dark:text-white">
+                        Words and Strength
+                      </Listbox.Label>
+                      <div className="relative mt-1">
+                        <Listbox.Button className={clsx(
+                          "relative w-full cursor-default rounded-md py-1.5 pl-3 pr-10 shadow-sm",
+                          "ring-1 ring-inset focus:outline-none focus:ring-2 text-left sm:text-sm sm:leading-6",
+                          "bg-white dark:bg-white/10",
+                          "text-gray-900 dark:text-white",
+                          "ring-gray-300 dark:ring-white/10",
+                          "focus:ring-indigo-600 dark:focus:ring-indigo-500",
+                        )}>
+                          <span className="block truncate">
+                            {strengthSelected.wordAmount} words ({strengthSelected.strengthValue} bits)
+                          </span>
+                          <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
+                            <ChevronUpDownIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
+                          </span>
+                        </Listbox.Button>
+
+                        <Transition
+                          show={open}
+                          as={Fragment}
+                          leave="transition ease-in duration-100"
+                          leaveFrom="opacity-100"
+                          leaveTo="opacity-0"
+                        >
+                          <Listbox.Options className={clsx(
+                            "absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md py-1 shadow-lg",
+                            "ring-1 ring-opacity-5 focus:outline-none text-base sm:text-sm",
+                            "bg-white ring-black",
+                            "dark:bg-gray-900 dark:ring-white/30",
+                          )}>
+                            {strengthOptions.map((option) => (
+                              <Listbox.Option
+                                key={option.strengthValue}
+                                className={({ active }) =>
+                                  clsx(
+                                    active ? 'bg-indigo-600 text-white' : 'text-gray-900 dark:text-white',
+                                    'relative cursor-default select-none py-2 pl-3 pr-9'
+                                  )
+                                }
+                                value={option}
+                              >
+                                {({ selected, active }) => (
+                                  <>
+                                    <span className={clsx(selected ? 'font-semibold' : 'font-normal', 'block truncate')}>
+                                      {option.wordAmount} words ({option.strengthValue} bits)
+                                    </span>
+
+                                    {selected ? (
+                                      <span
+                                        className={clsx(
+                                          active ? 'text-white' : 'text-indigo-600 dark:text-indigo-400',
+                                          'absolute inset-y-0 right-0 flex items-center pr-4'
+                                        )}
+                                      >
+                                        <CheckIcon className="h-5 w-5" aria-hidden="true" />
+                                      </span>
+                                    ) : null}
+                                  </>
+                                )}
+                              </Listbox.Option>
+                            ))}
+                          </Listbox.Options>
+                        </Transition>
+                      </div>
+                    </>
+                  )}
+                </Listbox>
               </div>
 
               <div>
@@ -239,7 +311,7 @@ export default function Component() {
                   placeholder="Seed derived from mnemonic phrases"
                   defaultValue={seedHex}
                   aria-invalid={Boolean(seed)}
-                  disabled
+                  readOnly
                 />
                 {seedHex && (
                   <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
@@ -269,10 +341,10 @@ export default function Component() {
                     "focus:ring-indigo-600 dark:focus:ring-indigo-500",
                     "dark:bg-white/10",
                   )}
-                  placeholder="Seed derived from mnemonic phrases"
+                  placeholder="Private Extended Key from Seed"
                   defaultValue={privateExtendedKey}
                   aria-invalid={Boolean(seed)}
-                  disabled
+                  readOnly
                 />
                 {privateExtendedKey && (
                   <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
@@ -302,10 +374,10 @@ export default function Component() {
                     "focus:ring-indigo-600 dark:focus:ring-indigo-500",
                     "dark:bg-white/10",
                   )}
-                  placeholder="Seed derived from mnemonic phrases"
+                  placeholder="Public Extended Key from Seed"
                   defaultValue={publicExtendedKey}
                   aria-invalid={Boolean(seed)}
-                  disabled
+                  readOnly
                 />
                 {publicExtendedKey && (
                   <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
@@ -320,6 +392,28 @@ export default function Component() {
           </Grid6>
         </Container>
 
+      </div>
+
+
+      {/* Path */}
+      <div id="path" className="bg-gray-50 dark:bg-gray-900">
+        <Container className="py-12 sm:py-20">
+          <h2 className="text-base font-semibold leading-7 text-gray-900 dark:text-white">
+            Step #3 - Derive Private/Public Key
+          </h2>
+          <p className="mt-1 text-sm leading-6 text-gray-600 dark:text-gray-400">
+            Derive path, ref: <Link
+              className="text-blue-600 dark:text-blue-400 hover:underline"
+              target="_blank"
+              href="https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki"
+            >
+              BIP44
+            </Link>
+          </p>
+
+          <Grid6 className="mt-10">
+          </Grid6>
+        </Container>
       </div>
     </>
   )

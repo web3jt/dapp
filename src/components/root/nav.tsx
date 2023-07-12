@@ -47,8 +47,8 @@ const atomNavigations = atom((get) => {
           name: 'Lorem ipsum dolor',
           cols: [
             [
-              { name: 'Gas', href: '#' },
-              { name: 'Time Slots', href: '/tools/time-slots' },
+              { name: '#Gas', href: '#' },
+              { name: '#Time Slots', href: '/tools/time-slots' },
               { name: '#Tempor', href: '#' },
               { name: '#Odio', href: '#' },
               { name: '#Facilisis', href: '#' },
@@ -75,9 +75,9 @@ const atomNavigations = atom((get) => {
         col3: {
           name: 'Lobortis',
           cols: [
-            { name: '#Scelerisque', href: '#' },
-            { name: '#Faucibus', href: '#' },
-            { name: '#Ornare', href: '#' },
+            { name: 'Base64', href: '/tools/base64' },
+            { name: 'Base58', href: '/tools/base58' },
+            { name: 'Javascript Minify', href: '/tools/js-minify' },
             { name: '#Egestas', href: '#' },
             { name: '#Bibendum', href: '#' },
           ],

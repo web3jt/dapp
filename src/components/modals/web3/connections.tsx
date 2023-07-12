@@ -3,6 +3,7 @@
 import clsx from 'clsx';
 import { Fragment, useRef } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
+import copy from 'copy-text-to-clipboard';
 import { WalletIcon, DocumentDuplicateIcon, XMarkIcon, BeakerIcon } from '@heroicons/react/24/outline';
 import { useDisconnect as useEvmDisconnect } from 'wagmi';
 import { useWallet } from '@suiet/wallet-kit';
@@ -11,12 +12,14 @@ import {
   atomEvmConnected,
   atomEvmConnecting,
   atomEvmChainTestnet,
+  atomEvmAddress,
   atomEvmAddressMask,
   atomEvmChainName,
 
   atomSuiWalletName,
   atomSuiConnected,
   atomSuiConnecting,
+  atomSuiAddress,
   atomSuiAddressMask,
   atomSuiChainName,
 
@@ -49,12 +52,14 @@ export function Web3ConnectionsModal() {
   const [evmConnecting] = useAtom(atomEvmConnecting);
   const [evmChainName] = useAtom(atomEvmChainName);
   const [evmChainTestnet] = useAtom(atomEvmChainTestnet);
+  const [evmAddress] = useAtom(atomEvmAddress);
   const [evmAddressMask] = useAtom(atomEvmAddressMask);
 
   const [suiWalletName] = useAtom(atomSuiWalletName);
   const [suiConnected] = useAtom(atomSuiConnected);
   const [suiConnecting] = useAtom(atomSuiConnecting);
   const [suiChainName] = useAtom(atomSuiChainName);
+  const [suiAddress] = useAtom(atomSuiAddress);
   const [suiAddressMask] = useAtom(atomSuiAddressMask);
 
   const initialNull = useRef(null);
@@ -64,6 +69,15 @@ export function Web3ConnectionsModal() {
 
   const { disconnect: suiDisconnect } = useWallet();
   const handleSuiDisconnect = () => suiDisconnect();
+
+  const handleCopyEvmAddress = () => {
+    if (evmAddress) copy(evmAddress);
+  };
+
+
+  const handleCopySuiAddress = () => {
+    if (suiAddress) copy(suiAddress);
+  };
 
   return (
     <Transition.Root show={open} as={Fragment}>
@@ -143,6 +157,7 @@ export function Web3ConnectionsModal() {
                             "text-gray-400 hover:text-gray-600",
                             "dark:text-gray-500 dark:hover:text-gray-400",
                           )}
+                          onClick={handleCopyEvmAddress}
                         >
                           <DocumentDuplicateIcon className="mx-auto w-5 h-5" />
                           <div className="text-xs">
@@ -209,6 +224,7 @@ export function Web3ConnectionsModal() {
                             "text-gray-400 hover:text-gray-600",
                             "dark:text-gray-500 dark:hover:text-gray-400",
                           )}
+                          onClick={handleCopySuiAddress}
                         >
                           <DocumentDuplicateIcon className="mx-auto w-5 h-5" />
                           <div className="text-xs">
