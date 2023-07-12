@@ -1,6 +1,11 @@
 # A dApp scaffold
 
-For both EVM network and SUI network
+## Branches
+
+| Branch | Link |
+| ------ | ---- |
+| main   | [scaffold.web3jt.com](https://scaffold.web3jt.com) |
+| develop | [dpreview.web3jt.com](https://dpreview.web3jt.com) |
 
 
 ## Preview
