@@ -1,10 +1,11 @@
 # A dApp scaffold
 
-## Preview
+## Branches
 
-- [Main Branch](https://scaffold.web3jt.com)
-- [Develop Branch](https://dpreview.web3jt.com)
-
+| Branch  | Link |
+| ------- | ---- |
+| main    | [scaffold.web3jt.com](https://scaffold.web3jt.com) |
+| develop | [dpreview.web3jt.com](https://dpreview.web3jt.com) |
 
 ## Dependencies
 
