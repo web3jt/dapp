@@ -47,7 +47,7 @@ import { publicProvider } from 'wagmi/providers/public';
 /**
  * Viem
  */
-// import { createPublicClient, http } from 'viem';
+import { createPublicClient, http } from 'viem';
 
 /**
  * State
@@ -150,7 +150,11 @@ export function EvmProviders({ children }: { children: React.ReactNode }) {
   return (
     <WagmiConfig config={wagmiConfig}>
       <RainbowKitProvider
-        theme={darmMode ? darkTheme() : lightTheme()}
+        theme={
+          darmMode
+            ? darkTheme({ overlayBlur: 'small' })
+            : lightTheme()
+        }
         modalSize="compact"
         chains={chains}
         initialChain={initialChainId}
