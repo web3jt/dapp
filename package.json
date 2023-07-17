@@ -32,7 +32,7 @@
     "jotai-immer": "^0.2.0",
     "lokijs": "^1.5.12",
     "moment": "^2.29.4",
-    "next": "^13.4.9",
+    "next": "^13.4.10",
     "next-auth": "^4.22.1",
     "next-themes": "^0.2.1",
     "pino-pretty": "^10.0.1",
