@@ -31,8 +31,6 @@ import { SuiConnect } from '@/components/web3/sui/connect';
 import EthereumIcon from '@/images/svg/ethereum.svg';
 
 
-
-
 const defaultClassName = clsx(
   'group',
   'relative inline-flex w-full items-center justify-start gap-x-3',
@@ -78,6 +76,8 @@ export function Web3ConnectionsModal() {
   const handleCopySuiAddress = () => {
     if (suiAddress) copy(suiAddress);
   };
+
+  const envSUISupported = process.env.NEXT_PUBLIC_SUI_SUPPORTED === 'true';
 
   return (
     <Transition.Root show={open} as={Fragment}>
@@ -194,71 +194,75 @@ export function Web3ConnectionsModal() {
                     </EvmConnect>
                   )}
 
-                  {suiConnected ? (
-                    <div className={clsx(
-                      "group relative rounded-lg border shadow-sm",
-                      "border-gray-300 dark:border-gray-700 hover:border-gray-400 dark:hover:border-gray-600",
-                      "bg-white dark:bg-gray-800",
-                    )}>
-                      <div className={clsx(" flex items-center justify-between space-x-3 px-6 py-5")}>
-                        <div className="flex-shrink-0">
-                          <BeakerIcon className={clsx(
-                            "h-8 w-8 text-gray-400 group-hover:text-gray-500",
-                            "dark:text-gray-500 dark:group-hover:text-gray-400",
-                          )} />
-                        </div>
-                        <div className="min-w-0 flex-1">
-                          <p className="text-sm font-medium text-gray-900 dark:text-white font-mono">
-                            {suiAddressMask}
-                          </p>
-                          <p className="truncate text-sm text-gray-600 dark:text-gray-400">
-                            {suiChainName}{suiWalletName ? ` (${suiWalletName})` : ''}
-                          </p>
-                        </div>
-                      </div>
-                      <div className="grid grid-cols-2 gap-2 pb-3">
-                        <button
-                          type="button"
-                          className={clsx(
-                            "space-y-1 text-center",
-                            "text-gray-400 hover:text-gray-600",
-                            "dark:text-gray-500 dark:hover:text-gray-400",
-                          )}
-                          onClick={handleCopySuiAddress}
-                        >
-                          <DocumentDuplicateIcon className="mx-auto w-5 h-5" />
-                          <div className="text-xs">
-                            Copy Address
+                  {envSUISupported && (
+                    <>
+                      {suiConnected ? (
+                        <div className={clsx(
+                          "group relative rounded-lg border shadow-sm",
+                          "border-gray-300 dark:border-gray-700 hover:border-gray-400 dark:hover:border-gray-600",
+                          "bg-white dark:bg-gray-800",
+                        )}>
+                          <div className={clsx(" flex items-center justify-between space-x-3 px-6 py-5")}>
+                            <div className="flex-shrink-0">
+                              <BeakerIcon className={clsx(
+                                "h-8 w-8 text-gray-400 group-hover:text-gray-500",
+                                "dark:text-gray-500 dark:group-hover:text-gray-400",
+                              )} />
+                            </div>
+                            <div className="min-w-0 flex-1">
+                              <p className="text-sm font-medium text-gray-900 dark:text-white font-mono">
+                                {suiAddressMask}
+                              </p>
+                              <p className="truncate text-sm text-gray-600 dark:text-gray-400">
+                                {suiChainName}{suiWalletName ? ` (${suiWalletName})` : ''}
+                              </p>
+                            </div>
                           </div>
-                        </button>
-                        <button
-                          type="button"
-                          className={clsx(
-                            "space-y-1 text-center text-gray-400 hover:text-gray-600",
-                            "dark:text-gray-500 dark:hover:text-gray-400",
-                          )}
-                          onClick={handleSuiDisconnect}
-                        >
-                          <XMarkIcon className="mx-auto w-5 h-5" />
-                          <div className="text-xs">
-                            Disconnect
+                          <div className="grid grid-cols-2 gap-2 pb-3">
+                            <button
+                              type="button"
+                              className={clsx(
+                                "space-y-1 text-center",
+                                "text-gray-400 hover:text-gray-600",
+                                "dark:text-gray-500 dark:hover:text-gray-400",
+                              )}
+                              onClick={handleCopySuiAddress}
+                            >
+                              <DocumentDuplicateIcon className="mx-auto w-5 h-5" />
+                              <div className="text-xs">
+                                Copy Address
+                              </div>
+                            </button>
+                            <button
+                              type="button"
+                              className={clsx(
+                                "space-y-1 text-center text-gray-400 hover:text-gray-600",
+                                "dark:text-gray-500 dark:hover:text-gray-400",
+                              )}
+                              onClick={handleSuiDisconnect}
+                            >
+                              <XMarkIcon className="mx-auto w-5 h-5" />
+                              <div className="text-xs">
+                                Disconnect
+                              </div>
+                            </button>
                           </div>
-                        </button>
-                      </div>
-                    </div>
-                  ) : (
-                    <SuiConnect className={defaultClassName}>
-                      <BeakerIcon
-                        className={clsx(
-                          "-ml-0.5 h-5 w-5",
-                          suiConnecting ? 'animate-bounce' : '',
-                        )}
-                        aria-hidden="true"
-                      />
-                      <span>
-                        Connect to SUI
-                      </span>
-                    </SuiConnect>
+                        </div>
+                      ) : (
+                        <SuiConnect className={defaultClassName}>
+                          <BeakerIcon
+                            className={clsx(
+                              "-ml-0.5 h-5 w-5",
+                              suiConnecting ? 'animate-bounce' : '',
+                            )}
+                            aria-hidden="true"
+                          />
+                          <span>
+                            Connect to SUI
+                          </span>
+                        </SuiConnect>
+                      )}
+                    </>
                   )}
                 </div>
               </Dialog.Panel>

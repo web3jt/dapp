@@ -8,7 +8,6 @@ import { atomSuiAvailableWalletCount, atomShowWeb3ConnectModal } from '@/store/s
 
 import { EvmConnect } from '@/components/web3/evm/connect';
 
-
 export function Web3Connect({
   className,
   unsupportedClassName,
@@ -21,55 +20,58 @@ export function Web3Connect({
   children?: React.ReactNode
 }) {
   const [suiAvailableWalletCount] = useAtom(atomSuiAvailableWalletCount);
-  const [, setOpen] = useAtom(atomShowWeb3ConnectModal);
-  const handleOpen = () => setOpen(true);
+  const [, setWeb3ConnectModalOpen] = useAtom(atomShowWeb3ConnectModal);
+  const handleOpen = () => setWeb3ConnectModalOpen(true);
 
-  if (0 === suiAvailableWalletCount) {
-    if (children) {
-      return (
-        <EvmConnect
-          className={className}
-          unsupportedClassName={unsupportedClassName}
-          buttonText={buttonText}
+  const envSUISupported = process.env.NEXT_PUBLIC_SUI_SUPPORTED === 'true';
+
+  if (envSUISupported && 0 < suiAvailableWalletCount) {
+    return (
+      <>
+        <button
+          type="button"
+          aria-label="Connect Wallet"
+          className={className || clsx(
+            'relative inline-flex items-center gap-x-1.5',
+            'rounded-md shadow-sm px-3 py-2',
+            'bg-indigo-600 hover:bg-indigo-700',
+            'dark:bg-indigo-700 dark:hover:bg-indigo-600',
+            'text-sm font-semibold text-gray-200 hover:text-white',
+            'focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-indigo-500',
+            'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500',
+          )}
+          onClick={handleOpen}
         >
-          {children}
-        </EvmConnect>
-      )
-    }
+          {children || (
+            <>
+              <TicketIcon className="-ml-0.5 h-5 w-5" aria-hidden="true" />
+              <span>
+                {buttonText}
+              </span>
+            </>
+          )}
+        </button>
+      </>
+    );
+  }
 
+  if (children) {
     return (
       <EvmConnect
         className={className}
         unsupportedClassName={unsupportedClassName}
         buttonText={buttonText}
-      />
+      >
+        {children}
+      </EvmConnect>
     )
   }
 
   return (
-    <button
-      type="button"
-      aria-label="Connect Wallet"
-      className={className || clsx(
-        'relative inline-flex items-center gap-x-1.5',
-        'rounded-md shadow-sm px-3 py-2',
-        'bg-indigo-600 hover:bg-indigo-700',
-        'dark:bg-indigo-700 dark:hover:bg-indigo-600',
-        'text-sm font-semibold text-gray-200 hover:text-white',
-        'focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-indigo-500',
-        'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500',
-      )}
-      onClick={handleOpen}
-    >
-      {children || (
-        <>
-          <TicketIcon className="-ml-0.5 h-5 w-5" aria-hidden="true" />
-          <span>
-            {buttonText}
-            {/* {connecting ? 'Connecting...' : buttonText} */}
-          </span>
-        </>
-      )}
-    </button>
+    <EvmConnect
+      className={className}
+      unsupportedClassName={unsupportedClassName}
+      buttonText={buttonText}
+    />
   )
 }

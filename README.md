@@ -41,3 +41,6 @@
 - [ ] [Firebase](https://firebase.google.com)
 - [ ] i18n
 
+## Environment Variables
+
+- default `NEXT_PUBLIC_SUI_SUPPORTED`: `false`
