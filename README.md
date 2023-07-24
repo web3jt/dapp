@@ -1,13 +1,11 @@
 # A dApp scaffold
 
-For both EVM network and SUI network
+## Branches
 
-
-## Preview
-
-- [Main Branch](https://dpreview.web3jt.com)
-- [Develop Branch](https://developreview.web3jt.com)
-
+| Branch  | Link |
+| ------- | ---- |
+| main    | [scaffold.web3jt.com](https://scaffold.web3jt.com) |
+| develop | [dpreview.web3jt.com](https://dpreview.web3jt.com) |
 
 ## Dependencies
 
@@ -43,3 +41,6 @@ For both EVM network and SUI network
 - [ ] [Firebase](https://firebase.google.com)
 - [ ] i18n
 
+## Environment Variables
+
+- default `NEXT_PUBLIC_SUI_SUPPORTED`: `false`
