@@ -11,6 +11,7 @@
 
 - [x] [TypeScript](https://www.typescriptlang.org)
 - [x] [Next.js 13](https://nextjs.org/docs)
+- [x] [NextUI v2 beta/dev](https://nextui-docs-v2.vercel.app/)
 - [x] [TailwindCSS](https://tailwindcss.com) and
       [TailwindUI](https://tailwindui.com)
 - [x] [jotai](https://jotai.org)
