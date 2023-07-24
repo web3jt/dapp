@@ -18,6 +18,7 @@ export default function ThemeToggle() {
 
   return (
     <Switch
+      id="theme-toggle" // if you remove this, there will be a warning in the console
       checked={darkMode}
       onChange={setDarkMode}
       className={clsx(

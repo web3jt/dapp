@@ -3,6 +3,9 @@
 import clsx from 'clsx';
 import Link from 'next/link';
 
+import { Button } from '@nextui-org/button';
+
+
 export default function Example() {
 
   return (
@@ -34,6 +37,7 @@ export default function Example() {
               Learn more <span aria-hidden="true">→</span>
             </Link>
           </div>
+
           {/* <svg
             viewBox="0 0 1024 1024"
             className="absolute left-1/2 top-1/2 -z-10 h-[64rem] w-[64rem] -translate-x-1/2 [mask-image:radial-gradient(closest-side,white,transparent)]"

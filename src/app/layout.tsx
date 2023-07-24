@@ -22,9 +22,7 @@ export default function RootLayout({ children }: {
         <Providers>
           <Tip />
           <Nav />
-          <main>
-            {children}
-          </main>
+          {children}
           <Footer />
         </Providers>
       </body>

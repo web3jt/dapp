@@ -24,7 +24,7 @@ export const atomEvmNetwork = atomWithImmer<EvmNetwork | undefined>(undefined);
 
 const unsubEvmNetwork = store.sub(atomEvmNetwork, () => {
   const network = store.get(atomEvmNetwork);
-  console.log(`new EVM network:`, network);
+  // console.log(`new EVM network:`, network);
 })
 
 export const atomEvmChainName: Atom<string | undefined> = atom((get) => {
@@ -146,7 +146,7 @@ export const atomSuiWallet = atomWithImmer<SuiWalletContextState | undefined>(un
 
 const unsubSuiWallet = store.sub(atomSuiWallet, () => {
   const wallet = store.get(atomSuiWallet);
-  console.log(`new SUI wallet:`, wallet);
+  // console.log(`new SUI wallet:`, wallet);
 
   if (wallet?.connected) {
     store.set(atomShowSuiConnectModal, false);

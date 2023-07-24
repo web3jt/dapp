@@ -128,7 +128,7 @@ const atomNavigations = atom((get) => {
     ],
     other: [
       { name: 'Placeholder', href: '/placeholder' },
-      { name: 'Debug', href: '/debug' },
+      { name: '/demos/', href: '/demos/' },
     ],
   }
 });

@@ -1,5 +1,8 @@
 'use client';
 
+import * as React from "react";
+import { NextUIProvider } from "@nextui-org/react";
+
 import { Provider as AtomProvider } from 'jotai';
 import { ThemeProvider } from 'next-themes';
 import { EvmProviders } from '@/providers/evm';
@@ -14,15 +17,17 @@ export function Providers({
 }) {
   return (
     <AtomProvider store={store}>
-      <ThemeProvider attribute="class" defaultTheme="dark">
-        <EvmProviders>
-          <SuiProvider>
-            <ModalsProvider>
-              {children}
-            </ModalsProvider>
-          </SuiProvider>
-        </EvmProviders>
-      </ThemeProvider>
+      <NextUIProvider>
+        <ThemeProvider attribute="class" defaultTheme="dark">
+          <EvmProviders>
+            <SuiProvider>
+              <ModalsProvider>
+                {children}
+              </ModalsProvider>
+            </SuiProvider>
+          </EvmProviders>
+        </ThemeProvider>
+      </NextUIProvider>
     </AtomProvider>
   )
 }
