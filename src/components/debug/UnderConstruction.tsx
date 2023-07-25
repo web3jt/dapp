@@ -1,13 +1,12 @@
 'use client';
 
-import clsx from 'clsx';
-import Link from 'next/link';
-
+// import clsx from 'clsx';
+// import Link from 'next/link';
 import { Button } from '@nextui-org/button';
+import { loremIpsum } from "react-lorem-ipsum";
 
 
 export default function Component() {
-
   return (
     <div className="bg-white dark:bg-black">
       <div className="mx-auto max-w-7xl py-24 sm:px-6 sm:py-32 lg:px-8">
@@ -16,7 +15,8 @@ export default function Component() {
             Trying NextUI
           </h2>
           <p className="mx-auto mt-6 max-w-xl text-lg leading-8 text-gray-600 dark:text-gray-300">
-            Under construction...
+            Under construction...&nbsp;
+            {loremIpsum({ avgSentencesPerParagraph: 1, avgWordsPerSentence: 4 })}
           </p>
           <div className="mt-10 flex items-center justify-center gap-x-6">
             <Button

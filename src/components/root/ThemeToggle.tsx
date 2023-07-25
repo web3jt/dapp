@@ -3,7 +3,8 @@
 import clsx from 'clsx';
 import { useEffect } from 'react';
 import { useTheme } from 'next-themes';
-import { Switch } from '@headlessui/react';
+import { Switch as HSwitch } from '@headlessui/react';
+import { Switch as NSwitch } from "@nextui-org/react";
 import { SunIcon, MoonIcon } from '@heroicons/react/20/solid';
 import { useAtom } from 'jotai';
 import { atomDarkMode } from '@/store/store';
@@ -17,7 +18,22 @@ export default function ThemeToggle() {
   }, [darkMode, setTheme]);
 
   return (
-    <Switch
+    // <NSwitch
+    //   defaultSelected={darkMode}
+    //   color="primary"
+    //   thumbIcon={({ isSelected, className }: { isSelected: boolean, className: string }) =>
+    //     isSelected ? (
+    //       <MoonIcon className={className} />
+    //     ) : (
+    //       <SunIcon className={className} />
+    //     )
+    //   }
+    //   onValueChange={setDarkMode}
+    // >
+    //   Dark mode
+    // </NSwitch>
+
+    <HSwitch
       id="theme-toggle" // if you remove this, there will be a warning in the console
       checked={darkMode}
       onChange={setDarkMode}
@@ -56,6 +72,6 @@ export default function ThemeToggle() {
           <MoonIcon className="h-3 w-3" aria-hidden="true" />
         </span>
       </span>
-    </Switch>
+    </HSwitch>
   )
 }

@@ -14,6 +14,7 @@
 - [x] [NextUI v2 beta/dev](https://nextui-docs-v2.vercel.app/)
 - [x] [TailwindCSS](https://tailwindcss.com) and
       [TailwindUI](https://tailwindui.com)
+- [x] [react-lorem-ipsum](https://github.com/fatihtelis/react-lorem-ipsum)
 - [x] [jotai](https://jotai.org)
   - [x] Global `store`
   - [x] Context: `AtomProvider` with `store`
@@ -42,9 +43,11 @@
 - [ ] [Firebase](https://firebase.google.com)
 - [ ] i18n
 
+
 ### Maybe
 
 - [ ] [react-hook-form](https://react-hook-form.com/)
+
 
 ## Environment Variables
 
