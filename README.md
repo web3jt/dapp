@@ -42,6 +42,10 @@
 - [ ] [Firebase](https://firebase.google.com)
 - [ ] i18n
 
+### Maybe
+
+- [ ] [react-hook-form](https://react-hook-form.com/)
+
 ## Environment Variables
 
 - default `NEXT_PUBLIC_SUI_SUPPORTED`: `false`
