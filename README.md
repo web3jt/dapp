@@ -46,6 +46,7 @@
 
 ### Maybe
 
+- [ ] [Framer Motion](https://www.framer.com/motion/)
 - [ ] [react-hook-form](https://react-hook-form.com/)
 
 
