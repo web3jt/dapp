@@ -1,11 +1,11 @@
 'use client';
 
-import Ud from '@/components/debug/Ud';
+import UnderConstruction from '@/components/debug/UnderConstruction';
 
 export default function Page() {
   return (
     <>
-      <Ud />
+      <UnderConstruction />
     </>
   )
 }
