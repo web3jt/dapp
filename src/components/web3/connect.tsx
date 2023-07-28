@@ -1,6 +1,7 @@
 'use client';
 
 import clsx from 'clsx';
+import { Button } from '@nextui-org/button';
 import { TicketIcon } from '@heroicons/react/20/solid';
 
 import { useAtom } from 'jotai';

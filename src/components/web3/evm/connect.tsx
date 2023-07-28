@@ -1,6 +1,7 @@
 'use client';
 
 import clsx from 'clsx';
+import { Button } from '@nextui-org/button';
 import { useAtom } from 'jotai';
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import {
@@ -47,6 +48,25 @@ export function EvmConnect({
         const connected = mounted && account && chain;
         if (!connected) {
           return (
+            // <Button
+            //   // size="sm"
+            //   color="primary"
+            //   radius="sm"
+            //   startContent={
+            //     <TicketIcon
+            //       className={clsx("-ml-0.5 h-5 w-5", evmConnecting ? 'animate-bounce' : '')}
+            //       aria-hidden="true"
+            //     />
+            //   }
+            //   onClick={handleOpenConnectModal}
+            // >
+            //   {children || (
+            //     <>
+            //       {evmConnecting ? 'Connecting...' : buttonText}
+            //     </>
+            //   )}
+            // </Button>
+
             <button
               type="button"
               aria-label="Toggle dark mode"
