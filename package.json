@@ -28,7 +28,7 @@
     "encoding": "^0.1.13",
     "eslint": "^8.45.0",
     "eslint-config-next": "^13.4.12",
-    "framer-motion": "^10.13.1",
+    "framer-motion": "^10.14.0",
     "immer": "^10.0.2",
     "jotai": "^2.1.0",
     "jotai-immer": "^0.2.0",
