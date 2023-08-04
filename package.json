@@ -12,7 +12,7 @@
     "@headlessui/react": "^1.7.16",
     "@heroicons/react": "^2.0.18",
     "@metamask/detect-provider": "^2.0.0",
-    "@mysten/sui.js": "^0.37.1",
+    "@mysten/sui.js": "^0.39.0",
     "@nextui-org/react": "^0.0.0-dev-v2-20230725193627",
     "@rainbow-me/rainbowkit": "^1",
     "@suiet/wallet-kit": "^0.2.16",
