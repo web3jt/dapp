@@ -13,7 +13,7 @@
     "@heroicons/react": "^2.0.18",
     "@metamask/detect-provider": "^2.0.0",
     "@mysten/sui.js": "^0.39.0",
-    "@nextui-org/react": "^0.0.0-dev-v2-20230725193627",
+    "@nextui-org/react": "^2.0.1",
     "@rainbow-me/rainbowkit": "^1",
     "@suiet/wallet-kit": "^0.2.16",
     "@tailwindcss/aspect-ratio": "^0.4.2",
