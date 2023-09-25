@@ -19,7 +19,7 @@
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "@tailwindcss/forms": "^0.5.4",
     "@tailwindcss/typography": "^0.5.9",
-    "@vercel/postgres": "^0.4.1",
+    "@vercel/postgres": "^0.5.0",
     "autoprefixer": "^10.4.14",
     "axios": "^1.4.0",
     "bip44-constants": "^243.0.0",
