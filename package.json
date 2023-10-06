@@ -22,7 +22,7 @@
     "@vercel/postgres": "^0.5.0",
     "autoprefixer": "^10.4.14",
     "axios": "^1.4.0",
-    "bip44-constants": "^246.0.0",
+    "bip44-constants": "^247.0.0",
     "bs58": "^5.0.0",
     "clsx": "^2.0.0",
     "copy-text-to-clipboard": "^3.1.0",
