@@ -3,7 +3,6 @@ import { atomWithStorage } from 'jotai/utils';
 import { atomWithImmer } from 'jotai-immer';
 import { Chain as EvmChain } from 'wagmi';
 
-import { WalletContextState as SuiWalletContextState } from '@suiet/wallet-kit';
 
 type EvmNetwork = {
   chain?: EvmChain & { unsupported?: boolean; };
@@ -133,103 +132,6 @@ const unsubEvmBlockNumber = store.sub(atomEvmBlockNumber, () => {
 
 
 
-/**
- * SUI
- */
-export const atomShowSuiConnectModal = atom<boolean>(false);
-const unsubSuiShowConnectModal = store.sub(atomShowSuiConnectModal, () => {
-  const connected = store.get(atomShowSuiConnectModal);
-  if (connected) store.set(atomShowWeb3ConnectModal, false);
-})
-
-export const atomSuiWallet = atomWithImmer<SuiWalletContextState | undefined>(undefined);
-
-const unsubSuiWallet = store.sub(atomSuiWallet, () => {
-  const wallet = store.get(atomSuiWallet);
-  // console.log(`new SUI wallet:`, wallet);
-
-  if (wallet?.connected) {
-    store.set(atomShowSuiConnectModal, false);
-  }
-})
-
-export const atomSuiWalletName = atom((get) => {
-  const wallet = get(atomSuiWallet);
-  if (wallet && wallet.name) {
-    return wallet.name;
-  }
-
-  return undefined;
-});
-
-
-export const atomSuiChainName = atom((get) => {
-  const wallet = get(atomSuiWallet);
-  if (wallet) {
-    const chain = wallet.chain;
-    if (chain) return chain.name;
-  }
-
-  return undefined;
-});
-
-export const atomSuiChainId = atom((get) => {
-  const wallet = get(atomSuiWallet);
-  if (wallet) {
-    const chain = wallet.chain;
-    if (chain) return chain.id;
-  }
-
-  return undefined;
-});
-
-
-export const atomSuiAddress = atom((get) => {
-  const wallet = get(atomSuiWallet);
-  if (wallet) {
-    return wallet.address;
-  }
-
-  return undefined;
-});
-
-export const atomSuiAddressMask: Atom<string | undefined> = atom((get) => {
-  const address = get(atomSuiAddress);
-
-  if (address) {
-    return `${address.slice(0, 6)}...${address.slice(-4)}`;
-  }
-
-  return undefined;
-});
-
-export const atomSuiConnected = atom((get) => {
-  const wallet = get(atomSuiWallet);
-  if (wallet) {
-    return wallet.connected;
-  }
-
-  return false;
-});
-
-export const atomSuiConnecting = atom((get) => {
-  const wallet = get(atomSuiWallet);
-  if (wallet) {
-    return wallet.connecting;
-  }
-
-  return false;
-});
-
-export const atomSuiAvailableWalletCount = atom((get) => {
-  const wallet = get(atomSuiWallet);
-  if (wallet) {
-    return wallet.allAvailableWallets.length;
-  }
-
-  return 0;
-});
-
 
 /**
  * Web3
@@ -244,11 +146,6 @@ export const atomWeb3Connected = atom((get) => {
   if (evmConnected) {
     const evmNetwork = get(atomEvmNetwork);
     if (!evmNetwork?.chain?.unsupported) connected++;
-  }
-
-  const suiConnected = get(atomSuiConnected);
-  if (suiConnected) {
-    connected++;
   }
 
   return connected;

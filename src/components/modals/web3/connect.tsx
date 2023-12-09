@@ -7,7 +7,6 @@ import { WalletIcon, BeakerIcon } from '@heroicons/react/24/outline';
 import { useAtom } from 'jotai';
 import { atomShowWeb3ConnectModal } from '@/store/store';
 import { EvmConnect } from '@/components/web3/evm/connect';
-import { SuiConnect } from '@/components/web3/sui/connect';
 import EthereumIcon from '@/images/svg/ethereum.svg';
 
 const defaultClassName = clsx(
@@ -94,20 +93,7 @@ export function Web3ConnectModal() {
                       Connect to ETH/EVM
                     </span>
                   </EvmConnect>
-                  <SuiConnect
-                    buttonText='Connect to SUI'
-                    className={defaultClassName}
-                  >
-                    <BeakerIcon
-                      className={clsx(
-                        "-ml-0.5 h-5 w-5",
-                      )}
-                      aria-hidden="true"
-                    />
-                    <span>
-                      Connect to SUI
-                    </span>
-                  </SuiConnect>
+
                 </div>
               </Dialog.Panel>
             </Transition.Child>

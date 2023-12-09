@@ -6,7 +6,6 @@ import { NextUIProvider } from "@nextui-org/react";
 import { Provider as AtomProvider } from 'jotai';
 import { ThemeProvider } from 'next-themes';
 import { EvmProviders } from '@/providers/evm';
-import { SuiProvider } from '@/providers/sui';
 import { ModalsProvider } from '@/providers/modals';
 import store from '@/store/store';
 
@@ -20,11 +19,9 @@ export function Providers({
       <NextUIProvider>
         <ThemeProvider attribute="class" defaultTheme="dark">
           <EvmProviders>
-            <SuiProvider>
-              <ModalsProvider>
-                {children}
-              </ModalsProvider>
-            </SuiProvider>
+            <ModalsProvider>
+              {children}
+            </ModalsProvider>
           </EvmProviders>
         </ThemeProvider>
       </NextUIProvider>

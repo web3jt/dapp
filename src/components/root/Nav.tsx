@@ -19,9 +19,6 @@ import {
   atomEvmConnected,
   atomEvmNativeSymbol,
 
-  atomSuiConnected,
-  atomSuiAddressMask,
-
   atomShowWeb3ConnectionsModal,
 } from '@/store/store';
 import { Web3Connect } from '@/components/web3/connect';
@@ -144,9 +141,6 @@ export default function Nav() {
   const [evmConnected] = useAtom(atomEvmConnected);
   const [evmSymbol] = useAtom(atomEvmNativeSymbol);
   const [evmAddressMask] = useAtom(atomEvmAddressMask);
-
-  const [suiConnected] = useAtom(atomSuiConnected);
-  const [suiAddressMask] = useAtom(atomSuiAddressMask);
 
   const [, setShowWeb3ConnectionsModal] = useAtom(atomShowWeb3ConnectionsModal);
   const handleShowWeb3ConnectionsModal = () => setShowWeb3ConnectionsModal(true);
@@ -377,15 +371,6 @@ export default function Nav() {
                                   </p>
                                 )}
 
-                                {suiConnected && (
-                                  <p className="text-xs font-mono text-gray-500 group-hover:text-gray-700">
-                                    {1 === web3Connected ? suiAddressMask : (
-                                      <>
-                                        SUI: {suiAddressMask}
-                                      </>
-                                    )}
-                                  </p>
-                                )}
                               </div>
                             </div>
                           </Menu.Item>
